@@ -3,7 +3,7 @@
 # Simple Python script to calculate the 
 # last word of a 24 word BIP39 seed
 # 
-# Must be used.on a secured computer! Read all precautions at:
+# Must be run on a secure offline computer only! Read all precautions at:
 # https://github.com/merland/seedpicker
 # 
 #############################################################
