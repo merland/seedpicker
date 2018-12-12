@@ -11,5 +11,5 @@ _This guide aims to educate the reader about security practices in a learning-by
 References:
 * [The official BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) 
 * [dice2mnemonic](https://github.com/mohrt/dice2mnemonic) (Python code to convert dice rolls to a seed phrase) 
-* (https://iancoleman.io/bip39/) Probably the best mnemonic code converter (however, it does not calculate the 24th word). 
+* https://iancoleman.io/bip39/ Probably the best mnemonic code converter (however, it does not calculate the 24th word). 
 * [This reddit thread](https://www.reddit.com/r/crypto/comments/684zvj/need_help_generating_lastword_checksum_for_bip39/), which was the starting point for the idea to create this repo. 
