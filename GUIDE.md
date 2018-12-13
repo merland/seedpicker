@@ -23,9 +23,10 @@ It is crucial to convince the audience that the randomness is real and not manip
 This guide uses a combination of raffle tickets and a six-sided playing die to create very good natural and transparent randomness. 
 
 This is how you do it: 
-Use the scissors to cut out the 342 raffle tickets and put them in the bag (or box). Make sure you don’t lose any of them. 
-Mix them around thoroughly!
-Use the Seed form, the raffle tickets, and the 6-sided die to draw the first 23 words. Read the instructions on the Seed Form carefully, and make sure to follow them all. 
+
+* Use the scissors to cut out the 342 raffle tickets and put them in the bag (or box). Make sure you don’t lose any of them. Mix them around thoroughly!
+* Use the seed form, the raffle tickets, and the 6-sided die to draw the first 23 words. Read the instructions on the Seed Form carefully, and make sure to follow them all. 
+
 You should now have a sheet of paper with 23 secret words, generated with a very high degree of randomness. Randomness that you yourself have witnessed and controlled. 
 Don’t ever let anybody see what you have written on your Seed Form!   
 
