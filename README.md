@@ -4,7 +4,7 @@ SeedPicker wants to help you create good and safe private keys for your crypto w
 
 The method is designed to be easy to perform and understand.
 
-This collection of files includes a [step-by-step guide](seedpicker.pdf) and a small script program.
+This collection of files includes a [step-by-step guide](GUIDE.md) and a small script program.
 
 ### The guide
 
