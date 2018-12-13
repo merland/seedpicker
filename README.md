@@ -29,3 +29,16 @@ _This guide aims to educate the reader in a learning-by-doing fashion. However, 
 * [The official BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) The standard for wallet phrases.
 * [dice2mnemonic](https://github.com/mohrt/dice2mnemonic) a Python program that converts dice rolls to a seed phrase. 
 * https://iancoleman.io/bip39/ An excellent mnemonic code converter, only it doesn't calculate the 24th word. 
+
+## Alternatives
+
+Before creating this guide, we did try creating our secret keys in other ways:
+
+- Fully computer generated. Risks: bad sources of randomness, programming mistakes in big programs, hacking.
+- Fully manully generated. Risks: Takes hours, and mistakes are hard to spot and avoid.
+- Rolling a 6 sided die 99 times, the using a program similar to ours. Or rolling a specially made die with many more sides, then using a program similar to ours. Risks: mistakes/laziness when entering the die roll results, problems from the program used, harer to understand and verify the correctness of the program.
+- Rolling a 6 sided die a few times and entering that into a hardware wallet. Risks: loss/theft/hacking of the hardware wallet or its software.
+
+### And nothing more
+
+We know of no other method that is better, and we've been searching for a while. Anyway, you should always do your own research and due diligence too. And if you discover anything better+easier+safer than BIP39 with a raffle and a 6 sided die, or even just some small improvement to the guide or explanatory material (what you are now reading) please do tell us what we can improve.
