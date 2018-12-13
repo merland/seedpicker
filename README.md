@@ -17,7 +17,7 @@ The needed randomness must be sourced in a safe, private and understandable way.
 ### The script program
 
 Following the BIP39 standard, the last (24th) word of the sentence must be calculated from the first 23 words.
-The accompanying script does this for you. Please read the attached instructions there and make sure you use a secure environment and machine to do the calculation. If you take shortcuts here, you risk getting your keys or even coins irreversibly stolen.
+The accompanying script does this for you. Please read the attached instructions and make sure you use a secure environment and machine to do the calculation. If you take shortcuts here, you risk getting your keys or even coins irreversibly stolen.
 If you could do the calculation on paper, you instead risk creating an incorrect key.
 
 ### Obligatory
@@ -26,6 +26,6 @@ _This guide aims to educate the reader in a learning-by-doing fashion. However, 
 
 ## References
 * [This Reddit thread](https://www.reddit.com/r/crypto/comments/684zvj/need_help_generating_lastword_checksum_for_bip39/), which was the starting point for the idea to create this guide and script program.
-* [The official BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) The standard for waller phrases.
+* [The official BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) The standard for wallet phrases.
 * [dice2mnemonic](https://github.com/mohrt/dice2mnemonic) a Python program that converts dice rolls to a seed phrase. 
 * https://iancoleman.io/bip39/ An excellent mnemonic code converter, only it doesn't calculate the 24th word. 
