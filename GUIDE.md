@@ -32,7 +32,8 @@ Don’t ever let anybody see what you have written on your Seed Form!
 
 ### Part 2: Calculating the 24th word
 The last word of a 24 word seed is a checkum word, calculated using the other 23 words. Unfortunately, we need to use a computer for this step. Since we need to enter our super secret 23 words into a computer, it must be a super secure computer! It must be offline and we must make sure all the secret data is completely discarded after shutdown. Follow the steps below to achieve this! 
-Note that we don’t have to trust any of the software that downloaded here! No hacker can change the 23 words that we generated in the previous step. However, we do have to make sure that the secret information will not leak to the outside world, or to future users of the same computer.
+
+_Note that the software downloaded here does not need to be trusted! The reason is that the 23 words that we generated in the previous step cannot be changed by any software. However, we do have to make sure that the secret information will not leak to the outside world, or to future users of the same computer._
 
 #### 2a: Prepare hardware and software 
 Open up the computer and remove the hard drive. This step is to convince you that Ubuntu Live will not save anything to the hard drive. If you feel certain that this will not happen, you can skip this step.  
