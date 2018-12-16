@@ -4,10 +4,10 @@ _This guide aims to educate the reader in a learning-by-doing fashion. However, 
 
 ### What you need
 * A PC or laptop capable of running Ubuntu. Almost any old computer will do. A hard drive is NOT needed.
-* A CD or a USB Stick prepared with Ubuntu Live. CD is recommended (usually easier for newbies, and completely read-only). If you haven’t created one of those before, the following tutorial is a good starting point: bit.ly/2QD8mjC
-* A printout of [the raffle ticket cutouts](SeedPicker_Ticket_Cutouts.pdf).  
-* A printout of [the seed form](SeedPicker_Seed_Form.pdf).
-* A printout of [the lookup table](SeedPicker_Lookup_Table.pdf). (Not absolutely necessary to print, but recommended)
+* A CD or a USB Stick prepared with Ubuntu Live. CD is recommended (usually easier for newbies, and completely read-only). If you haven’t created one of those before, the following tutorial is a good starting point: **bit.ly/2QD8mjC**
+* A printout of **[the raffle ticket cutouts](SeedPicker_Ticket_Cutouts.pdf)**.  
+* A printout of **[the seed form](SeedPicker_Seed_Form.pdf)**.
+* A printout of **[the lookup table](SeedPicker_Lookup_Table.pdf)**. (Not absolutely necessary to print, but recommended)
 * A printout of this guide. (Not absolutely necessary but recommended)
 * A pair of scissors.
 * A single 6-sided die. 🎲
@@ -40,7 +40,11 @@ _Note that the software downloaded here does not need to be trusted! The reason 
 * Remove any removable media from the computer.
 * Boot up Ubuntu and run it in Live mode ("Try Ubuntu before installing").
 * Make sure you have a working Internet connection, wired or wireless (Click the small triangle on the top right of the Ubuntu desktop).
-* Open Firefox and type in the following address: ```seedpicker.net/lastword.html```. This is the **SeedPicker last word calculator**. Let the page load but DO NOT ENTER ANYTHING IN THE FORM YET!
+* Open Firefox and type in the following address: 
+
+**seedpicker.net/lastword.html** 
+
+This is the **SeedPicker last word calculator**. Let the page load but **DO NOT ENTER ANYTHING IN THE FORM YET!**
 
 #### 2b: Disable all communication
 The secure computer is now fully configured and the next step is to go completely offline:  
