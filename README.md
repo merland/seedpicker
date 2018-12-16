@@ -4,20 +4,20 @@ SeedPicker wants to help you create good and safe private keys for your crypto w
 
 The method is designed to be easy to perform and understand.
 
-This collection of files includes a [step-by-step guide](GUIDE.md) and a small script program.
+This collection of files includes a [step-by-step guide](GUIDE.md) and a web form calculator.
 
 ### The guide
 
-The guide helps you generate your own "seed phrase". This phrase looks like a weird sentence of 24 words. The first 23 words must be randomly copied out of a predefined word list. We follow the most popular standard, also called BIP39, which is supported by most wallets and currencies. The method for randomly copying words from the list to create your random sentence is explained in a transparent and understandable way. The final 24th word is calculated using a safe machine you must have or create.
+The guide helps you generate your own **seed phrase**. This phrase looks like a weird sentence of 24 words. The first 23 words must be randomly copied out of a predefined word list. We follow the most popular standard, also called BIP39, which is supported by most wallets and currencies. The method for randomly copying words from the list to create your random sentence is explained in a transparent and understandable way. The final 24th word is calculated using a safe machine you must have or create.
 
 ### Source of randomness
 
 The needed randomness must be sourced in a safe, private and understandable way. To minimize risks, we use these common physical objects; paper slips (like raffle tickets) that you can prepare yourself, and one 6-sided die. This is important so the user can be fairly sure that nobody can influence the randomness or learn or influence the resulting seed phrase.
 
-### The script program
+### The SeedPicker last word calculator
 
 Following the BIP39 standard, the last (24th) word of the sentence must be calculated from the first 23 words.
-The accompanying script does this for you. Please read the attached instructions and make sure you use a secure environment and machine to do the calculation. If you take shortcuts here, you risk getting your keys or even coins irreversibly stolen.
+The included **SeedPicker last word calculator** does this for you. It is a javascript powered web form that you download to the secured computer. Please read all instructions and make sure you use a secure environment and machine before you perform the calculation. If you take shortcuts here, you risk getting your keys or even coins irreversibly stolen.
 If you could do the calculation on paper, you instead risk creating an incorrect key.
 
 ### Obligatory
