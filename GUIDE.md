@@ -36,50 +36,35 @@ The last word of a 24 word seed is a checkum word, calculated using the other 23
 _Note that the software downloaded here does not need to be trusted! The reason is that the 23 words that we generated in the previous step cannot be changed by any software. However, we do have to make sure that the secret information will not leak to the outside world, or to future users of the same computer._
 
 #### 2a: Prepare hardware and software 
-Open up the computer and remove the hard drive. This step is to convince you that Ubuntu Live will not save anything to the hard drive. If you feel certain that this will not happen, you can skip this step.  
-Remove any removable media from the computer.
-Boot up Ubuntu and run it in Live mode ("Try Ubuntu before installing").
-Make sure you have a working Internet connection, wired or wireless (Click the small triangle on the top right of your screen).
-Open Terminal (Press the Windows key and start typing “terminal”, then click the Terminal icon)
-Our first commands will install the python dependency manager pip3.
-sudo apt-get update ⮐
-sudo apt-get install python3-pip ⮐  Answer Y at the prompt
-(This may take a few minutes)
-
-
-Then we use pip3 to install the library mnemonic (A utility library written by Trezor):
-
-```pip3 install mnemonic``` ⮐
-
-
-Using the command ```wget```, download the SeedPicker python script called lastword.py. It utilizes the *mnemonic* library to calculate the last word.   
-
-```wget http://seedpicker.net/lastword.py```  ⮐ 
-
-(That’s the capital letter O after wget, not a zero)
+* Open up the computer and remove the hard drive. This step is to convince you that Ubuntu Live will not save anything to the hard drive. If you feel certain that this will not happen, you can skip this step.  
+* Remove any removable media from the computer.
+* Boot up Ubuntu and run it in Live mode ("Try Ubuntu before installing").
+* Make sure you have a working Internet connection, wired or wireless (Click the small triangle on the top right of the Ubuntu desktop).
+* Open Firefox and type in the following address: ```seedpicker.net/lastword.html```. This is the *SeedPicker last word calculator*. Let the page load but DO NOT ENTER ANYTHING IN THE FORM YET!
 
 #### 2b: Disable all communication
-We now have prepared the hardware and installed all required software. The next step is to go completely offline:  
+The secure computer is now fully configured and the next step is to go completely offline:  
+
 * Pull any network cable.
 * Disable all wireless communication (e.g. by enabling airplane mode).
 * Make absolutely sure you are now offline, and from now on: Don't go online again until after you have restarted the computer!!
 * Make sure nobody else can see your screen!
 * Make sure nobody else can see your keyboard!
-* Make sure nobody else can see your Seed Form!
+* Make sure nobody else can see your Seedpicker Seed Form!
 
 #### 2c: Run the script 
-In the same terminal window as earlier, type python3 lastword.py followed by all your 23 secret words (space separated): 
-python3 lastword.py word1 word2 word3 word4 … word23  
 
-When the script has calculated your 24th word, use your pen to type the word into the designated cell of the Seed Form. 
+Go back to FireFox and the *SeedPicker last word calculator*. Following the instructions on the page, enter your 23 words into the field and press the button.
 
-Shut down the computer as soon as possible. 
+Use your pen to type the resulting 24th word into the designated cell of the Seed Form. 
 
-You have now generated a valid BIP39 seed phrase and the only record of it is the Seed Form. Keep it really secret. You may want to make copies and put in different locations. 
+*Shut down the secure computer as soon as possible.*  
+
+You have now generated a valid BIP39 seed phrase and the only record of it is the Seed Form. Keep it really secret. You may want to make copies and put in different locations. If you make copies, do it manually. Don't use a copier, camera or any form of computer.  
 
 This guide does not cover how to store your seed phrase securely, so do your research well. 
 
-If you intend to use the seed phrase with a hardware wallet, it is recommended to use the passphrase feature (sometimes called the 25th word) and keep the two phrases separated.   
+If you intend to use the seed phrase with a hardware wallet, it is recommended to use the *passphrase* feature (sometimes called the 25th word) and keep the two phrases separated.   
 
 
 
