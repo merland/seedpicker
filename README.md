@@ -4,7 +4,7 @@ SeedPicker wants to help you create good and safe private keys for your crypto w
 
 The method is designed to be easy to perform and understand.
 
-This collection of files includes a [step-by-step guide](GUIDE.md) and a web form calculator.
+This collection of files includes a [step-by-step guide](GUIDE.md) and a web form calculator. It is recommended to also read the [FAQ](FAQ.md).
 
 ### The guide
 
