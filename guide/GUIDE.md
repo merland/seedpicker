@@ -5,9 +5,9 @@ _This guide aims to educate the reader in a learning-by-doing fashion. However, 
 ### What you need
 * A PC or laptop capable of running Ubuntu. Almost any old computer will do. A hard drive is NOT needed.
 * A CD or a USB Stick prepared with Ubuntu Live. CD is recommended (usually easier for newbies, and completely read-only). If you haven’t created one of those before, the following tutorial is a good starting point: **bit.ly/2QD8mjC**
-* A printout of **[the raffle ticket cutouts](SeedPicker_Ticket_Cutouts.pdf)**.  
-* A printout of **[the seed form](SeedPicker_Seed_Form.pdf)**.
-* A printout of **[the lookup table](SeedPicker_Lookup_Table.pdf)**. (Not absolutely necessary to print, but recommended)
+* A printout of **[the raffle ticket cutouts](guide/SeedPicker_Ticket_Cutouts.pdf)**.  
+* A printout of **[the seed form](guide/SeedPicker_Seed_Form.pdf)**.
+* A printout of **[the lookup table](guide/SeedPicker_Lookup_Table.pdf)**. (Not absolutely necessary to print, but recommended)
 * A printout of this guide. (Not absolutely necessary but recommended)
 * A pair of scissors.
 * A single 6-sided die. 🎲
