@@ -42,7 +42,7 @@ _Note that the software downloaded here does not need to be trusted! The reason 
 * Make sure you have a working Internet connection, wired or wireless (Click the small triangle on the top right of the Ubuntu desktop).
 * Open Firefox and type in the following address: 
 
-**seedpicker.net/lastword.html** 
+```seedpicker.net/calculator/last-word.html```
 
 This is the **SeedPicker last word calculator**. Let the page load but **DO NOT ENTER ANYTHING IN THE FORM YET!**
 
