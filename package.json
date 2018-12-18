@@ -1,7 +1,7 @@
 {
   "name": "seedpicker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Contains a GUIDE and a CALCULATOR to help you safely create a private key.",
   "main": "index.js",
   "dependencies": {
     "bip39": "^2.5.0",
@@ -9,7 +9,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "browserify -r bip39 -o bundle.js",
+    "run": "browserify -r bip39 -o calculator/bundle.js",
+    "build": "browserify -r bip39 -o calculator/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "seedpicker@megabit.se",
