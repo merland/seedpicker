@@ -19,7 +19,7 @@ For wallets that will protect high values or highly sensitive information, the a
 
 
 Why is the seed (phrase) so important?
------------------------------
+--------------------------------------
 Many types of cryptography depend on a very good source (“seed”) of randomness, and the same goes for the cryptography 
 algorithms used to create bitcoin addresses. No matter how good the encryption algorithm is, it can be cracked if the 
 cryptographic seed is not random enough. And it gets worse: If a hacker somehow does succeed to introduce a “bad” seed,
@@ -27,4 +27,10 @@ cryptographic seed is not random enough. And it gets worse: If a hacker somehow 
 that is... The reason is that it's impossible to look at a number and determine if it was created using a lot of randomness,
 a little randomness, or maybe none at all.
 
+
+Is the SeedPicker last word calculator secure?
+----------------------------------------------
+The last word calculator is a simple page containg some simple javacscript logic. This makes it trivial to audit it to see what it does. However, an audit is really not needed! The script has no possibility to change the 23 words that you have drawn in the previous step, so it cannot do any harm whatsoever.  
+If there was an error in the calculation, you would notice it the first time you attempted to use the generated seed phrase, since wallets always validate seed phrases before use.
+The calculator is run in offline mode only, and the computer is shut down immediately afterwards. This makes sure your words do not leak outside the secured computer.  
 
