@@ -29,3 +29,12 @@ Is the SeedPicker last word calculator secure?
 The last word calculator is a simple page containg some simple javacscript logic. This makes it trivial to audit it to see what it does. However, an audit is really not needed! The script has no possibility to change the 23 words that you have drawn in the previous step, so it cannot do any harm whatsoever.  
 If there was an error in the calculation, you would notice it the first time you attempted to use the generated seed phrase, since wallets always validate seed phrases before use.
 The calculator is run in offline mode only, and the computer is shut down immediately afterwards. This makes sure your words do not leak outside the secured computer.  
+
+You can just use some dice rolls and then convert the result to a seed. Why should I use the SeedPicker method instead?
+-----------------------------------------------------------------------------------------------------------------------
+There are several good online calculators that allow you to roll some dice and then convert the result into to a mnemonic seed. The best one is probably [Ian Colemans Mnemonic Code Converter](https://iancoleman.io/bip39). This is a perfectly good way to generate a mnemonic (if you use it on a secure, offline machine!). In fact, this is the process described in the [BIP39 proposal](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki#generating-the-mnemonic). 
+
+This, however, has the problem of being transparent only to programmers. Somebody who knows little or nothing about programming have to trust that the conversion program is not compromised. SeedPicker solves this problem by letting the user pick (randomly) the actual words that will be used in the final seed. 
+
+The only needed calculation is the checksum calculation. It is of no use to a potential hacker, so it does not matter that only programmers can check the validity of it.  
+
