@@ -8,7 +8,7 @@ SeedPicker wants to help you create good and safe private keys for your crypto w
 
 SeedPicker consist of the following two parts: 
 * The step-by-step [guide](guide/GUIDE.md) (Includes a few pdf documents that must be printed on paper)    
-* The [last word calculator]. 
+* The [last word calculator](calculator/last-word.html). 
 
 Please also read through this intro and the [FAQ](FAQ.md).
 
