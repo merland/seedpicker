@@ -3,8 +3,8 @@
 SeedPicker wants to help you create good and safe private keys for your crypto wallets. The method has been designed to be easy to perform and understand for anyone. An even more important goal has been transparency; After having used SeedPicker you should be able to say the following with confidence: 
 
 * _I have understood every step of the process._
-* _Nobody/nothing else has had a chance to take part of my private key._ 
-* _Nobody/nothing else has had a chance to influence how my private key was created._  
+* _Nobody has had a chance to take part of my private key._ 
+* _Nobody has had a chance to influence how my private key was created._  
 
 SeedPicker consist of the following two parts: 
 * The step-by-step [guide](guide/GUIDE.md) (Includes a few pdf documents that must be printed on paper)    
