@@ -34,7 +34,7 @@ You can just use some dice rolls and then convert the result to a seed. Why shou
 -----------------------------------------------------------------------------------------------------------------------
 There are several good online calculators that allow you to roll some dice and then convert the result into to a mnemonic seed. The best one is probably [Ian Colemans Mnemonic Code Converter](https://iancoleman.io/bip39). This is a perfectly good way to generate a mnemonic (if you use it on a secure, offline machine!). In fact, this is the process described in the [BIP39 proposal](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki#generating-the-mnemonic). 
 
-This, however, has the problem of being transparent only to programmers. Somebody who knows little or nothing about programming have to trust that the conversion program is not compromised. SeedPicker solves this problem by letting the user pick (randomly) the actual words that will be used in the final seed. 
+This, however, has the problem of being transparent only to programmers. Somebody who knows little or nothing about programming has to trust that the conversion program is not compromised. SeedPicker solves this problem by letting the user pick (randomly) the actual words that will be used in the final seed. 
 
 The only needed calculation is the checksum calculation. It is of no use to a potential hacker, so it does not matter that only programmers can check the validity of it.  
 
