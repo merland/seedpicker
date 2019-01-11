@@ -42,12 +42,15 @@ _Note that the software downloaded here does not need to be trusted! The reason 
 * Make sure you have a working Internet connection, wired or wireless (Click the small triangle on the top right of the Ubuntu desktop).
 * Open Firefox and type in the following address: 
 
-**seedpicker.net/lastword.html** 
+```seedpicker.net/calculator/last-word.html```
 
 This is the **SeedPicker last word calculator**. Let the page load but **DO NOT ENTER ANYTHING IN THE FORM YET!**
 
+*Tip for advanced users: Open a second tab and navigate to ```iancoleman.io/bip39``` **DO NOT ENTER ANYTHING YET!** 
+Having this page pre-loaded will later enable you to double-check the validity of the generated seed phrase, right before you shut down the computer.*
+
 #### 2b: Disable all communication
-The secure computer is now fully configured and the next step is to go completely offline:  
+The secure computer is now fully configured and the next step is to go **completely offline**:  
 
 * Pull any network cable.
 * Disable all wireless communication (e.g. by enabling airplane mode).
@@ -56,13 +59,13 @@ The secure computer is now fully configured and the next step is to go completel
 * Make sure nobody else can see your keyboard!
 * Make sure nobody else can see your Seedpicker Seed Form!
 
-#### 2c: Run the script 
+#### 2c: Perform the calculation 
 
 Go back to FireFox and the **SeedPicker last word calculator**. Following the instructions on the page, enter your 23 words into the field and press the button.
 
 Use your pen to type the resulting 24th word into the designated cell of the Seed Form. 
 
-**Shut down the secure computer as soon as possible.**  
+**Shut down the computer as soon as possible.**  
 
 You have now generated a valid BIP39 seed phrase and the only record of it is the Seed Form. Keep it really secret. You may want to make copies and put in different locations. If you make copies, do it manually. Don't use a copier, camera or any form of computer.  
 
