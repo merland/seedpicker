@@ -26,7 +26,7 @@ If you pick your own seed using SeedPicker, you take active part in the process 
 
 Is the SeedPicker last word calculator secure?
 ----------------------------------------------
-The last word calculator is a simple web page containg some simple javacscript logic. It is trivial to audit it to see what it does. However, an audit is really not needed! The script has no possibility to change the 23 words that you have drawn and noted on paper in the previous step, so it cannot do any harm. It could at worst give you an invalid last word. 
+The last word calculator is a simple web page containg some simple javascript logic. It is trivial to audit it to see what it does. However, an audit is really not needed! The script has no possibility to change the 23 words that you have drawn and noted on paper in the previous step, so it cannot do any harm. It could at worst give you an invalid last word. 
 If there was an error in the calculation, you would notice this the first time you attempted to use the generated seed phrase, since wallets always validate seed phrases before use. 
 The calculator is run in offline mode only, without storage, and the computer is shut down immediately afterwards. This makes sure your seed words will not leak outside the secured computer.  
 
@@ -37,4 +37,12 @@ There are several good online calculators that allow you to roll some dice and t
 This, however, has the problem of being transparent only to programmers. Somebody who knows little or nothing about programming has to trust that the conversion program is not compromised. SeedPicker solves this problem by letting the user pick (randomly of course) the actual words that will be used in the final seed. 
 
 The only needed calculation is the checksum calculation. It is of no use to a potential hacker, so it does not matter that only programmers can check the validity/authenticity of it.  
+
+There already is recommended way of addressing the issue of a compromised seed generation algorithm, which is to use a user-controlled passphrase. Why should I create my own seed if I use a passphrase? ([from this reddit thread](https://www.reddit.com/r/Bitcoin/comments/aei1qr/seedpicker_here_to_help_you_create_your_own_seed/))
+-----------------------------------------------------
+If you use a passhrase (sometimes called the 25th word) with your hardware wallet, you do get better protection against a compromised device. However, adding an extra layer of security does not mean you should neglect the original security. You need to make a tradeoff between security and convenience. The more you can trust your seed, the shorter you can make your passphrase. Longer passhrase gives better security but less convenience.
+Also, a passphrase usually has to be typed into the computer, on a keyboard that may have a keylogger.
+
+
+
 
