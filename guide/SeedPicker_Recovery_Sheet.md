@@ -1,4 +1,4 @@
-## Seed Phrase Recovery Sheet
+## Bitcoin Seed Phrase Recovery Sheet
 *This sheet is designed for long term storage of a Bitcoin Seed Phrase. 
 Print it and secretly write down your 24 seed phrase words using a pen.* 
 
@@ -35,6 +35,7 @@ To use the seed phrase to spend cryptocurrency, a hardware wallet should be used
 1.
 1.
 
-It is recommended to make at least two copies of this sheet. The same goes for the pass phrase, if used. Store all copies in different locations. Most importantly, do not store the seed phrase and the pass phrase in the same location! 
----------------------
-seedpicker.net.
+It is recommended to make at least two copies of this sheet. The same goes for the pass phrase, if used. Store all copies in different locations. Most importantly, do not store the seed phrase and the pass phrase in the same location!
+*********************************
+seedpicker.net
+
