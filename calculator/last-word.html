@@ -149,8 +149,8 @@
       function calculate() {
           var suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
           var wordCount = suppliedSeedPhrase.trim().split(" ").length
-          if(wordCount != 23) {
-            alert("Please enter 23 words. (You entered " + wordCount + ")")
+          if(wordCount != 11 && wordCount != 23) {
+            alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
           } else {
             for (var index = 1; index <= 2048; index++) {
               var current = bip39.wordlists.EN[index-1]
@@ -175,10 +175,10 @@
           <h3>SeedPicker last word calculator</h3>
           <h2>WARNING: Before using this calculator, read all instructions <a href="http://seedpicker.net">here.</a></h2>
           <h2>WARNING: Only use this calculator on an offline and fully secured computer! (see instructions)</h2>
-          <h2>Go offline as soon as the page has loaded, then input your 23 words.</h2>
+          <h2>Go offline as soon as the page has loaded, then input your 11 or 23 words.</h2>
           <h2>Note the resulting last word using pen and paper, then shut down the computer immediately.</h2>
 
-          <h4>Fill in your first 23 words (space separated)</h4>
+          <h4>Fill in your first 11 or 23 words (space separated)</h4>
           <fieldset>
             <textarea id="seedphrase_ta" tabindex="5" required></textarea>
           </fieldset>
