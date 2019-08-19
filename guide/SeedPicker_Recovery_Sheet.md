@@ -5,16 +5,16 @@ Print it on paper and secretly write down your 24 seed phrase words by hand.*
 ### What is this?
 The 24 words below together make up a secret "seed phrase" constructed according
 to the Bitcoin BIP39 standard. A seed phrase is a list of words which store all 
-the information needed to recover a Bitcoin wallet.
+information needed to recover a Bitcoin wallet.
 
-An additional "pass phrase" (a long password, sometimes called the 25th word)
+An additional _passphrase_ (a long password, sometimes called the 25th word)
 is another component of the BIP39 standard. Depending on the intended use of the
 seed phrase below, a BIP39 pass phrase may or may not be necessary.
 
 For security reasons, the secret words ***should never be entered into a computer***.
-When the time comes to access the cryptocurrency (or other secret information)
-protected by this seed phrase, a ***hardware wallet*** should be used. A hardware
-wallet is an ultra-secure device build specifically for this purpose. It can
+When the time comes to access the bitcoin (or other secret information)
+protected by this seed phrase, it is recommended that a ***hardware wallet*** is used. 
+A hardware wallet is an ultra-secure device built specifically for this purpose. It can
 generate many different private keys from one seed phrase, and each private key
 can, in turn, generate a public Bitcoin address, using a one-way cryptographic function.
 
