@@ -5,12 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "bip39": "^3.0.2",
+    "bitcoinjs-lib": "^5.1.6",
     "browserify": "^16.5.0"
   },
   "devDependencies": {},
   "scripts": {
-    "run": "browserify -r bip39 -o calculator/bundle.js",
-    "build": "browserify -r bip39 -o calculator/bundle.js",
+    "build": "./browserify.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "seedpicker@megabit.se",

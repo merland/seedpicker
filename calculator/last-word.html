@@ -4,7 +4,9 @@
   <head>
     <meta charset="utf-8">
     <title>SeedPicker last word calculator</title>
-    	<style>
+      <script src="bundle.js"></script>
+    	
+      <style>
           @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
           * {
             margin: 0;
@@ -141,33 +143,7 @@
             color: #888;
           }
   </style>
-  	<script src="bundle.js">
-  	</script>
-
-    <script>
-      var bip39 = require('bip39')
-      function calculate() {
-          var suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
-          var wordCount = suppliedSeedPhrase.trim().split(" ").length
-          if(wordCount != 11 && wordCount != 23) {
-            alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
-          } else {
-            for (var index = 1; index <= 2048; index++) {
-              var current = bip39.wordlists.EN[index-1]
-              var candidate = suppliedSeedPhrase.trim() + " " + current
-              try {
-                bip39.mnemonicToEntropy(candidate)  
-                //TODO Find all matching words and randomize 
-                alert("Your last word is : \"" + current + "\"")
-                break
-              } catch {
-                //do nothing
-              } 
-            }  
-
-          }
-        }
-    </script>
+ 
   </head>
   <body>
       <div class="container">  
@@ -183,7 +159,7 @@
             <textarea id="seedphrase_ta" tabindex="5" required></textarea>
           </fieldset>
           <fieldset>
-            <button name="submit" type="submit" id="seed-submit" onclick="calculate()">Calculate the last word!</button>
+            <button name="submit" type="submit" id="seed-submit" onclick="require('seedpicker').calculate()">Calculate the last word!</button>
           </fieldset>
         </div>
       </div>
