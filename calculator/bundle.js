@@ -41999,7 +41999,11 @@ let bip39 = require('bip39')
 
 function calculate() {
   var suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
-  var wordCount = suppliedSeedPhrase.trim().split(" ").length
+  
+  var wordCount = 0
+  if (suppliedSeedPhrase.trim().length > 0) {
+  	wordCount = suppliedSeedPhrase.trim().split(" ").length	
+  }
   if(wordCount != 11 && wordCount != 23) {
     alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
   } else {
