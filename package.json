@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bip39": "^3.0.2",
+    "bip32": "2.0.4",
     "bitcoinjs-lib": "^5.1.6",
     "browserify": "^16.5.0",
     "mocha": "6.2.0",
