@@ -1,11 +1,12 @@
 var expect = require("chai").expect;
 var assert = require("chai").assert;
+var seedpicker = require("./seedpicker.js")
 
-describe("Naive test", function () {
-    describe("Just an example test", function () {
-        it("should perform a naive assertion", () => {
-        	var one = 1
-            assert(one === 1)
+describe("Checksum calculation", function () {
+    describe("Calculate the 24th word", function () {
+        it("should return the first found valid checksum", () => {
+        	var my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
+        	assert(seedpicker.calculate2(my23words) === "bridge")
         })
     })
 })
