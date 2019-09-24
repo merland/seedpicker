@@ -3,9 +3,20 @@ let assert = require("chai").assert;
 let seedpicker = require("./seedpicker.js")
 
 describe("Calculate the 24th word", function () {
-    it("should return the first found valid checksum", () => {
-        var my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
-        assert(seedpicker.calculate2(my23words) === "bridge")
+    it("It should calculate all checksum words", () => {
+        const my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
+        const words = seedpicker.allLastWords(my23words);
+        expect(words).to.have.lengthOf(8);
+
+        const expectedWords = ["bridge", "danger", "draft", "hamster", "old", "route", "soccer", "wedding"]
+        expect(words).to.have.members(expectedWords);
+    })
+    it("It should select a random checksum word", () => {
+        const my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
+        const lastWord = seedpicker.randomLastWord(my23words);
+
+        const expectedWords = ["bridge", "danger", "draft", "hamster", "old", "route", "soccer", "wedding"]
+        expect(lastWord).to.be.oneOf(expectedWords);
     })
 })
 
