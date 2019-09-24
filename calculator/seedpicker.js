@@ -1,4 +1,6 @@
+let bip32 = require('bip32')
 let bip39 = require('bip39')
+
 
 function calculate() {
     var suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
@@ -30,5 +32,15 @@ function calculate2(suppliedSeedPhrase) {
     }
 }
 
-module.exports.calculate = calculate;
-module.exports.calculate2 = calculate2;
+function xpubFromMnemonic(mnemonic, derivationPath) {
+    const seed = bip39.mnemonicToSeedSync(mnemonic);
+    const node = bip32.fromSeed(seed);
+    const child = node.derivePath(derivationPath)
+    const xpub = child.neutered().toBase58();
+    return xpub
+}
+
+
+module.exports.calculate = calculate
+module.exports.calculate2 = calculate2
+module.exports.xpubFromMnemonic = xpubFromMnemonic
