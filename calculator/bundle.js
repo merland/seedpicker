@@ -42013,7 +42013,7 @@ function submitButtonAction() {
         let lastword = calculateLastWord(suppliedSeedPhrase);
         let derivationPath = "m/48'/1'/0'/2'"
         let mnemonic = suppliedSeedPhrase + " " + lastword
-        let xpub = xpubFromMnemonic(mnemonic, derivationPath)
+        let xpub = xpubFromMnemonic(mnemonic, derivationPath).xpub
 
         let result = {
             lastword: lastword,
@@ -42050,7 +42050,10 @@ function xpubFromMnemonic(mnemonic, derivationPath) {
     const node = bip32.fromSeed(seed);
     const child = node.derivePath(derivationPath)
     const xpub = child.neutered().toBase58();
-    return xpub
+    return {
+        xpub:xpub,
+        zpub:'todo',
+    }
 }
 
 module.exports.submitButtonAction = submitButtonAction
