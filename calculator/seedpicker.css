@@ -81,7 +81,7 @@ fieldset {
 }
 
 #text1 textarea {
-  height: 100px;
+  height: 40px;
   max-width: 100%;
   resize: none;
 }
@@ -116,6 +116,18 @@ fieldset {
 #text1 textarea:focus {
   outline: 0;
   border: 1px solid #aaa;
+}
+
+#results {
+  color:black;
+  font-size: 15px;
+  font-weight: 400;
+  display:none;
+}
+.resultdata {
+  color:black;
+  font-size: 15px;
+  font-weight: 1000;
 }
 
 ::-webkit-input-placeholder {

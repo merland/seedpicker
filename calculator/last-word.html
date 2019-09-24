@@ -1,27 +1,38 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>SeedPicker last word calculator</title>
-      <script src="bundle.js"/></script>
-      <link href="seedpicker.css" rel="stylesheet" type="text/css">    	
-  </head>
-  <body>
-      <div class="container">  
-        <div id="text1">
-          <h3>SeedPicker last word calculator</h3>
-          <h2>WARNING: Before using this calculator, read all instructions <a href="http://seedpicker.net">here.</a></h2>
-          <h2>WARNING: Only use this calculator on an offline and fully secured computer! (see instructions)</h2>
-          <h2>Go offline as soon as the page has loaded, then input your 11 or 23 words.</h2>
-          <h2>Note the resulting last word on paper, then shut down the computer immediately.</h2>
-          <h4>Fill in your first 11 or 23 words (space separated)</h4>
-          <fieldset>
+    <script src="bundle.js"></script>
+    <link href="seedpicker.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div id="text1">
+        <h3>SeedPicker last word calculator</h3>
+        <h2>WARNING: Before using this calculator, read all instructions <a href="http://seedpicker.net">here.</a></h2>
+        <h2>WARNING: Only use this calculator on an offline and fully secured computer! (see instructions)</h2>
+        <h2>Go offline as soon as the page has loaded, then input your 11 or 23 words.</h2>
+        <h2>Note the resulting last word on paper, then shut down the computer immediately.</h2>
+        <h4>Fill in your first 11 or 23 words (space separated)</h4>
+        <fieldset>
             <textarea id="seedphrase_ta" tabindex="5" required></textarea>
-          </fieldset>
-          <fieldset>
-            <button name="submit" type="submit" id="seed-submit" onclick="require('seedpicker').calculate()">Calculate the last word!</button>
-          </fieldset>
+        </fieldset>
+        <fieldset>
+            <button name="submit" type="submit" id="seed-submit" onclick="require('seedpicker').submitButtonAction()">Calculate!
+            </button>
+        </fieldset>
+        <div id="results">
+            Last word:
+            <p id="result1" class="resultdata"></p>
+            Complete seed phrase:
+            <p id="result2" class="resultdata"></p>
+            XPUB (Extended Public Key):
+            <p id="result3" class="resultdata"></p>
+            Derivation path used to generate the XPUB:
+            <p id="result4" class="resultdata"></p>
         </div>
-      </div>
-  </body>
+    </div>
+</div>
+</body>
 </html>

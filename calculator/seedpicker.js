@@ -2,7 +2,7 @@ let bip32 = require('bip32')
 let bip39 = require('bip39')
 
 
-function calculate() {
+function submitButtonAction() {
     var suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
 
     var wordCount = 0
@@ -12,12 +12,29 @@ function calculate() {
     if (wordCount != 11 && wordCount != 23) {
         alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
     } else {
-        lastword = calculate2(suppliedSeedPhrase);
-        alert("Your last word is : \"" + lastword + "\"")
+
+        let lastword = calculateLastWord(suppliedSeedPhrase);
+        let derivationPath = "m/48'/1'/0'/2'"
+        let mnemonic = suppliedSeedPhrase + " " + lastword
+        let xpub = xpubFromMnemonic(mnemonic, derivationPath)
+
+        let result = {
+            lastword: lastword,
+            mnemonic: mnemonic,
+            derivationPath, derivationPath,
+            xpub: xpub,
+        }
+
+
+        document.getElementById("result1").innerText = result.lastword
+        document.getElementById("result2").innerText = result.mnemonic
+        document.getElementById("result3").innerText = result.xpub
+        document.getElementById("result4").innerText = result.derivationPath
+        document.getElementById("results").style.display = "inline"
     }
 }
 
-function calculate2(suppliedSeedPhrase) {
+function calculateLastWord(suppliedSeedPhrase) {
     for (var index = 1; index <= 2048; index++) {
         var current = bip39.wordlists.EN[index - 1]
         var candidate = suppliedSeedPhrase.trim() + " " + current
@@ -25,7 +42,6 @@ function calculate2(suppliedSeedPhrase) {
             bip39.mnemonicToEntropy(candidate)
             //TODO Find all matching words and randomize
             return current
-            break
         } catch {
             //do nothing
         }
@@ -40,7 +56,6 @@ function xpubFromMnemonic(mnemonic, derivationPath) {
     return xpub
 }
 
-
-module.exports.calculate = calculate
-module.exports.calculate2 = calculate2
+module.exports.submitButtonAction = submitButtonAction
+module.exports.calculate2 = calculateLastWord
 module.exports.xpubFromMnemonic = xpubFromMnemonic
