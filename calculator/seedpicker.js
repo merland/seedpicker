@@ -19,19 +19,22 @@ function submitButtonAction() {
             description: 'Suitable for Electrum multisig',
         }
         let mnemonic = suppliedSeedPhrase + " " + lastword
-        let xpub = keysfromMnemonic(mnemonic, derivationPath.path).xpub
+        let pubKeys = keysfromMnemonic(mnemonic, derivationPath.path);
+
 
         let result = {
             lastword: lastword,
             mnemonic: mnemonic,
             derivationPath: derivationPath,
-            xpub: xpub,
+            xpub: pubKeys.xpub,
+            zpub: pubKeys.zpub,
         }
 
         document.getElementById("result1").innerText = result.lastword
         document.getElementById("result2").innerText = result.mnemonic
         document.getElementById("result3").innerText = result.xpub
-        document.getElementById("result4").innerText = result.derivationPath.path + ' (' + result.derivationPath.description + ')'
+        document.getElementById("result4").innerText = result.zpub
+        document.getElementById("result5").innerText = result.derivationPath.path + ' (' + result.derivationPath.description + ')'
         document.getElementById("results").style.display = "inline"
     }
 }

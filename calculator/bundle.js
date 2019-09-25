@@ -31963,36 +31963,30 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":85,"minimalistic-assert":134,"minimalistic-crypto-utils":135}],112:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "elliptic@6.5.1",
-      "/Users/jorgen/jobbet/seedpicker"
-    ]
-  ],
-  "_from": "elliptic@6.5.1",
+  "_from": "elliptic@^6.0.0",
   "_id": "elliptic@6.5.1",
   "_inBundle": false,
   "_integrity": "sha512-xvJINNLbTeWQjrl6X+7eQCrIy/YPv5XCpKW6kB5mKvtnGILoLDcySuwomfdzt0BMdLNVnuRNTuzKNHj0bva1Cg==",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "elliptic@6.5.1",
+    "raw": "elliptic@^6.0.0",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "6.5.1",
+    "rawSpec": "^6.0.0",
     "saveSpec": null,
-    "fetchSpec": "6.5.1"
+    "fetchSpec": "^6.0.0"
   },
   "_requiredBy": [
     "/browserify-sign",
-    "/create-ecdh",
-    "/tiny-secp256k1"
+    "/create-ecdh"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
-  "_spec": "6.5.1",
-  "_where": "/Users/jorgen/jobbet/seedpicker",
+  "_shasum": "c380f5f909bf1b9b4428d028cd18d3b0efd6b52b",
+  "_spec": "elliptic@^6.0.0",
+  "_where": "/Users/me/dev/seedpicker/node_modules/browserify-sign",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -32000,6 +31994,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -32009,6 +32004,7 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
+  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -42021,19 +42017,22 @@ function submitButtonAction() {
             description: 'Suitable for Electrum multisig',
         }
         let mnemonic = suppliedSeedPhrase + " " + lastword
-        let xpub = keysfromMnemonic(mnemonic, derivationPath.path).xpub
+        let pubKeys = keysfromMnemonic(mnemonic, derivationPath.path);
+
 
         let result = {
             lastword: lastword,
             mnemonic: mnemonic,
             derivationPath: derivationPath,
-            xpub: xpub,
+            xpub: pubKeys.xpub,
+            zpub: pubKeys.zpub,
         }
 
         document.getElementById("result1").innerText = result.lastword
         document.getElementById("result2").innerText = result.mnemonic
         document.getElementById("result3").innerText = result.xpub
-        document.getElementById("result4").innerText = result.derivationPath.path + ' (' + result.derivationPath.description + ')'
+        document.getElementById("result4").innerText = result.zpub
+        document.getElementById("result5").innerText = result.derivationPath.path + ' (' + result.derivationPath.description + ')'
         document.getElementById("results").style.display = "inline"
     }
 }
