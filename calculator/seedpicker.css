@@ -119,15 +119,15 @@ fieldset {
 }
 
 #results {
+  margin-top: 30px;
   color:black;
   font-size: 15px;
-  font-weight: 400;
   display:none;
 }
 .resultdata {
   color:black;
   font-size: 15px;
-  font-weight: 1000;
+  font-weight: bold;
 }
 
 ::-webkit-input-placeholder {
@@ -144,4 +144,30 @@ fieldset {
 
 :-ms-input-placeholder {
   color: #888;
+}
+
+#results_table {
+  margin-top: 30px;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  font-weight: normal;
+}
+
+.heading001{
+  font-weight: normal;
+}
+
+#results_table td, #results_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#results_table tr:nth-child(even){background-color: #f2f2f2;}
+
+#results_table tr:hover {background-color: #ddd;}
+
+#results_table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }

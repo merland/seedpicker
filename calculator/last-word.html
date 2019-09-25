@@ -22,17 +22,28 @@
             <button name="submit" type="submit" id="seed-submit" onclick="require('seedpicker').submitButtonAction()">Calculate!
             </button>
         </fieldset>
+
         <div id="results">
+
             Last word (Several words are valid, one of these has been selected randomly):
             <p id="result1" class="resultdata"></p>
             Complete seed phrase:
             <p id="result2" class="resultdata"></p>
-            Extended Public Key in xpub format:
-            <p id="result3" class="resultdata"></p>
-            Extended Public Key in Zpub format:
-            <p id="result4" class="resultdata"></p>
-            Derivation path used to generate the XPUB:
-            <p id="result5" class="resultdata"></p>
+            <p></p>
+            <p></p>
+            <table id="results_table">
+                <tr>
+                    <th colspan="2"><span class="heading001">Extended Public Keys, generated using derivation path </span><span id="result5" class="resultdata"></span></th>
+                </tr>
+                <tr>
+                    <td>xpub</td>
+                    <td><div id="result3" class="resultdata"></div></td>
+                </tr>
+                <tr>
+                    <td>Zpub</td>
+                    <td><div id="result4" class="resultdata"></div></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
