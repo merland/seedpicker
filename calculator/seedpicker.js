@@ -13,9 +13,12 @@ function submitButtonAction() {
         alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
     } else {
         const lastword = randomLastWord(suppliedSeedPhrase)
-        let derivationPath = "m/48'/1'/0'/2'"
+        let derivationPath = {
+            path: "m/48'/1'/0'/2'",
+            description: 'Suitable for Electrum multisig',
+        }
         let mnemonic = suppliedSeedPhrase + " " + lastword
-        let xpub = xpubFromMnemonic(mnemonic, derivationPath).xpub
+        let xpub = xpubFromMnemonic(mnemonic, derivationPath.path).xpub
 
         let result = {
             lastword: lastword,
@@ -27,7 +30,7 @@ function submitButtonAction() {
         document.getElementById("result1").innerText = result.lastword
         document.getElementById("result2").innerText = result.mnemonic
         document.getElementById("result3").innerText = result.xpub
-        document.getElementById("result4").innerText = result.derivationPath
+        document.getElementById("result4").innerText = result.derivationPath.path + ' (' + result.derivationPath.description + ')'
         document.getElementById("results").style.display = "inline"
     }
 }
