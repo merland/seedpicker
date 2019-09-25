@@ -42011,7 +42011,7 @@ function submitButtonAction() {
     } else {
         const lastword = randomLastWord(suppliedSeedPhrase)
         let derivationPath = {
-            path: "m/48'/1'/0'/2'",
+            path: "m/48'/0'/0'/2'",
             description: 'Suitable for Electrum multisig',
         }
         let mnemonic = suppliedSeedPhrase + " " + lastword
