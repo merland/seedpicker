@@ -1,5 +1,6 @@
-let bip32 = require('bip32')
-let bip39 = require('bip39')
+const bip32 = require('bip32')
+const bip39 = require('bip39')
+const b58 = require('bs58check');
 
 
 function submitButtonAction() {
@@ -18,7 +19,7 @@ function submitButtonAction() {
             description: 'Suitable for Electrum multisig',
         }
         let mnemonic = suppliedSeedPhrase + " " + lastword
-        let xpub = xpubFromMnemonic(mnemonic, derivationPath.path).xpub
+        let xpub = keysfromMnemonic(mnemonic, derivationPath.path).xpub
 
         let result = {
             lastword: lastword,
@@ -51,7 +52,7 @@ function allLastWords(suppliedSeedPhrase) {
 
 function wordOrBlank(suppliedSeedPhrase) {
     return i => {
-        const current   = bip39.wordlists.EN[i]
+        const current = bip39.wordlists.EN[i]
         const candidate = suppliedSeedPhrase.trim() + " " + current
         try {
             bip39.mnemonicToEntropy(candidate)
@@ -62,18 +63,38 @@ function wordOrBlank(suppliedSeedPhrase) {
     };
 }
 
-function xpubFromMnemonic(mnemonic, derivationPath) {
+function keysfromMnemonic(mnemonic, derivationPath) {
+    return {
+        xpub: xpubFrom(mnemonic, derivationPath),
+        zpub: zpubFrom(xpubFrom(mnemonic, derivationPath))
+    }
+}
+
+function xpubFrom(mnemonic, derivationPath) {
     const seed = bip39.mnemonicToSeedSync(mnemonic)
     const node = bip32.fromSeed(seed)
     const child = node.derivePath(derivationPath)
-    const xpub = child.neutered().toBase58()
-    return {
-        xpub: xpub,
-        zpub: 'todo'
+    return child.neutered().toBase58()
+}
+
+function zpubFrom(xpub) {
+    xpub = xpub.trim();
+
+    // https://github.com/satoshilabs/slips/blob/master/slip-0132.md
+    // Zpub - 02aa7ed3 - Multi-signature P2WSH
+    let hdVersionByteZpub = Buffer.from("02aa7ed3", "hex");
+
+    try {
+        let data = b58.decode(xpub);
+        data = data.slice(4);
+        data = Buffer.concat([hdVersionByteZpub, data]);
+        return b58.encode(data);
+    } catch (err) {
+        return "Invalid extended public key";
     }
 }
 
 module.exports.submitButtonAction = submitButtonAction
 module.exports.randomLastWord = randomLastWord
 module.exports.allLastWords = allLastWords
-module.exports.xpubFromMnemonic = xpubFromMnemonic
+module.exports.xpubFromMnemonic = keysfromMnemonic

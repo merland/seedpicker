@@ -9,7 +9,8 @@
     "bitcoinjs-lib": "^5.1.6",
     "browserify": "^16.5.0",
     "mocha": "6.2.0",
-    "chai": "4.2.0"
+    "chai": "4.2.0",
+    "bs58check": "2.1.2"
   },
   "devDependencies": {},
   "scripts": {

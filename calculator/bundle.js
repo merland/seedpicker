@@ -31963,30 +31963,36 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":85,"minimalistic-assert":134,"minimalistic-crypto-utils":135}],112:[function(require,module,exports){
 module.exports={
-  "_from": "elliptic@^6.0.0",
+  "_args": [
+    [
+      "elliptic@6.5.1",
+      "/Users/jorgen/jobbet/seedpicker"
+    ]
+  ],
+  "_from": "elliptic@6.5.1",
   "_id": "elliptic@6.5.1",
   "_inBundle": false,
   "_integrity": "sha512-xvJINNLbTeWQjrl6X+7eQCrIy/YPv5XCpKW6kB5mKvtnGILoLDcySuwomfdzt0BMdLNVnuRNTuzKNHj0bva1Cg==",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "elliptic@^6.0.0",
+    "raw": "elliptic@6.5.1",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "^6.0.0",
+    "rawSpec": "6.5.1",
     "saveSpec": null,
-    "fetchSpec": "^6.0.0"
+    "fetchSpec": "6.5.1"
   },
   "_requiredBy": [
     "/browserify-sign",
-    "/create-ecdh"
+    "/create-ecdh",
+    "/tiny-secp256k1"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
-  "_shasum": "c380f5f909bf1b9b4428d028cd18d3b0efd6b52b",
-  "_spec": "elliptic@^6.0.0",
-  "_where": "/Users/me/dev/seedpicker/node_modules/browserify-sign",
+  "_spec": "6.5.1",
+  "_where": "/Users/jorgen/jobbet/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -31994,7 +32000,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -32004,7 +32009,6 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -41995,8 +41999,10 @@ var hexSliceLookupTable = (function () {
 
 }).call(this,require("buffer").Buffer)
 },{"base64-js":2,"buffer":"buffer","ieee754":128}],"seedpicker":[function(require,module,exports){
-let bip32 = require('bip32')
-let bip39 = require('bip39')
+(function (Buffer){
+const bip32 = require('bip32')
+const bip39 = require('bip39')
+const b58 = require('bs58check');
 
 
 function submitButtonAction() {
@@ -42015,7 +42021,7 @@ function submitButtonAction() {
             description: 'Suitable for Electrum multisig',
         }
         let mnemonic = suppliedSeedPhrase + " " + lastword
-        let xpub = xpubFromMnemonic(mnemonic, derivationPath.path).xpub
+        let xpub = keysfromMnemonic(mnemonic, derivationPath.path).xpub
 
         let result = {
             lastword: lastword,
@@ -42048,7 +42054,7 @@ function allLastWords(suppliedSeedPhrase) {
 
 function wordOrBlank(suppliedSeedPhrase) {
     return i => {
-        const current   = bip39.wordlists.EN[i]
+        const current = bip39.wordlists.EN[i]
         const candidate = suppliedSeedPhrase.trim() + " " + current
         try {
             bip39.mnemonicToEntropy(candidate)
@@ -42059,20 +42065,41 @@ function wordOrBlank(suppliedSeedPhrase) {
     };
 }
 
-function xpubFromMnemonic(mnemonic, derivationPath) {
+function keysfromMnemonic(mnemonic, derivationPath) {
+    return {
+        xpub: xpubFrom(mnemonic, derivationPath),
+        zpub: zpubFrom(xpubFrom(mnemonic, derivationPath))
+    }
+}
+
+function xpubFrom(mnemonic, derivationPath) {
     const seed = bip39.mnemonicToSeedSync(mnemonic)
     const node = bip32.fromSeed(seed)
     const child = node.derivePath(derivationPath)
-    const xpub = child.neutered().toBase58()
-    return {
-        xpub: xpub,
-        zpub: 'todo'
+    return child.neutered().toBase58()
+}
+
+function zpubFrom(xpub) {
+    xpub = xpub.trim();
+
+    // https://github.com/satoshilabs/slips/blob/master/slip-0132.md
+    // Zpub - 02aa7ed3 - Multi-signature P2WSH
+    let hdVersionByteZpub = Buffer.from("02aa7ed3", "hex");
+
+    try {
+        let data = b58.decode(xpub);
+        data = data.slice(4);
+        data = Buffer.concat([hdVersionByteZpub, data]);
+        return b58.encode(data);
+    } catch (err) {
+        return "Invalid extended public key";
     }
 }
 
 module.exports.submitButtonAction = submitButtonAction
 module.exports.randomLastWord = randomLastWord
 module.exports.allLastWords = allLastWords
-module.exports.xpubFromMnemonic = xpubFromMnemonic
+module.exports.xpubFromMnemonic = keysfromMnemonic
 
-},{"bip32":"bip32","bip39":"bip39"}]},{},[]);
+}).call(this,require("buffer").Buffer)
+},{"bip32":"bip32","bip39":"bip39","bs58check":90,"buffer":"buffer"}]},{},[]);

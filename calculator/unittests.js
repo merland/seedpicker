@@ -26,7 +26,7 @@ describe("XPUB generation according to https://github.com/iancoleman/bip39/issue
         let derivationPath = "m/48'/1'/0'/2'";
         const result = seedpicker.xpubFromMnemonic(mnemonic, derivationPath);
         assert.strictEqual(result.xpub, 'xpub6E55wuumTUzi2NnSL8tkwkjL7wwU7pgW22YFt2YoPY9AYhwjzQMz3Wx5WeReYiPkSwttHVQzLXKgjymgARe7yzpdRgQYFezEqnPSPywibYC');
-        //TODO// assert.strictEqual(result.zpub, 'Zpub74dhgUz3Koe39YL3wWvzC1G9BgGdDRM6AXENN5c7XKjLH697G85PNm8HMmJJ6xvVVhCUf2cE94RHdicZu3d6ixJVzpunpt6DGxnbm6xG5Ue');
+        assert.strictEqual(result.zpub, 'Zpub74dhgUz3Koe39YL3wWvzC1G9BgGdDRM6AXENN5c7XKjLH697G85PNm8HMmJJ6xvVVhCUf2cE94RHdicZu3d6ixJVzpunpt6DGxnbm6xG5Ue');
     });
 
 
