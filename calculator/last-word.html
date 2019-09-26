@@ -24,26 +24,12 @@
         </fieldset>
 
         <div id="results">
-
-            Last word (Several words are valid, one of these has been selected randomly):
-            <p id="result1" class="resultdata"></p>
-            Complete seed phrase:
-            <p id="result2" class="resultdata"></p>
-            <p></p>
-            <p></p>
-            <table id="results_table">
-                <tr>
-                    <th colspan="2"><span class="heading001">Extended Public Keys, generated using derivation path </span><span id="result5" class="resultdata"></span></th>
-                </tr>
-                <tr>
-                    <td>xpub</td>
-                    <td><div id="result3" class="resultdata"></div></td>
-                </tr>
-                <tr>
-                    <td>Zpub</td>
-                    <td><div id="result4" class="resultdata"></div></td>
-                </tr>
-            </table>
+            <div class="resultheading">Last word (Several words are valid, one of these has been selected randomly)</div>
+            <div id="result1" class="resultdata"></div>
+            <div class="resultheading">Complete seed phrase</div>
+            <div id="result2" class="resultdata"></div>
+            <div class="resultheading">Extended Public Key in Zpub format (Suitable for use in an Electrum Multi-signature scheme)</div>
+            <div id="result4" class="resultdata"></div>
         </div>
     </div>
 </div>

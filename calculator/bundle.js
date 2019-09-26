@@ -42030,9 +42030,7 @@ function submitButtonAction() {
 
         document.getElementById("result1").innerText = result.lastword
         document.getElementById("result2").innerText = result.mnemonic
-        document.getElementById("result3").innerText = result.xpub
         document.getElementById("result4").innerText = result.zpub
-        document.getElementById("result5").innerText = result.derivationPath.path + ' (' + result.derivationPath.description + ')'
         document.getElementById("results").style.display = "inline"
     }
 }
