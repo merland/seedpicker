@@ -2,6 +2,13 @@ const bip32 = require('bip32')
 const bip39 = require('bip39')
 const b58 = require('bs58check');
 
+const showMoreText = "Show more (for advanced users)"; //TODO duplicated in html
+const showLessText = "Show less";
+
+function initShowMore() {
+    let btn = document.getElementById("moreorless_btn");
+    if (btn.innerText === '') btn.innerText = showMoreText()
+}
 
 function submitButtonAction() {
     const suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
@@ -21,7 +28,6 @@ function submitButtonAction() {
         let mnemonic = suppliedSeedPhrase + " " + lastword
         let pubKeys = keysfromMnemonic(mnemonic, derivationPath.path);
 
-
         let result = {
             lastword: lastword,
             mnemonic: mnemonic,
@@ -33,7 +39,26 @@ function submitButtonAction() {
         document.getElementById("result1").innerText = result.lastword
         document.getElementById("result2").innerText = result.mnemonic
         document.getElementById("result4").innerText = result.zpub
+
+        document.getElementById("result3").innerText = result.xpub
+        document.getElementById("result5").innerText = result.derivationPath.path
+
+
         document.getElementById("results").style.display = "inline"
+    }
+}
+
+function moreorless() {
+    let button = document.getElementById('moreorless_btn')
+    let results2 = document.getElementById('results2')
+
+    console.log('results2.style.display:' + results2.style.display)
+    if (!results2.style.display || results2.style.display === 'none') {
+        results2.style.display = 'inline';
+        button.innerHTML = showLessText;
+    } else {
+        button.innerHTML = showMoreText;
+        results2.style.display = 'none';
     }
 }
 
@@ -99,3 +124,5 @@ module.exports.submitButtonAction = submitButtonAction
 module.exports.randomLastWord = randomLastWord
 module.exports.allLastWords = allLastWords
 module.exports.xpubFromMnemonic = keysfromMnemonic
+module.exports.moreorless = moreorless
+module.exports.initShowMore = initShowMore

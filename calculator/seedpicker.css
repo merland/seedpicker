@@ -126,6 +126,9 @@ fieldset {
     display: none;
 }
 
+#results2 {
+  display: none;
+}
 .resultheading {
     padding-top: 18px;
     padding-bottom: 0px;
@@ -183,4 +186,15 @@ fieldset {
 #results_table th {
     padding-top: 12px;
     padding-bottom: 12px;
+}
+
+#moreorless_btn {
+  cursor: pointer;
+  width: 30%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 30px 0px 0px 0px;
+  padding: 7px;
+  font-size: 12px;
 }
