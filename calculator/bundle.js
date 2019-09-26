@@ -42092,7 +42092,7 @@ function allLastWords(suppliedSeedPhrase) {
 function wordOrBlank(suppliedSeedPhrase) {
     return i => {
         const current = bip39.wordlists.EN[i]
-        const candidate = suppliedSeedPhrase.trim() + " " + current
+        const candidate = suppliedSeedPhrase.trim().toLowerCase() + " " + current
         try {
             bip39.mnemonicToEntropy(candidate)
             return current
