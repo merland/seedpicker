@@ -29,12 +29,17 @@ describe("XPUB generation according to https://github.com/iancoleman/bip39/issue
     });
 
 
-    it('can generate a Zpub -  bitcoin mainnet P2WSH', () => {
+    it('can generate xpub in other formats', () => {
         const mnemonic = 'empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december bridge'
         let derivationPath = "m/48'/0'/0'/2'";
         const result = seedpicker.xpubFromMnemonic(mnemonic, derivationPath);
         assert.strictEqual(result.xpub, 'xpub6Do9J2BK1ZPtKkc71z1ohMH2N26eRa6yZu65hEijtk1F8LX3yjdNWTBv6p1yVgqE3RnVoesvFDnbTYkD1rbJo3opse5P75jELRJcR9ev9rU');
-        assert.strictEqual(result.zpub, 'Zpub74Mm2bFast3DSv9idN42wboqRkRoXAmZiPnCBHn42XbQriiRFTLmqhN7wvtd3wMy6B66BC5A3ktCMHb6kUaHY1HhSnadgJqCmbhmnAQispN');
+
+        //Zpub -  bitcoin mainnet P2WSH
+        assert.strictEqual(result.Zpub, 'Zpub74Mm2bFast3DSv9idN42wboqRkRoXAmZiPnCBHn42XbQriiRFTLmqhN7wvtd3wMy6B66BC5A3ktCMHb6kUaHY1HhSnadgJqCmbhmnAQispN');
+
+        //Vpub - bitcoin testnet P2WSH
+        assert.strictEqual(result.Vpub, 'Vpub5m2hovZvH9sJ3jPFHvuY7FRpjsr1kgoa3whK3iCWWW5teKTWEpgXMSjZs74H4JkHTccsBHgvD7Tzp98qsgvEM4ZHyRnwLfZFghTCDsjhCfc');
     });
 
 })

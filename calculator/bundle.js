@@ -42003,6 +42003,20 @@ const b58 = require('bs58check');
 const showMoreText = "Show more (for advanced users)"; //TODO duplicated in html
 const showLessText = "Show less";
 
+//See https://github.com/satoshilabs/slips/blob/master/slip-0132.md
+const versionBytes = {
+    "xpub": "0488b21e",
+    "ypub": "049d7cb2",
+    "zpub": "04b24746",
+    "Ypub": "0295b43f",
+    "Zpub": "02aa7ed3",
+    "tpub": "043587cf",
+    "upub": "044a5262",
+    "Upub": "024289ef",
+    "vpub": "045f1cf6",
+    "Vpub": "02575483"
+}
+
 function initShowMore() {
     let btn = document.getElementById("moreorless_btn");
     if (btn.innerText === '') btn.innerText = showMoreText()
@@ -42031,16 +42045,17 @@ function submitButtonAction() {
             mnemonic: mnemonic,
             derivationPath: derivationPath,
             xpub: pubKeys.xpub,
-            zpub: pubKeys.zpub,
+            Zpub: pubKeys.Zpub,
+            Vpub: pubKeys.Vpub
         }
 
         document.getElementById("result1").innerText = result.lastword
         document.getElementById("result2").innerText = result.mnemonic
-        document.getElementById("result4").innerText = result.zpub
+        document.getElementById("result4").innerText = result.Zpub
 
         document.getElementById("result3").innerText = result.xpub
         document.getElementById("result5").innerText = result.derivationPath.path
-
+        document.getElementById("result6").innerText = result.Vpub
 
         document.getElementById("results").style.display = "inline"
     }
@@ -42087,10 +42102,15 @@ function wordOrBlank(suppliedSeedPhrase) {
     };
 }
 
+function getVersionBytes(prefix) {
+    return versionBytes[prefix];
+}
+
 function keysfromMnemonic(mnemonic, derivationPath) {
     return {
         xpub: xpubFrom(mnemonic, derivationPath),
-        zpub: zpubFrom(xpubFrom(mnemonic, derivationPath))
+        Zpub: anyPubFrom(xpubFrom(mnemonic, derivationPath), 'Zpub'),
+        Vpub: anyPubFrom(xpubFrom(mnemonic, derivationPath), 'Vpub'),
     }
 }
 
@@ -42101,17 +42121,15 @@ function xpubFrom(mnemonic, derivationPath) {
     return child.neutered().toBase58()
 }
 
-function zpubFrom(xpub) {
-    xpub = xpub.trim();
-
-    // https://github.com/satoshilabs/slips/blob/master/slip-0132.md
-    // Zpub - 02aa7ed3 - Multi-signature P2WSH
-    let hdVersionByteZpub = Buffer.from("02aa7ed3", "hex");
-
+/**
+ * Convert from xpub to other formats
+ */
+function anyPubFrom(xpub, prefix) {
+    let versionBytes = Buffer.from(getVersionBytes(prefix), "hex")
     try {
-        let data = b58.decode(xpub);
+        let data = b58.decode(xpub.trim());
         data = data.slice(4);
-        data = Buffer.concat([hdVersionByteZpub, data]);
+        data = Buffer.concat([versionBytes, data]);
         return b58.encode(data);
     } catch (err) {
         return "Invalid extended public key";
