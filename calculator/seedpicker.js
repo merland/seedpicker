@@ -44,7 +44,7 @@ function submitButtonAction() {
 
         let result = {
             lastword: lastword,
-            mnemonic: mnemonic,
+            mnemonic: mnemonic.toLowerCase(),
             derivationPath: derivationPath,
             xpub: pubKeys.xpub,
             Zpub: pubKeys.Zpub,
