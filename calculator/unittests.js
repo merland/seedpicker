@@ -50,4 +50,15 @@ describe("XPUB generation according to https://github.com/iancoleman/bip39/issue
         assert.strictEqual(result.Vpub, 'Vpub5m2hovZvH9sJ3jPFHvuY7FRpjsr1kgoa3whK3iCWWW5teKTWEpgXMSjZs74H4JkHTccsBHgvD7Tzp98qsgvEM4ZHyRnwLfZFghTCDsjhCfc');
     });
 
+
+    it('can generate Testnet Vpub', () => {
+        const mnemonic = 'empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december bridge'
+        let derivationPath = "m/48'/1'/0'/2'";
+        const result = seedpicker.xpubFromMnemonic(mnemonic, derivationPath);
+        assert.strictEqual(result.xpub, 'xpub6E55wuumTUzi2NnSL8tkwkjL7wwU7pgW22YFt2YoPY9AYhwjzQMz3Wx5WeReYiPkSwttHVQzLXKgjymgARe7yzpdRgQYFezEqnPSPywibYC');
+
+        //Vpub - bitcoin testnet P2WSH
+        assert.strictEqual(result.Vpub, 'Vpub5mJeTpJNj5U7kMZac5nVMet8VogqSwP6W59VEW2a1JDp4gtCFVR8tWVjGwTx7LJos8jFf8DzJR166aAK2Fy3Y1a6XU86VEpGC4Y2CjogHVw');
+    });
+
 })

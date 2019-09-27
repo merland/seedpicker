@@ -42033,29 +42033,23 @@ function submitButtonAction() {
         alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
     } else {
         const lastword = randomLastWord(suppliedSeedPhrase)
-        let derivationPath = {
-            path: "m/48'/0'/0'/2'",
-            description: 'Suitable for Electrum multisig',
-        }
         let mnemonic = suppliedSeedPhrase + " " + lastword
-        let pubKeys = keysfromMnemonic(mnemonic, derivationPath.path);
 
-        let result = {
-            lastword: lastword,
-            mnemonic: mnemonic.toLowerCase(),
-            derivationPath: derivationPath,
-            xpub: pubKeys.xpub,
-            Zpub: pubKeys.Zpub,
-            Vpub: pubKeys.Vpub
-        }
+        let mainNetDerivationPath = "m/48'/0'/0'/2'"
+        let mainNetPubKeys = keysfromMnemonic(mnemonic, mainNetDerivationPath);
 
-        document.getElementById("result1").innerText = result.lastword
-        document.getElementById("result2").innerText = result.mnemonic
-        document.getElementById("result4").innerText = result.Zpub
+        let testNetDerivationPath = "m/48'/1'/0'/2'"
+        let testNetPubKeys = keysfromMnemonic(mnemonic, testNetDerivationPath);
 
-        document.getElementById("result3").innerText = result.xpub
-        document.getElementById("result5").innerText = result.derivationPath.path
-        document.getElementById("result6").innerText = result.Vpub
+        document.getElementById("result1").innerText = lastword
+        document.getElementById("result2").innerText = mnemonic.toLowerCase()
+        document.getElementById("result4").innerText = mainNetPubKeys.Zpub
+
+        document.getElementById("result3").innerText = mainNetPubKeys.xpub
+        document.getElementById("result5").innerText = mainNetDerivationPath
+
+        document.getElementById("result11").innerText = testNetPubKeys.xpub
+        document.getElementById("result12").innerText = testNetPubKeys.Vpub
 
         document.getElementById("results").style.display = "inline"
     }
