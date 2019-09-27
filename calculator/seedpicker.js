@@ -25,16 +25,16 @@ function initShowMore() {
 }
 
 function submitButtonAction() {
-    const suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
-
-    const validation = validate(suppliedSeedPhrase)
+    const phraseField = document.getElementById('seedphrase_ta');
+    const validation = validate(phraseField.value)
     if (!validation.valid) {
         alert(validation.errorMessage)
         return
     }
 
-    const lastword = randomLastWord(suppliedSeedPhrase)
-    const mnemonic = suppliedSeedPhrase + " " + lastword
+    phraseField.value = validation.cleanedUpPhrase
+    const lastword = randomLastWord(validation.cleanedUpPhrase)
+    const mnemonic = phraseField.value + " " + lastword
 
     const mainNetDerivationPath = "m/48'/0'/0'/2'"
     const mainNetPubKeys = keysfromMnemonic(mnemonic, mainNetDerivationPath);
@@ -62,6 +62,7 @@ function validate(suppliedSeedPhrase) {
         .split(" ")
         .filter(word => word.length > 0)
         .map(word => word.trim())
+        .map(word => word.toLowerCase())
 
     if (trimmedWords.length > 0) {
         wordCount = trimmedWords.length
@@ -71,21 +72,23 @@ function validate(suppliedSeedPhrase) {
         return validationReply(msg)
     }
     const dictionary = bip39.wordlists[bip39.getDefaultWordlist()]
-    const nonDictionaryWords = trimmedWords
-        .map(word => dictionary.includes(word) ? "" : word)
-        .filter(word => word.length > 0)
-        .join(" ")
+    const nonDictionaryWords =
+        trimmedWords
+            .map(word => dictionary.includes(word) ? "" : word)
+            .filter(word => word.length > 0)
+            .join(" ")
     if (nonDictionaryWords.length > 0) {
         const msg = "Words not in dictionary: " + nonDictionaryWords
         return validationReply(msg)
     }
-    return validationReply("")
+    return validationReply("", trimmedWords.join(" "))
 }
 
-function validationReply(errorMsg) {
+function validationReply(errorMsg, words) {
     return {
         valid: errorMsg === "",
-        errorMessage: errorMsg
+        errorMessage: errorMsg,
+        cleanedUpPhrase: words
     }
 }
 
