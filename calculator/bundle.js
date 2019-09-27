@@ -31963,30 +31963,36 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":85,"minimalistic-assert":134,"minimalistic-crypto-utils":135}],112:[function(require,module,exports){
 module.exports={
-  "_from": "elliptic@^6.0.0",
+  "_args": [
+    [
+      "elliptic@6.5.1",
+      "/Users/jorgen/jobbet/seedpicker"
+    ]
+  ],
+  "_from": "elliptic@6.5.1",
   "_id": "elliptic@6.5.1",
   "_inBundle": false,
   "_integrity": "sha512-xvJINNLbTeWQjrl6X+7eQCrIy/YPv5XCpKW6kB5mKvtnGILoLDcySuwomfdzt0BMdLNVnuRNTuzKNHj0bva1Cg==",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "elliptic@^6.0.0",
+    "raw": "elliptic@6.5.1",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "^6.0.0",
+    "rawSpec": "6.5.1",
     "saveSpec": null,
-    "fetchSpec": "^6.0.0"
+    "fetchSpec": "6.5.1"
   },
   "_requiredBy": [
     "/browserify-sign",
-    "/create-ecdh"
+    "/create-ecdh",
+    "/tiny-secp256k1"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
-  "_shasum": "c380f5f909bf1b9b4428d028cd18d3b0efd6b52b",
-  "_spec": "elliptic@^6.0.0",
-  "_where": "/Users/me/dev/seedpicker/node_modules/browserify-sign",
+  "_spec": "6.5.1",
+  "_where": "/Users/jorgen/jobbet/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -31994,7 +32000,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -32004,7 +32009,6 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -42019,45 +42023,77 @@ const versionBytes = {
 
 function initShowMore() {
     let btn = document.getElementById("moreorless_btn");
-    if (btn.innerText === '') btn.innerText = showMoreText()
+    if (btn.innerText === '') btn.innerText = showMoreText
 }
 
 function submitButtonAction() {
     const suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
 
+    const validation = validate(suppliedSeedPhrase)
+    if (!validation.valid) {
+        alert(validation.errorMessage)
+        return
+    }
+
+    const lastword = randomLastWord(suppliedSeedPhrase)
+    const mnemonic = suppliedSeedPhrase + " " + lastword
+
+    const mainNetDerivationPath = "m/48'/0'/0'/2'"
+    const mainNetPubKeys = keysfromMnemonic(mnemonic, mainNetDerivationPath);
+
+    const testNetDerivationPath = "m/48'/1'/0'/2'"
+    const testNetPubKeys = keysfromMnemonic(mnemonic, testNetDerivationPath);
+
+    document.getElementById("result1").innerText = lastword
+    document.getElementById("result2").innerText = mnemonic.toLowerCase()
+    document.getElementById("result4").innerText = mainNetPubKeys.Zpub
+
+    document.getElementById("result3").innerText = mainNetPubKeys.xpub
+    document.getElementById("result5").innerText = mainNetDerivationPath
+
+    document.getElementById("result11").innerText = testNetPubKeys.xpub
+    document.getElementById("result12").innerText = testNetPubKeys.Vpub
+
+    document.getElementById("results").style.display = "inline"
+}
+
+function validate(suppliedSeedPhrase) {
     let wordCount = 0
-    if (suppliedSeedPhrase.trim().length > 0) {
-        wordCount = suppliedSeedPhrase.trim().split(" ").length
+    const trimmedWords = suppliedSeedPhrase
+        .trim()
+        .split(" ")
+        .filter(word => word.length > 0)
+        .map(word => word.trim())
+
+    if (trimmedWords.length > 0) {
+        wordCount = trimmedWords.length
     }
     if (wordCount !== 11 && wordCount !== 23) {
-        alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
-    } else {
-        const lastword = randomLastWord(suppliedSeedPhrase)
-        let mnemonic = suppliedSeedPhrase + " " + lastword
+        const msg = "Please enter 11 or 23 words. (You entered " + wordCount + ")"
+        return validationReply(msg)
+    }
+    const dictionary = bip39.wordlists[bip39.getDefaultWordlist()]
+    const nonDictionaryWords = trimmedWords
+        .map(word => dictionary.includes(word) ? "" : word)
+        .filter(word => word.length > 0)
+        .join(" ")
+    if (nonDictionaryWords.length > 0) {
+        const msg = "Words not in dictionary: " + nonDictionaryWords
+        return validationReply(msg)
+    }
+    return validationReply("")
+}
 
-        let mainNetDerivationPath = "m/48'/0'/0'/2'"
-        let mainNetPubKeys = keysfromMnemonic(mnemonic, mainNetDerivationPath);
-
-        let testNetDerivationPath = "m/48'/1'/0'/2'"
-        let testNetPubKeys = keysfromMnemonic(mnemonic, testNetDerivationPath);
-
-        document.getElementById("result1").innerText = lastword
-        document.getElementById("result2").innerText = mnemonic.toLowerCase()
-        document.getElementById("result4").innerText = mainNetPubKeys.Zpub
-
-        document.getElementById("result3").innerText = mainNetPubKeys.xpub
-        document.getElementById("result5").innerText = mainNetDerivationPath
-
-        document.getElementById("result11").innerText = testNetPubKeys.xpub
-        document.getElementById("result12").innerText = testNetPubKeys.Vpub
-
-        document.getElementById("results").style.display = "inline"
+function validationReply(errorMsg) {
+    return {
+        valid: errorMsg === "",
+        errorMessage: errorMsg
     }
 }
 
 function moreorless() {
-    let button = document.getElementById('moreorless_btn')
-    let results2 = document.getElementById('results2')
+    const button = document.getElementById('moreorless_btn')
+    const results2 = document.getElementById('results2')
 
     console.log('results2.style.display:' + results2.style.display)
     if (!results2.style.display || results2.style.display === 'none') {
@@ -42136,6 +42172,7 @@ module.exports.allLastWords = allLastWords
 module.exports.xpubFromMnemonic = keysfromMnemonic
 module.exports.moreorless = moreorless
 module.exports.initShowMore = initShowMore
+module.exports.validate = validate
 
 }).call(this,require("buffer").Buffer)
 },{"bip32":"bip32","bip39":"bip39","bs58check":90,"buffer":"buffer"}]},{},[]);
