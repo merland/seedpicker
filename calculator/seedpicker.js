@@ -21,45 +21,77 @@ const versionBytes = {
 
 function initShowMore() {
     let btn = document.getElementById("moreorless_btn");
-    if (btn.innerText === '') btn.innerText = showMoreText()
+    if (btn.innerText === '') btn.innerText = showMoreText
 }
 
 function submitButtonAction() {
     const suppliedSeedPhrase = document.getElementById('seedphrase_ta').value
 
+    const validation = validate(suppliedSeedPhrase)
+    if (!validation.valid) {
+        alert(validation.errorMessage)
+        return
+    }
+
+    const lastword = randomLastWord(suppliedSeedPhrase)
+    const mnemonic = suppliedSeedPhrase + " " + lastword
+
+    const mainNetDerivationPath = "m/48'/0'/0'/2'"
+    const mainNetPubKeys = keysfromMnemonic(mnemonic, mainNetDerivationPath);
+
+    const testNetDerivationPath = "m/48'/1'/0'/2'"
+    const testNetPubKeys = keysfromMnemonic(mnemonic, testNetDerivationPath);
+
+    document.getElementById("result1").innerText = lastword
+    document.getElementById("result2").innerText = mnemonic.toLowerCase()
+    document.getElementById("result4").innerText = mainNetPubKeys.Zpub
+
+    document.getElementById("result3").innerText = mainNetPubKeys.xpub
+    document.getElementById("result5").innerText = mainNetDerivationPath
+
+    document.getElementById("result11").innerText = testNetPubKeys.xpub
+    document.getElementById("result12").innerText = testNetPubKeys.Vpub
+
+    document.getElementById("results").style.display = "inline"
+}
+
+function validate(suppliedSeedPhrase) {
     let wordCount = 0
-    if (suppliedSeedPhrase.trim().length > 0) {
-        wordCount = suppliedSeedPhrase.trim().split(" ").length
+    const trimmedWords = suppliedSeedPhrase
+        .trim()
+        .split(" ")
+        .filter(word => word.length > 0)
+        .map(word => word.trim())
+
+    if (trimmedWords.length > 0) {
+        wordCount = trimmedWords.length
     }
     if (wordCount !== 11 && wordCount !== 23) {
-        alert("Please enter 11 or 23 words. (You entered " + wordCount + ")")
-    } else {
-        const lastword = randomLastWord(suppliedSeedPhrase)
-        let mnemonic = suppliedSeedPhrase + " " + lastword
+        const msg = "Please enter 11 or 23 words. (You entered " + wordCount + ")"
+        return validationReply(msg)
+    }
+    const dictionary = bip39.wordlists[bip39.getDefaultWordlist()]
+    const nonDictionaryWords = trimmedWords
+        .map(word => dictionary.includes(word) ? "" : word)
+        .filter(word => word.length > 0)
+        .join(" ")
+    if (nonDictionaryWords.length > 0) {
+        const msg = "Words not in dictionary: " + nonDictionaryWords
+        return validationReply(msg)
+    }
+    return validationReply("")
+}
 
-        let mainNetDerivationPath = "m/48'/0'/0'/2'"
-        let mainNetPubKeys = keysfromMnemonic(mnemonic, mainNetDerivationPath);
-
-        let testNetDerivationPath = "m/48'/1'/0'/2'"
-        let testNetPubKeys = keysfromMnemonic(mnemonic, testNetDerivationPath);
-
-        document.getElementById("result1").innerText = lastword
-        document.getElementById("result2").innerText = mnemonic.toLowerCase()
-        document.getElementById("result4").innerText = mainNetPubKeys.Zpub
-
-        document.getElementById("result3").innerText = mainNetPubKeys.xpub
-        document.getElementById("result5").innerText = mainNetDerivationPath
-
-        document.getElementById("result11").innerText = testNetPubKeys.xpub
-        document.getElementById("result12").innerText = testNetPubKeys.Vpub
-
-        document.getElementById("results").style.display = "inline"
+function validationReply(errorMsg) {
+    return {
+        valid: errorMsg === "",
+        errorMessage: errorMsg
     }
 }
 
 function moreorless() {
-    let button = document.getElementById('moreorless_btn')
-    let results2 = document.getElementById('results2')
+    const button = document.getElementById('moreorless_btn')
+    const results2 = document.getElementById('results2')
 
     console.log('results2.style.display:' + results2.style.display)
     if (!results2.style.display || results2.style.display === 'none') {
@@ -138,3 +170,4 @@ module.exports.allLastWords = allLastWords
 module.exports.xpubFromMnemonic = keysfromMnemonic
 module.exports.moreorless = moreorless
 module.exports.initShowMore = initShowMore
+module.exports.validate = validate

@@ -26,6 +26,27 @@ describe("Calculate the 24th word", function () {
         const expectedWords = ["bridge", "danger", "draft", "hamster", "old", "route", "soccer", "wedding"]
         expect(lastWord).to.be.oneOf(expectedWords);
     })
+    it('should have an empty error message if supplied words are valid', function () {
+        const result = seedpicker.validate("empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december");
+        expect(result.errorMessage).to.be.empty
+        expect(result.valid).to.be.true
+    });
+    it('should not be valid if the number of words are not exactly 11 or 23', function () {
+        const result = seedpicker.validate("empower soul reunion")
+        expect(result.errorMessage).to.include("11 or 23")
+        expect(result.valid).to.be.false
+    });
+    it('should check the words against the dictionary', function () {
+        const result = seedpicker.validate("mpower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge decembe");
+        expect(result.errorMessage).to.include("mpower")
+        expect(result.errorMessage).to.include("decembe")
+        expect(result.valid).to.be.false
+    });
+    it('should ignore whitespaces', function () {
+        const result = seedpicker.validate("     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken  ")
+        expect(result.errorMessage).to.be.empty
+        expect(result.valid).to.be.true
+    });
 })
 
 describe("XPUB generation according to https://github.com/iancoleman/bip39/issues/351", function () {
