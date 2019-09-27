@@ -42078,7 +42078,8 @@ function validate(suppliedSeedPhrase) {
         trimmedWords
             .map(word => dictionary.includes(word) ? "" : word)
             .filter(word => word.length > 0)
-            .join(" ")
+            .map(word => "'" + word + "'")
+            .join(", ")
     if (nonDictionaryWords.length > 0) {
         const msg = "Words not in dictionary: " + nonDictionaryWords
         return validationReply(msg)
