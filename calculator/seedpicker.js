@@ -101,7 +101,7 @@ function moreorless() {
     const results2 = document.getElementById('results2')
 
     if (!results2.style.display || results2.style.display === 'none') {
-        results2.style.display = 'inline';
+        results2.style.display = 'block';
         button.innerHTML = showLessText;
     } else {
         button.innerHTML = showMoreText;
