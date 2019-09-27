@@ -2,7 +2,7 @@ const bip32 = require('bip32')
 const bip39 = require('bip39')
 const b58 = require('bs58check');
 
-const showMoreText = "Show more (for advanced users)"; //TODO duplicated in html
+const showMoreText = "Show more (for advanced users)";
 const showLessText = "Show less";
 
 //See https://github.com/satoshilabs/slips/blob/master/slip-0132.md
@@ -19,9 +19,15 @@ const versionBytes = {
     "Vpub": "02575483"
 }
 
-function initShowMore() {
-    let btn = document.getElementById("moreorless_btn");
-    if (btn.innerText === '') btn.innerText = showMoreText
+function init() {
+    document.getElementById("seedphrase_ta")
+        .addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("seed-submit").click();
+            }
+        });
+    document.getElementById("moreorless_btn").innerText = showMoreText
 }
 
 function submitButtonAction() {
@@ -44,14 +50,11 @@ function submitButtonAction() {
 
     document.getElementById("result1").innerText = lastword
     document.getElementById("result2").innerText = mnemonic.toLowerCase()
-    document.getElementById("result4").innerText = mainNetPubKeys.Zpub
-
     document.getElementById("result3").innerText = mainNetPubKeys.xpub
+    document.getElementById("result4").innerText = mainNetPubKeys.Zpub
     document.getElementById("result5").innerText = mainNetDerivationPath
-
     document.getElementById("result11").innerText = testNetPubKeys.xpub
     document.getElementById("result12").innerText = testNetPubKeys.Vpub
-
     document.getElementById("results").style.display = "inline"
 }
 
@@ -97,7 +100,6 @@ function moreorless() {
     const button = document.getElementById('moreorless_btn')
     const results2 = document.getElementById('results2')
 
-    console.log('results2.style.display:' + results2.style.display)
     if (!results2.style.display || results2.style.display === 'none') {
         results2.style.display = 'inline';
         button.innerHTML = showLessText;
@@ -147,7 +149,7 @@ function keysfromMnemonic(mnemonic, derivationPath) {
 }
 
 function xpubFrom(mnemonic, derivationPath) {
-    const seed = bip39.mnemonicToSeedSync(mnemonic)
+    ;const seed = bip39.mnemonicToSeedSync(mnemonic)
     const node = bip32.fromSeed(seed)
     const child = node.derivePath(derivationPath)
     return child.neutered().toBase58()
@@ -171,7 +173,7 @@ function anyPubFrom(xpub, prefix) {
 module.exports.submitButtonAction = submitButtonAction
 module.exports.randomLastWord = randomLastWord
 module.exports.allLastWords = allLastWords
-module.exports.xpubFromMnemonic = keysfromMnemonic
+module.exports.keysFromMnemonic = keysfromMnemonic
 module.exports.moreorless = moreorless
-module.exports.initShowMore = initShowMore
 module.exports.validate = validate
+module.exports.init = init

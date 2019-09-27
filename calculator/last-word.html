@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <title>SeedPicker last word calculator</title>
     <script src="bundle.js"></script>
+    <script>
+        const seedpicker = require('seedpicker')
+    </script>
     <link href="seedpicker.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body onload="seedpicker.init();">
 <div class="container">
     <div id="text1">
         <h3>SeedPicker last word calculator</h3>
@@ -16,10 +19,10 @@
         <h2>Note the resulting last word on paper, then shut down the computer immediately.</h2>
         <h4>Fill in your first 11 or 23 words (space separated)</h4>
         <fieldset>
-            <textarea id="seedphrase_ta" tabindex="5" required></textarea>
+            <input type="text" id="seedphrase_ta" tabindex="5" required></input>
         </fieldset>
         <fieldset>
-            <button name="submit" type="submit" id="seed-submit" onclick="require('seedpicker').submitButtonAction()">Calculate!
+            <button name="submit" type="submit" id="seed-submit" onclick="seedpicker.submitButtonAction()">Calculate!
             </button>
         </fieldset>
 
@@ -30,7 +33,7 @@
             <div id="result2" class="resultdata"></div>
             <div class="resultheading">Extended Public Key in Zpub format (Suitable for use in an Electrum Multi-signature scheme)</div>
             <div id="result4" class="resultdata"></div>
-            <button id="moreorless_btn" onclick="require('seedpicker').moreorless()">Show more (for advanced users)</button>
+            <button id="moreorless_btn" onclick="seedpicker.moreorless()"></button>
         </div>
         <div id="results2">
             <div class="resultheading">Derivation Path used (Selected to match the default value used by Electrum in multisig schemes)</div>

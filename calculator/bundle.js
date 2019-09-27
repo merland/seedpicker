@@ -31963,36 +31963,30 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":85,"minimalistic-assert":134,"minimalistic-crypto-utils":135}],112:[function(require,module,exports){
 module.exports={
-  "_args": [
-    [
-      "elliptic@6.5.1",
-      "/Users/jorgen/jobbet/seedpicker"
-    ]
-  ],
-  "_from": "elliptic@6.5.1",
+  "_from": "elliptic@^6.0.0",
   "_id": "elliptic@6.5.1",
   "_inBundle": false,
   "_integrity": "sha512-xvJINNLbTeWQjrl6X+7eQCrIy/YPv5XCpKW6kB5mKvtnGILoLDcySuwomfdzt0BMdLNVnuRNTuzKNHj0bva1Cg==",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "elliptic@6.5.1",
+    "raw": "elliptic@^6.0.0",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "6.5.1",
+    "rawSpec": "^6.0.0",
     "saveSpec": null,
-    "fetchSpec": "6.5.1"
+    "fetchSpec": "^6.0.0"
   },
   "_requiredBy": [
     "/browserify-sign",
-    "/create-ecdh",
-    "/tiny-secp256k1"
+    "/create-ecdh"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
-  "_spec": "6.5.1",
-  "_where": "/Users/jorgen/jobbet/seedpicker",
+  "_shasum": "c380f5f909bf1b9b4428d028cd18d3b0efd6b52b",
+  "_spec": "elliptic@^6.0.0",
+  "_where": "/Users/me/dev/seedpicker/node_modules/browserify-sign",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -32000,6 +31994,7 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -32009,6 +32004,7 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
+  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -42004,7 +42000,7 @@ const bip32 = require('bip32')
 const bip39 = require('bip39')
 const b58 = require('bs58check');
 
-const showMoreText = "Show more (for advanced users)"; //TODO duplicated in html
+const showMoreText = "Show more (for advanced users)";
 const showLessText = "Show less";
 
 //See https://github.com/satoshilabs/slips/blob/master/slip-0132.md
@@ -42021,9 +42017,15 @@ const versionBytes = {
     "Vpub": "02575483"
 }
 
-function initShowMore() {
-    let btn = document.getElementById("moreorless_btn");
-    if (btn.innerText === '') btn.innerText = showMoreText
+function init() {
+    document.getElementById("seedphrase_ta")
+        .addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("seed-submit").click();
+            }
+        });
+    document.getElementById("moreorless_btn").innerText = showMoreText
 }
 
 function submitButtonAction() {
@@ -42046,14 +42048,11 @@ function submitButtonAction() {
 
     document.getElementById("result1").innerText = lastword
     document.getElementById("result2").innerText = mnemonic.toLowerCase()
-    document.getElementById("result4").innerText = mainNetPubKeys.Zpub
-
     document.getElementById("result3").innerText = mainNetPubKeys.xpub
+    document.getElementById("result4").innerText = mainNetPubKeys.Zpub
     document.getElementById("result5").innerText = mainNetDerivationPath
-
     document.getElementById("result11").innerText = testNetPubKeys.xpub
     document.getElementById("result12").innerText = testNetPubKeys.Vpub
-
     document.getElementById("results").style.display = "inline"
 }
 
@@ -42099,7 +42098,6 @@ function moreorless() {
     const button = document.getElementById('moreorless_btn')
     const results2 = document.getElementById('results2')
 
-    console.log('results2.style.display:' + results2.style.display)
     if (!results2.style.display || results2.style.display === 'none') {
         results2.style.display = 'inline';
         button.innerHTML = showLessText;
@@ -42149,7 +42147,7 @@ function keysfromMnemonic(mnemonic, derivationPath) {
 }
 
 function xpubFrom(mnemonic, derivationPath) {
-    const seed = bip39.mnemonicToSeedSync(mnemonic)
+    ;const seed = bip39.mnemonicToSeedSync(mnemonic)
     const node = bip32.fromSeed(seed)
     const child = node.derivePath(derivationPath)
     return child.neutered().toBase58()
@@ -42173,10 +42171,10 @@ function anyPubFrom(xpub, prefix) {
 module.exports.submitButtonAction = submitButtonAction
 module.exports.randomLastWord = randomLastWord
 module.exports.allLastWords = allLastWords
-module.exports.xpubFromMnemonic = keysfromMnemonic
+module.exports.keysFromMnemonic = keysfromMnemonic
 module.exports.moreorless = moreorless
-module.exports.initShowMore = initShowMore
 module.exports.validate = validate
+module.exports.init = init
 
 }).call(this,require("buffer").Buffer)
 },{"bip32":"bip32","bip39":"bip39","bs58check":90,"buffer":"buffer"}]},{},[]);
