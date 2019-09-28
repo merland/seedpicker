@@ -5,5 +5,5 @@ browserify \
 	-r bip39 \
 	-r bitcoinjs-lib:bitcoinjs \
 	-r buffer \
-	-r ./calculator/seedpicker.js:seedpicker \
+	-r ./lib/seedpicker.js:seedpicker \
 	-o calculator/bundle.js
