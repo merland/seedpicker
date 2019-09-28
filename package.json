@@ -8,12 +8,12 @@
     "bip32": "2.0.4",
     "bitcoinjs-lib": "^5.1.6",
     "browserify": "^16.5.0",
-    "mocha": "6.2.0",
-    "chai": "4.2.0",
     "bs58check": "2.1.2"
   },
   "devDependencies": {
-    "selenium-webdriver": "3.6.0",
+    "mocha": "6.2.0",
+    "chai": "4.2.0",
+    "selenium-webdriver": "4.0.0-alpha.5",
     "chromedriver": "77.0.0"
   },
   "scripts": {
