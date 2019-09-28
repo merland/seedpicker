@@ -1,12 +1,12 @@
 const expect = require("chai").expect;
 const assert = require("chai").assert;
+const webdriver = require('selenium-webdriver'),
+    chrome = require('selenium-webdriver/chrome'),
+    By = webdriver.By,
+    until = webdriver.until,
+    Key = webdriver.Key
 
 describe("Selenium tests for the html-page", function () {
-    const webdriver = require('selenium-webdriver'),
-        chrome = require('selenium-webdriver/chrome'),
-        By = webdriver.By,
-        until = webdriver.until,
-        Key = webdriver.Key
     const opts = new chrome.Options()
     opts.addArguments('headless')
 
