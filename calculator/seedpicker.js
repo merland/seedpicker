@@ -149,7 +149,7 @@ function keysfromMnemonic(mnemonic, derivationPath) {
 }
 
 function xpubFrom(mnemonic, derivationPath) {
-    ;const seed = bip39.mnemonicToSeedSync(mnemonic)
+    const seed = bip39.mnemonicToSeedSync(mnemonic)
     const node = bip32.fromSeed(seed)
     const child = node.derivePath(derivationPath)
     return child.neutered().toBase58()

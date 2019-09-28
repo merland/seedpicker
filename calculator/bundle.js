@@ -31963,30 +31963,36 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":85,"minimalistic-assert":134,"minimalistic-crypto-utils":135}],112:[function(require,module,exports){
 module.exports={
-  "_from": "elliptic@^6.0.0",
+  "_args": [
+    [
+      "elliptic@6.5.1",
+      "/Users/jorgen/jobbet/seedpicker"
+    ]
+  ],
+  "_from": "elliptic@6.5.1",
   "_id": "elliptic@6.5.1",
   "_inBundle": false,
   "_integrity": "sha512-xvJINNLbTeWQjrl6X+7eQCrIy/YPv5XCpKW6kB5mKvtnGILoLDcySuwomfdzt0BMdLNVnuRNTuzKNHj0bva1Cg==",
   "_location": "/elliptic",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "elliptic@^6.0.0",
+    "raw": "elliptic@6.5.1",
     "name": "elliptic",
     "escapedName": "elliptic",
-    "rawSpec": "^6.0.0",
+    "rawSpec": "6.5.1",
     "saveSpec": null,
-    "fetchSpec": "^6.0.0"
+    "fetchSpec": "6.5.1"
   },
   "_requiredBy": [
     "/browserify-sign",
-    "/create-ecdh"
+    "/create-ecdh",
+    "/tiny-secp256k1"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
-  "_shasum": "c380f5f909bf1b9b4428d028cd18d3b0efd6b52b",
-  "_spec": "elliptic@^6.0.0",
-  "_where": "/Users/me/dev/seedpicker/node_modules/browserify-sign",
+  "_spec": "6.5.1",
+  "_where": "/Users/jorgen/jobbet/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -31994,7 +32000,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -32004,7 +32009,6 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -42147,7 +42151,7 @@ function keysfromMnemonic(mnemonic, derivationPath) {
 }
 
 function xpubFrom(mnemonic, derivationPath) {
-    ;const seed = bip39.mnemonicToSeedSync(mnemonic)
+    const seed = bip39.mnemonicToSeedSync(mnemonic)
     const node = bip32.fromSeed(seed)
     const child = node.derivePath(derivationPath)
     return child.neutered().toBase58()

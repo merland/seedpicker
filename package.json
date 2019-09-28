@@ -12,7 +12,10 @@
     "chai": "4.2.0",
     "bs58check": "2.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "selenium-webdriver": "3.6.0",
+    "chromedriver": "77.0.0"
+  },
   "scripts": {
     "build": "./browserify.sh",
     "test": "mocha 'calculator/unittests.js'"
