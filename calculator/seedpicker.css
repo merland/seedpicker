@@ -202,3 +202,9 @@ fieldset {
   padding: 7px;
   font-size: 12px;
 }
+
+.warningtext1 {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
