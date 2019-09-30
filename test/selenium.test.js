@@ -22,14 +22,14 @@ describe("Selenium tests for the html-page", function () {
         const fileUrl = "file://" + workingDir + "/calculator/last-word.html"
         await driver.get(fileUrl);
         await driver.findElement(By.id('seedphrase_ta'))
-            .sendKeys('     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken  ', Key.RETURN);
+            .sendKeys('     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december ', Key.RETURN);
         const result1 = await driver.findElement(By.id('result1'))
         await driver.wait(until.elementIsVisible(result1), 1000);
 
         const checksumWord = await result1.getText()
         expect(checksumWord).to.not.equal("undefined")
 
-        expect(checksumWord).to.equal("accuse");
+        expect(checksumWord).to.equal("bridge");
     })
 
     after(async () => driver.quit());

@@ -42072,8 +42072,8 @@ function validate(suppliedSeedPhrase) {
     if (trimmedWords.length > 0) {
         wordCount = trimmedWords.length
     }
-    if (wordCount !== 11 && wordCount !== 23) {
-        const msg = "Please enter 11 or 23 words. (You entered " + wordCount + ")"
+    if (wordCount !== 23) {
+        const msg = "Please enter 23 words. (You entered " + wordCount + ")"
         return validationReply(msg)
     }
     const dictionary = bip39.wordlists[bip39.getDefaultWordlist()]
