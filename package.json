@@ -4,6 +4,7 @@
   "description": "Contains a GUIDE and a CALCULATOR to help you safely create a private key.",
   "main": "index.js",
   "dependencies": {
+    "jquery": "3.4.1",
     "bip39": "^3.0.2",
     "bip32": "2.0.4",
     "bitcoinjs-lib": "^5.1.6",
