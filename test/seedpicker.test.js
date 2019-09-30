@@ -18,11 +18,12 @@ describe("Calculate the 24th word", function () {
         expect(words).to.have.members(expectedWords);
     })
 
-    it("should select a random checksum word", () => {
+    //https://github.com/merland/seedpicker/issues/13
+    it("should select the first checksum word, alphabetically", () => {
         const my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
-        const lastWord = seedpicker.randomLastWord(my23words);
+        const lastWord = seedpicker.firstFoundLastWord(my23words);
 
-        const expectedWords = ["bridge", "danger", "draft", "hamster", "old", "route", "soccer", "wedding"]
+        const expectedWords = ["bridge"]
         expect(lastWord).to.be.oneOf(expectedWords);
     })
     it('should have an empty error message if supplied words are valid', function () {

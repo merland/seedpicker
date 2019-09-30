@@ -29,23 +29,7 @@ describe("Selenium tests for the html-page", function () {
         const checksumWord = await result1.getText()
         expect(checksumWord).to.not.equal("undefined")
 
-        const expectedWords = ["accuse", "actor", "afford", "alpha", "answer", "any", "army",
-            "attract", "awkward", "banana", "between", "bird", "bonus",
-            "bottom", "bulb", "bulk", "cake", "captain", "ceiling", "cheese", "cinnamon",
-            "claw", "combine", "common", "cover", "cricket", "crush", "curve", "decade",
-            "derive", "diet", "disagree", "double", "drastic", "dune", "elevator", "else",
-            "envelope", "evil", "excess", "explain", "fantasy", "field", "filter", "float",
-            "forest", "fruit", "future", "ghost", "ginger", "goat", "gun", "hard", "height",
-            "horn", "hurry", "idea", "increase", "invest", "jazz", "joy", "knife", "lake",
-            "lend", "letter", "loan", "loyal", "mango", "matrix", "mesh", "miracle", "mix",
-            "muffin", "near", "next", "note", "object", "omit", "outer", "paddle", "pause",
-            "peasant", "pill", "police", "power", "private", "property", "quiz", "rain",
-            "razor", "remain", "resource", "rice", "room", "round", "sauce", "scheme",
-            "season", "sheriff", "shove", "sign", "slice", "smoke", "soul", "speak", "sponsor",
-            "still", "strong", "super", "surge", "talent", "teach", "throw", "toe", "toss",
-            "traffic", "trim", "twist", "unique", "update", "valley", "venture", "virus",
-            "voyage", "weekend", "when", "wire", "year"]
-        expect(checksumWord).to.be.oneOf(expectedWords);
+        expect(checksumWord).to.equal("accuse");
     })
 
     after(async () => driver.quit());

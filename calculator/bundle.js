@@ -31966,7 +31966,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.5.1",
-      "/Users/jorgen/jobbet/seedpicker"
+      "/Users/me/dev/seedpicker"
     ]
   ],
   "_from": "elliptic@6.5.1",
@@ -31992,7 +31992,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
   "_spec": "6.5.1",
-  "_where": "/Users/jorgen/jobbet/seedpicker",
+  "_where": "/Users/me/dev/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -42041,7 +42041,7 @@ function submitButtonAction() {
     }
 
     phraseField.value = validation.cleanedUpPhrase
-    const lastword = randomLastWord(validation.cleanedUpPhrase)
+    const lastword = firstFoundLastWord(validation.cleanedUpPhrase)
     const mnemonic = phraseField.value + " " + lastword
 
     const mainNetDerivationPath = "m/48'/0'/0'/2'"
@@ -42115,8 +42115,14 @@ Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))]
 }
 
+// Currently not used by domain code, see GH issue #13
+// TODO: Remove once we are sure it won't be used.
 function randomLastWord(suppliedSeedPhrase) {
     return allLastWords(suppliedSeedPhrase).random()
+}
+
+function firstFoundLastWord(suppliedSeedPhrase) {
+    return allLastWords(suppliedSeedPhrase)[0]
 }
 
 function allLastWords(suppliedSeedPhrase) {
@@ -42179,6 +42185,7 @@ module.exports.keysFromMnemonic = keysfromMnemonic
 module.exports.moreorless = moreorless
 module.exports.validate = validate
 module.exports.init = init
+module.exports.firstFoundLastWord = firstFoundLastWord
 
 }).call(this,require("buffer").Buffer)
 },{"bip32":"bip32","bip39":"bip39","bs58check":90,"buffer":"buffer"}]},{},[]);
