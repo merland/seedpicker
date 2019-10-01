@@ -21,7 +21,7 @@ describe("Selenium tests for the html-page", function () {
         const workingDir = process.cwd()
         const fileUrl = "file://" + workingDir + "/calculator/last-word.html"
         await driver.get(fileUrl);
-        await driver.findElement(By.id('seedphrase_ta'))
+        await driver.findElement(By.id('seedphrase_input'))
             .sendKeys('     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december ', Key.RETURN);
         const result1 = await driver.findElement(By.id('result1'))
         await driver.wait(until.elementIsVisible(result1), 1000);
