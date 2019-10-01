@@ -65,7 +65,7 @@ describe("XPUB generation", function () {
         //Zpub -  bitcoin mainnet P2WSH
         assert.strictEqual(result.Zpub, 'Zpub74Mm2bFast3DSv9idN42wboqRkRoXAmZiPnCBHn42XbQriiRFTLmqhN7wvtd3wMy6B66BC5A3ktCMHb6kUaHY1HhSnadgJqCmbhmnAQispN');
 
-        //Vpub is for testnet
+        //Illegal combination - Vpub is for testnet
         assert.isUndefined(result.Vpub);
     });
 
@@ -77,7 +77,7 @@ describe("XPUB generation", function () {
         //Vpub - bitcoin testnet P2WSH
         assert.strictEqual(result.Vpub, 'Vpub5mJeTpJNj5U7kMZac5nVMet8VogqSwP6W59VEW2a1JDp4gtCFVR8tWVjGwTx7LJos8jFf8DzJR166aAK2Fy3Y1a6XU86VEpGC4Y2CjogHVw');
 
-        //Zpub is for mainnet
+        //Illegal combination - Zpub is for mainnet
         assert.isUndefined(result.Zpub)
     });
 
