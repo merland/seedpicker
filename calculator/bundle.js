@@ -52604,6 +52604,7 @@ const bip32 = require('bip32')
 const bip39 = require('bip39')
 const b58 = require('bs58check');
 
+const title = "SeedPicker: Last Word and XPUB Calculator";
 const showMoreText = "Show more (for advanced users)";
 const showLessText = "Show less";
 
@@ -52611,20 +52612,47 @@ let network = "mainnet";
 
 //See https://github.com/satoshilabs/slips/blob/master/slip-0132.md
 const versionBytes = {
-    "xpub": "0488b21e",
-    "ypub": "049d7cb2",
-    "zpub": "04b24746",
-    "Ypub": "0295b43f",
-    "Zpub": "02aa7ed3",
-    "tpub": "043587cf",
-    "upub": "044a5262",
-    "Upub": "024289ef",
-    "vpub": "045f1cf6",
-    "Vpub": "02575483"
+    "xpub": {
+        vb: "0488b21e",
+    },
+    "ypub": {
+        vb: "049d7cb2"
+    },
+    "zpub": {
+        vb: "04b24746"
+    },
+    "Ypub": {
+        vb: "0295b43f"
+    },
+    "Zpub": {
+        vb: "02aa7ed3",
+        desc: "Extended Public Key in Zpub format, for Electrum's native segwit multisig (p2wsh)"
+    },
+    "tpub": {
+        vb: "043587cf"
+    },
+    "upub": {
+        vb: "044a5262"
+    },
+    "Upub": {
+        vb: "024289ef"
+    },
+    "vpub": {
+        vb: "045f1cf6"
+    },
+    "Vpub": {
+        vb: "02575483",
+        desc: "Extended Public Key in Vpub format (Testnet P2WSH)"
+    }
 }
 
 function init() {
     setNetworkFromUrlParams()
+    let actualTitle = title
+    if (isTestnet()) actualTitle = title + " - TESTNET"
+    $('#text1_heading').text(actualTitle)
+    $('head title').text(actualTitle)
+
     const $seedphraseTa = $('#seedphrase_input');
     $seedphraseTa.focus()
     $seedphraseTa.keypress(enterIsSubmit);
@@ -52656,6 +52684,10 @@ function translateUndefined(theVar) {
     return theVar;
 }
 
+const isTestnet = () => network == 'testnet';
+
+const isMainnet = () => !isTestnet();
+
 function submitButtonAction() {
     const phraseField = $("#seedphrase_input");
     const validation = validate(phraseField.val())
@@ -52674,7 +52706,14 @@ function submitButtonAction() {
     $("#result2").text(mnemonic.toLowerCase())
     $("#result13").text(network)
     $("#result3").text(pubKeys.xpub)
-    $("#result4").text(translateUndefined(pubKeys.Zpub))
+
+    if (isTestnet()) {
+        $("#result4_heading").text(getVersionBytes("Vpub").desc)
+        $("#result4").text(translateUndefined(pubKeys.Vpub))
+    } else {
+        $("#result4_heading").text(getVersionBytes("Zpub").desc)
+        $("#result4").text(translateUndefined(pubKeys.Zpub))
+    }
     $("#result12").text(translateUndefined(pubKeys.Vpub))
     $("#result5").text(pubKeys.derivationPath)
     $("#results").css('display', 'inline')
@@ -52785,7 +52824,7 @@ function anyPubFrom(xpub, prefix, network) {
     if (!network) throw new Error("network not set")
     if (network == 'mainnet' && prefix == 'Vpub') return undefined
     if (network == 'testnet' && prefix == 'Zpub') return undefined
-    let versionBytes = Buffer.from(getVersionBytes(prefix), "hex")
+    let versionBytes = Buffer.from(getVersionBytes(prefix).vb, "hex")
     try {
         let data = b58.decode(xpub.trim());
         data = data.slice(4);
@@ -52802,11 +52841,12 @@ function displayQR() {
 
 function setNetworkFromUrlParams() {
     const vars = {};
-    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
         vars[key] = value;
     });
     if (vars.network == 'testnet') network = 'testnet'
 }
+
 module.exports = {
     init: init,
     validate: validate,

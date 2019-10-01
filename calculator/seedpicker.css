@@ -42,7 +42,7 @@ body {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-#text1 h3 {
+#text1_heading {
     display: block;
     font-size: 30px;
     font-weight: 300;
@@ -131,7 +131,6 @@ fieldset {
   color: black;
   font-size: 15px;
   display: none;
-  background: #eee;
 }
 .resultheading {
     padding-top: 18px;
