@@ -52650,6 +52650,12 @@ const toggleAdvanced = () => {
     $('#results2').toggle()
 };
 
+//temporary...
+function translateUndefined(theVar) {
+    if (!theVar) return "N/A"
+    return theVar;
+}
+
 function submitButtonAction() {
     const phraseField = $("#seedphrase_input");
     const validation = validate(phraseField.val())
@@ -52668,10 +52674,8 @@ function submitButtonAction() {
     $("#result2").text(mnemonic.toLowerCase())
     $("#result13").text(network)
     $("#result3").text(pubKeys.xpub)
-    $("#result4").text(pubKeys.Zpub)
-    if (network == 'testnet') $("#result4").text('N/A') //FIXME remove presentation logic
-    $("#result12").text(pubKeys.Vpub)
-    if (network == 'mainnet') $("#result12").text('N/A') //FIXME remove presentation logic
+    $("#result4").text(translateUndefined(pubKeys.Zpub))
+    $("#result12").text(translateUndefined(pubKeys.Vpub))
     $("#result5").text(pubKeys.derivationPath)
     $("#results").css('display', 'inline')
 }
@@ -52761,8 +52765,8 @@ function keysfromMnemonic(mnemonic, network) {
     const derivationPath = derivationPathFromNetwork(network)
     return {
         xpub: xpubFrom(mnemonic, derivationPath),
-        Zpub: anyPubFrom(xpubFrom(mnemonic, derivationPath), 'Zpub'),
-        Vpub: anyPubFrom(xpubFrom(mnemonic, derivationPath), 'Vpub'),
+        Zpub: anyPubFrom(xpubFrom(mnemonic, derivationPath), 'Zpub', network),
+        Vpub: anyPubFrom(xpubFrom(mnemonic, derivationPath), 'Vpub', network),
         derivationPath: derivationPath
     }
 }
@@ -52777,7 +52781,10 @@ function xpubFrom(mnemonic, derivationPath) {
 /**
  * Convert from xpub to other formats
  */
-function anyPubFrom(xpub, prefix) {
+function anyPubFrom(xpub, prefix, network) {
+    if (!network) throw new Error("network not set")
+    if (network == 'mainnet' && prefix == 'Vpub') return undefined
+    if (network == 'testnet' && prefix == 'Zpub') return undefined
     let versionBytes = Buffer.from(getVersionBytes(prefix), "hex")
     try {
         let data = b58.decode(xpub.trim());

@@ -49,7 +49,7 @@ describe("Calculate the 24th word", function () {
     });
 })
 
-describe("XPUB generation according to https://github.com/iancoleman/bip39/issues/351", function () {
+describe("XPUB generation", function () {
     it('can generate a BIP32 xpub', () => {
         const mnemonic = 'empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december bridge'
         const result = seedpicker.keysFromMnemonic(mnemonic, "testnet");
@@ -65,8 +65,8 @@ describe("XPUB generation according to https://github.com/iancoleman/bip39/issue
         //Zpub -  bitcoin mainnet P2WSH
         assert.strictEqual(result.Zpub, 'Zpub74Mm2bFast3DSv9idN42wboqRkRoXAmZiPnCBHn42XbQriiRFTLmqhN7wvtd3wMy6B66BC5A3ktCMHb6kUaHY1HhSnadgJqCmbhmnAQispN');
 
-        //Vpub - bitcoin testnet P2WSH
-        assert.strictEqual(result.Vpub, 'Vpub5m2hovZvH9sJ3jPFHvuY7FRpjsr1kgoa3whK3iCWWW5teKTWEpgXMSjZs74H4JkHTccsBHgvD7Tzp98qsgvEM4ZHyRnwLfZFghTCDsjhCfc');
+        //Vpub is for testnet
+        assert.isUndefined(result.Vpub);
     });
 
     it('can generate Testnet Vpub', () => {
@@ -76,7 +76,11 @@ describe("XPUB generation according to https://github.com/iancoleman/bip39/issue
 
         //Vpub - bitcoin testnet P2WSH
         assert.strictEqual(result.Vpub, 'Vpub5mJeTpJNj5U7kMZac5nVMet8VogqSwP6W59VEW2a1JDp4gtCFVR8tWVjGwTx7LJos8jFf8DzJR166aAK2Fy3Y1a6XU86VEpGC4Y2CjogHVw');
+
+        //Zpub is for mainnet
+        assert.isUndefined(result.Zpub)
     });
+
 })
 
 
