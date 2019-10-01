@@ -208,3 +208,7 @@ fieldset {
     font-weight: bold;
     margin-bottom: 30px;
 }
+
+.input_label {
+    color: black;
+}
