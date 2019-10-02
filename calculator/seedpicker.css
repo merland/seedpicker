@@ -45,32 +45,31 @@ body {
     position: relative;
 }
 
-#text1 input[type="text"],
-#text1 textarea,
-#text1 button[type="submit"] {
+#main_div input[type="text"],
+#main_div button[type="submit"] {
     font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
 }
 
-#text1 {
+#main_div {
     background: #F9F9F9;
     padding: 25px;
     margin: 150px 0;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-#text1_heading {
+#page_heading {
     display: block;
     font-size: 30px;
     font-weight: 300;
     margin-bottom: 10px;
 }
 
-#text1_bodytext {
+#page_sub_title {
     font-size: 15px;
     font-weight: 300;
 }
 
-#text1 h4 {
+#main_div h4 {
     margin: 5px 0 15px;
     display: block;
     font-size: 13px;
@@ -85,8 +84,7 @@ fieldset {
     width: 100%;
 }
 
-#text1 input[type="text"],
-#text1 textarea {
+#main_div input[type="text"] {
     width: 100%;
     border: 1px solid #ccc;
     background: #FFF;
@@ -94,21 +92,14 @@ fieldset {
     padding: 10px;
 }
 
-#text1 input[type="text"]:hover,
-#text1 textarea:hover {
+#main_div input[type="text"]:hover {
     -webkit-transition: border-color 0.3s ease-in-out;
     -moz-transition: border-color 0.3s ease-in-out;
     transition: border-color 0.3s ease-in-out;
     border: 1px solid #aaa;
 }
 
-#text1 textarea {
-    height: 40px;
-    max-width: 100%;
-    resize: none;
-}
-
-#text1 button[type="submit"] {
+#main_div button[type="submit"] {
     cursor: pointer;
     width: 100%;
     border: none;
@@ -119,14 +110,14 @@ fieldset {
     font-size: 15px;
 }
 
-#text1 button[type="submit"]:hover {
+#main_div button[type="submit"]:hover {
     background: #43A047;
     -webkit-transition: background 0.3s ease-in-out;
     -moz-transition: background 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
 }
 
-#text1 button[type="submit"]:active {
+#main_div button[type="submit"]:active {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -134,8 +125,7 @@ fieldset {
     text-align: center;
 }
 
-#text1 input:focus,
-#text1 textarea:focus {
+#main_div input:focus {
     outline: 0;
     border: 1px solid #aaa;
 }
@@ -147,12 +137,13 @@ fieldset {
     display: none;
 }
 
-#results2 {
+#advanced {
     margin-top: 30px;
     color: black;
     font-size: 15px;
     display: none;
 }
+
 .resultheading {
     padding-top: 18px;
     padding-bottom: 0;
@@ -212,7 +203,7 @@ fieldset {
     padding-bottom: 12px;
 }
 
-#moreorless_btn {
+#toggle_advanced_btn {
     cursor: pointer;
     width: 30%;
     border: none;
@@ -223,7 +214,7 @@ fieldset {
     font-size: 12px;
 }
 
-.warningtext1 {
+.main_warningtext {
     font-size: 15px;
     font-weight: bold;
     margin-bottom: 30px;
@@ -244,6 +235,10 @@ fieldset {
     cursor: pointer;
 }
 
+.left_float {
+    float: left;
+}
+
 .button {
     color: black;
     background: white;
@@ -260,6 +255,7 @@ fieldset {
 .qrcodebutton {
     float: right;
 }
+
 .qrcodebutton .button {
     border: 2px solid black;
 }
@@ -272,7 +268,7 @@ fieldset {
     padding: 0 0 10px 10px;
 }
 
-.overlay {
+.qr_overlay {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -301,6 +297,7 @@ fieldset {
     font-weight: bold;
     text-decoration: none;
     color: #333;
+    cursor: pointer;
 }
 
 .popup .close:hover {
@@ -309,7 +306,5 @@ fieldset {
 
 .popup .content {
     max-height: 30%;
-    /*overflow: auto;*/
 }
 /*QR Code stuff end*/
-

@@ -12,7 +12,7 @@ async function enter_valid_phrase_and_hit_enter(driver) {
     await driver.get(fileUrl);
     await driver.findElement(By.id('seedphrase_input'))
         .sendKeys('     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december ', Key.RETURN);
-    const checksumWordDiv = await driver.findElement(By.id('result1'))
+    const checksumWordDiv = await driver.findElement(By.id('checksum_word'))
     await driver.wait(until.elementIsVisible(checksumWordDiv), 1000);
     return await checksumWordDiv.getText();
 }
@@ -36,7 +36,7 @@ describe("Selenium tests for the html-page", function () {
     it('should display a QR code for the zpub', async () => {
         await enter_valid_phrase_and_hit_enter(driver);
 
-        const zpubDiv = await driver.findElement(By.id('result4'))
+        const zpubDiv = await driver.findElement(By.id('extended_pub'))
         await driver.wait(until.elementIsVisible(zpubDiv), 1000);
         const zpub = await zpubDiv.getText();
         expect(zpub).to.not.be.empty
@@ -44,7 +44,7 @@ describe("Selenium tests for the html-page", function () {
         expect(zpub).to.have.lengthOf(111)
 
         // Click qr button and wait for the canvas to be visible
-        await driver.findElement(By.css('#zpub_qr_code_btn .button')).click()
+        await driver.findElement(By.css('#extended_pub_qr_btn .button')).click()
         const qrCanvas = await driver.findElement(By.css('#qr_code > canvas'))
         await driver.wait(until.elementIsVisible(qrCanvas), 1000);
 

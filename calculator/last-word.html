@@ -15,19 +15,19 @@
 </head>
 <body>
 <div class="container">
-    <div id="text1">
-         <div id="popup1" class="overlay">
+    <div id="main_div">
+        <div id="qr" class="qr_overlay">
             <div id="qr_popup" class="popup">
-                <span class="close" href="#">&times;</span>
+                <span class="close">&times;</span>
                 <div id="qr_code" class="content"></div>
                 <div>
                     <p id="qr_text"></p>
                 </div>
             </div>
         </div>
-        <div id="text1_heading"></div>
-        <div id="text1_bodytext">Helps you create a valid 24-word seedphrase and its corresponding Extended Public Key.</div>
-        <div class="warningtext1">
+        <div id="page_heading"></div>
+        <div id="page_sub_title">Helps you create a valid 24-word seedphrase and its corresponding Extended Public Key.</div>
+        <div class="main_warningtext">
             <div>WARNING: Before using this calculator, read all instructions <a href="http://seedpicker.net">here</a>.</div>
             <div>WARNING: Only use this calculator on an offline and fully secured computer! (see instructions)</div>
             <div>(Unless you are just trying it out to learn more...)</div>
@@ -37,35 +37,34 @@
             <div class="input_label">Fill in your first 23 words (space separated)</div>
         </div>
         <fieldset>
-            <input type="text" id="seedphrase_input" tabindex="5" required/>
+            <input id="seedphrase_input" type="text" tabindex="5" required/>
         </fieldset>
         <fieldset>
-            <button name="submit" type="submit" id="seed-submit">Calculate!
-            </button>
+            <button id="seed-submit" name="submit" type="submit">Calculate!</button>
         </fieldset>
 
         <div id="results">
             <div class="resultheading">Last word (There are several valid words but this tool always selects the first one, alphabetically)</div>
-            <div id="result1" class="resultdata"></div>
+            <div id="checksum_word" class="resultdata"></div>
             <div class="resultheading">Complete seed phrase</div>
-            <div id="result2" class="resultdata"></div>
-            <div id="result4_heading" class="resultheading"></div>
+            <div id="complete_phrase" class="resultdata"></div>
+            <div id="extended_pub_heading" class="resultheading"></div>
             <div>
-                <div id="zpub_qr_code_btn" class="qrcodebutton"><span class="button">QR-code</span></div>
-                <div id="result4" class="resultdata"></div>
+                <div id="extended_pub_qr_btn" class="qrcodebutton"><span class="button">QR-code</span></div>
+                <div id="extended_pub" class="resultdata"></div>
             </div>
-            <button id="moreorless_btn"></button>
+            <button id="toggle_advanced_btn"></button>
         </div>
-        <div id="results2">
+        <div id="advanced">
             <div class="resultheading">Network</div>
             <div class="resultdata">
-                <div style="float:left" id="result13"></div>
+                <div id="network" class="left_float"></div>
                 <div id="networkswitchlink"></div>
             </div>
             <div class="resultheading">Derivation Path used (Selected to match the default value used by Electrum in multisig schemes)</div>
-            <div id="result5" class="resultdata"></div>
+            <div id="derivation_path" class="resultdata"></div>
             <div class="resultheading">Extended Public Key in xpub format</div>
-            <div id="result3" class="resultdata"></div>
+            <div id="xpub_key" class="resultdata"></div>
         </div>
     </div>
 </div>
