@@ -240,8 +240,8 @@ fieldset {
 }
 
 .button {
-    color: white;
-    background: #4CAF50;
+    color: black;
+    background: white;
     border: 2px solid #06D85F;
     text-decoration: none;
     cursor: pointer;
@@ -251,13 +251,12 @@ fieldset {
     font-size: 10px;
 }
 
-.button:hover {
-    background: #06D85F;
-}
-
 /*QR Code stuff start*/
 .qrcodebutton {
     float: right;
+}
+.qrcodebutton .button {
+    border: 2px solid black;
 }
 
 .popup p {

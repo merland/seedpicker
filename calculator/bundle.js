@@ -31966,7 +31966,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.5.1",
-      "/Users/jorgen/jobbet/seedpicker"
+      "/Users/me/dev/seedpicker"
     ]
   ],
   "_from": "elliptic@6.5.1",
@@ -31992,7 +31992,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
   "_spec": "6.5.1",
-  "_where": "/Users/jorgen/jobbet/seedpicker",
+  "_where": "/Users/me/dev/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -52660,7 +52660,10 @@ const versionBytes = {
 function init() {
     setNetworkFromUrlParams()
     let actualTitle = title
-    if (isTestnet()) actualTitle = title + " - TESTNET"
+    if (isTestnet()) {
+        actualTitle = title + " - TESTNET"
+        $('button').css('background', 'orange');
+    }
     $('#text1_heading').text(actualTitle)
     $('head title').text(actualTitle)
 
