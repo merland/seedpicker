@@ -1,6 +1,7 @@
 const expect = require("chai").expect;
 const assert = require("chai").assert;
 const seedpicker = require("../lib/seedpicker.js")
+const logic = require("../lib/logic.js")
 
 describe("Calculate the 24th word", function () {
     it("should calculate all checksum words", () => {
@@ -52,14 +53,14 @@ describe("Calculate the 24th word", function () {
 describe("XPUB generation", function () {
     it('can generate a BIP32 xpub', () => {
         const mnemonic = 'empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december bridge'
-        const result = seedpicker.keysFromMnemonic(mnemonic, "testnet");
+        const result = logic.keysFromMnemonic(mnemonic, "testnet");
         assert.strictEqual(result.xpub, 'xpub6E55wuumTUzi2NnSL8tkwkjL7wwU7pgW22YFt2YoPY9AYhwjzQMz3Wx5WeReYiPkSwttHVQzLXKgjymgARe7yzpdRgQYFezEqnPSPywibYC');
     });
 
 
     it('can generate xpub in other formats', () => {
         const mnemonic = 'empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december bridge'
-        const result = seedpicker.keysFromMnemonic(mnemonic, "mainnet");
+        const result = logic.keysFromMnemonic(mnemonic, "mainnet");
         assert.strictEqual(result.xpub, 'xpub6Do9J2BK1ZPtKkc71z1ohMH2N26eRa6yZu65hEijtk1F8LX3yjdNWTBv6p1yVgqE3RnVoesvFDnbTYkD1rbJo3opse5P75jELRJcR9ev9rU');
 
         //Zpub -  bitcoin mainnet P2WSH
@@ -71,7 +72,7 @@ describe("XPUB generation", function () {
 
     it('can generate Testnet Vpub', () => {
         const mnemonic = 'empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december bridge'
-        const result = seedpicker.keysFromMnemonic(mnemonic, "testnet");
+        const result = logic.keysFromMnemonic(mnemonic, "testnet");
         assert.strictEqual(result.xpub, 'xpub6E55wuumTUzi2NnSL8tkwkjL7wwU7pgW22YFt2YoPY9AYhwjzQMz3Wx5WeReYiPkSwttHVQzLXKgjymgARe7yzpdRgQYFezEqnPSPywibYC');
 
         //Vpub - bitcoin testnet P2WSH
