@@ -143,14 +143,14 @@ fieldset {
 }
 
 #results2 {
-  margin-top: 30px;
-  color: black;
-  font-size: 15px;
-  display: none;
+    margin-top: 30px;
+    color: black;
+    font-size: 15px;
+    display: none;
 }
 .resultheading {
     padding-top: 18px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 .resultdata {
@@ -208,14 +208,14 @@ fieldset {
 }
 
 #moreorless_btn {
-  cursor: pointer;
-  width: 30%;
-  border: none;
-  background: #4CAF50;
-  color: #FFF;
-  margin: 30px 0px 0px 0px;
-  padding: 7px;
-  font-size: 12px;
+    cursor: pointer;
+    width: 30%;
+    border: none;
+    background: #4CAF50;
+    color: #FFF;
+    margin: 30px 0px 0px 0px;
+    padding: 7px;
+    font-size: 12px;
 }
 
 .warningtext1 {
@@ -231,3 +231,80 @@ fieldset {
 #networkswitchlink {
     font-weight: normal;
 }
+
+.input_label_right {
+    color: black;
+    float: right;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.button {
+    color: white;
+    background: #4CAF50;
+    border: 2px solid #06D85F;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    margin: 30px 0 0 0;
+    padding: 7px;
+    font-size: 10px;
+}
+
+.button:hover {
+    background: #06D85F;
+}
+
+/*QR Code stuff start*/
+.qrcodebutton {
+    float: right;
+}
+
+.popup p {
+    width: 210px;
+    word-wrap: break-word;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 0 0 10px 10px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 15px 0px 10px 10px;
+    background: #fff;
+    border-radius: 5px;
+    width: 260px;
+    position: relative;
+    /*transition: all 1s ease-in-out;*/
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #06D85F;
+}
+
+.popup .content {
+    max-height: 30%;
+    /*overflow: auto;*/
+}
+/*QR Code stuff end*/

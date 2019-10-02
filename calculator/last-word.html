@@ -16,13 +16,29 @@
 <body>
 <div class="container">
     <div id="text1">
+
+        <div id="popup1" class="overlay">
+            <div id="qr_popup" class="popup">
+                <span class="close" href="#">&times;</span>
+                <div id="qr_code" class="content"></div>
+                <div>
+                    <p id="qr_text"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <h3>SeedPicker last word calculator</h3>
         <div id="text1_heading"></div>
         <div class="warningtext1">
             <div>WARNING: Before using this calculator, read all instructions <a href="http://seedpicker.net">here</a>.</div>
             <div>WARNING: Only use this calculator on an offline and fully secured computer! (see instructions)</div>
             <div>(Unless you are just trying it out to learn more...)</div>
         </div>
-        <div class="input_label">Fill in your first 23 words (space separated)</div>
+        <div>
+            <div id="sample_phrase" class="input_label_right">Generate sample (only for testing!)</div>
+            <div class="input_label">Fill in your first 23 words (space separated)</div>
+        </div>
         <fieldset>
             <input type="text" id="seedphrase_input" tabindex="5" required/>
         </fieldset>
@@ -37,12 +53,10 @@
             <div class="resultheading">Complete seed phrase</div>
             <div id="result2" class="resultdata"></div>
             <div id="result4_heading" class="resultheading"></div>
-<!--            <div>-->
-            <div id="result4" class="resultdata"></div>
-<!--                <div class="qrcodebutton">-->
-<!--                    <button id="zpub_qr_code_btn"></button>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div>
+                <div id="zpub_qr_code_btn" class="qrcodebutton"><span class="button">QR-code</span></div>
+                <div id="result4" class="resultdata"></div>
+            </div>
             <button id="moreorless_btn"></button>
         </div>
         <div id="results2">
