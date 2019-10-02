@@ -13,6 +13,22 @@
     text-rendering: optimizeLegibility;
 }
 
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
+
 body {
     font-family: "Roboto", Helvetica, Arial, sans-serif;
     font-weight: 100;
@@ -210,4 +226,8 @@ fieldset {
 
 .input_label {
     color: black;
+}
+
+#networkswitchlink {
+    font-weight: normal;
 }

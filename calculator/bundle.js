@@ -52608,7 +52608,10 @@ const title = "SeedPicker: Last Word and XPUB Calculator";
 const showMoreText = "Show more (for advanced users)";
 const showLessText = "Show less";
 
-let network = "mainnet";
+const MAINNET = "mainnet"
+const TESTNET = "testnet"
+
+let network = MAINNET;
 
 //See https://github.com/satoshilabs/slips/blob/master/slip-0132.md
 const versionBytes = {
@@ -52678,15 +52681,18 @@ const toggleAdvanced = () => {
     $('#results2').toggle()
 };
 
-//temporary...
-function translateUndefined(theVar) {
-    if (!theVar) return "N/A"
-    return theVar;
+const isTestnet = () => network === TESTNET;
+
+const isMainnet = () => network === MAINNET;
+
+function otherNetwork() {
+    if (isMainnet()) {
+        return TESTNET;
+    } else if (isTestnet()){
+        return MAINNET;
+    }
+    throw new Error(`Wrong network: [${network}]`)
 }
-
-const isTestnet = () => network == 'testnet';
-
-const isMainnet = () => !isTestnet();
 
 function submitButtonAction() {
     const phraseField = $("#seedphrase_input");
@@ -52705,16 +52711,18 @@ function submitButtonAction() {
     $("#result1").text(lastword)
     $("#result2").text(mnemonic.toLowerCase())
     $("#result13").text(network)
+
+    $("#networkswitchlink").html(`&nbsp;<a href="?network=${otherNetwork()}">(switch to ${otherNetwork()})</a>`);
     $("#result3").text(pubKeys.xpub)
 
     if (isTestnet()) {
         $("#result4_heading").text(getVersionBytes("Vpub").desc)
-        $("#result4").text(translateUndefined(pubKeys.Vpub))
+        $("#result4").text(pubKeys.Vpub)
     } else {
         $("#result4_heading").text(getVersionBytes("Zpub").desc)
-        $("#result4").text(translateUndefined(pubKeys.Zpub))
+        $("#result4").text(pubKeys.Zpub)
     }
-    $("#result12").text(translateUndefined(pubKeys.Vpub))
+    $("#result12").text(pubKeys.Vpub)
     $("#result5").text(pubKeys.derivationPath)
     $("#results").css('display', 'inline')
 }
