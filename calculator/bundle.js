@@ -52718,8 +52718,6 @@ const TESTNET = "testnet"
 
 let network = MAINNET;
 
-
-
 function init() {
     setNetworkFromUrlParams()
     let actualTitle = title
@@ -52928,7 +52926,7 @@ function setNetworkFromUrlParams() {
     const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
         vars[key] = value;
     });
-    if (vars.network === 'testnet') network = 'testnet'
+    if (vars.network && vars.network.toLowerCase() === TESTNET) network = TESTNET
 }
 
 function getVersionBytes(prefix) {
