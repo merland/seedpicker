@@ -6,6 +6,17 @@ const webdriver = require('selenium-webdriver'),
     until = webdriver.until,
     Key = webdriver.Key
 
+async function enter_valid_phrase_and_hit_enter(driver) {
+    const workingDir = process.cwd()
+    const fileUrl = "file://" + workingDir + "/calculator/last-word.html"
+    await driver.get(fileUrl);
+    await driver.findElement(By.id('seedphrase_input'))
+        .sendKeys('     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december ', Key.RETURN);
+    const checksumWordDiv = await driver.findElement(By.id('result1'))
+    await driver.wait(until.elementIsVisible(checksumWordDiv), 1000);
+    return await checksumWordDiv.getText();
+}
+
 describe("Selenium tests for the html-page", function () {
     const opts = new chrome.Options()
     opts.addArguments('headless')
@@ -18,18 +29,31 @@ describe("Selenium tests for the html-page", function () {
     this.timeout(10000)
 
     it('should use the actual html-page and verify the last word', async () => {
-        const workingDir = process.cwd()
-        const fileUrl = "file://" + workingDir + "/calculator/last-word.html"
-        await driver.get(fileUrl);
-        await driver.findElement(By.id('seedphrase_input'))
-            .sendKeys('     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december ', Key.RETURN);
-        const result1 = await driver.findElement(By.id('result1'))
-        await driver.wait(until.elementIsVisible(result1), 1000);
-
-        const checksumWord = await result1.getText()
-        expect(checksumWord).to.not.equal("undefined")
-
+        const checksumWord = await enter_valid_phrase_and_hit_enter(driver);
         expect(checksumWord).to.equal("bridge");
+    })
+
+    it('should display a QR code for the zpub', async () => {
+        await enter_valid_phrase_and_hit_enter(driver);
+
+        const zpubDiv = await driver.findElement(By.id('result4'))
+        await driver.wait(until.elementIsVisible(zpubDiv), 1000);
+        const zpub = await zpubDiv.getText();
+        expect(zpub).to.not.be.empty
+        expect(zpub).to.not.equal('undefined')
+        expect(zpub).to.have.lengthOf(111)
+
+        // Click qr button and wait for the canvas to be visible
+        await driver.findElement(By.css('#zpub_qr_code_btn .button')).click()
+        const qrCanvas = await driver.findElement(By.css('#qr_code > canvas'))
+        await driver.wait(until.elementIsVisible(qrCanvas), 1000);
+
+        // verify that the qr-text is the same as the x/z-pub
+        const qrTextDiv = await driver.findElement(By.id('qr_text'))
+        await driver.wait(until.elementIsVisible(qrCanvas), 1000);
+        const qrText = await qrTextDiv.getText();
+        expect(qrText).to.not.be.empty
+        expect(zpub).to.equal(zpub)
     })
 
     after(async () => driver.quit());
