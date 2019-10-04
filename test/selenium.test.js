@@ -41,7 +41,7 @@ describe("Selenium tests for the html-page", function () {
         expect(zpub).to.have.lengthOf(111)
 
         // Click qr button and wait for the canvas to be visible
-        await driver.findElement(By.css('#extended_pub_qr_btn .button')).click()
+        await driver.findElement(By.css('#extended_pub_qr_btn .qr_code_btn_text')).click()
         const qrCanvas = await driver.findElement(By.css('#qr_code > canvas'))
         await driver.wait(until.elementIsVisible(qrCanvas), 1000);
 

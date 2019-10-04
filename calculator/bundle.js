@@ -52738,7 +52738,7 @@ function init() {
 
     $('#seed-submit').click(submitButtonAction)
     $('#sample_phrase').click(generateSample)
-    $('#extended_pub_qr_btn .button').click(showQR)
+    $('#extended_pub_qr_btn .qr_code_btn_text').click(showQR)
     $('#qr_popup .close').click(hideQR)
 }
 
