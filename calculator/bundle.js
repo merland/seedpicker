@@ -113,12 +113,20 @@ function wordOrBlank(suppliedSeedPhrase) {
     };
 }
 
+function generateSample() {
+    const samplePhrase = [...Array(23).keys()]
+        .map(() => bip39.wordlists.EN.random())
+        .join(" ");
+    $("#seedphrase_input").val(samplePhrase)
+}
+
 module.exports = {
     keysFromMnemonic: keysFromMnemonic,
-    validate:validate,
+    validate: validate,
     randomLastWord: randomLastWord,
     allLastWords: allLastWords,
     firstFoundLastWord: firstFoundLastWord,
+    generateSample: generateSample
 }
 }).call(this,require("buffer").Buffer)
 },{"./xpubformats.js":2,"bip32":"bip32","bip39":"bip39","bs58check":92,"buffer":"buffer"}],2:[function(require,module,exports){
@@ -52823,9 +52831,7 @@ module.exports = {
     init: init
 }
 },{"kjua":134}],"seedpicker":[function(require,module,exports){
-const bip32 = require('bip32')
 const bip39 = require('bip39')
-const b58 = require('bs58check')
 const xpubformats = require('./xpubformats.js')
 const logic = require('./logic.js')
 
@@ -52857,7 +52863,7 @@ function init() {
     $toggleAdvancedBtn.click(toggleAdvanced)
 
     $('#seed-submit').click(submitButtonAction)
-    $('#sample_phrase').click(generateSample)
+    $('#sample_phrase').click(logic.generateSample)
 }
 
 const enterIsSubmit = event => {
@@ -52918,19 +52924,9 @@ function submitButtonAction() {
     $("#results").css('display', 'inline')
 }
 
-function generateSample() {
-    const samplePhrase = [...Array(23).keys()]
-        .map(() => bip39.wordlists.EN.random())
-        .join(" ");
-    $("#seedphrase_input").val(samplePhrase)
-}
-
-
 Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))]
 }
-
-
 
 function setNetworkFromUrlParams() {
     const vars = {};
@@ -52947,5 +52943,4 @@ function getVersionBytes(prefix) {
 module.exports = {
     init: init,
 }
-
-},{"./logic.js":1,"./xpubformats.js":2,"bip32":"bip32","bip39":"bip39","bs58check":92}]},{},[]);
+},{"./logic.js":1,"./xpubformats.js":2,"bip39":"bip39"}]},{},[]);
