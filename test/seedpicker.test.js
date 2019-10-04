@@ -28,23 +28,23 @@ describe("Calculate the 24th word", function () {
         expect(lastWord).to.be.oneOf(expectedWords);
     })
     it('should have an empty error message if supplied words are valid', function () {
-        const result = seedpicker.validate("empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december");
+        const result = logic.validate("empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december");
         expect(result.errorMessage).to.be.empty
         expect(result.valid).to.be.true
     });
     it('should not be valid if the number of words are not exactly 23', function () {
-        const result = seedpicker.validate("empower soul reunion")
+        const result = logic.validate("empower soul reunion")
         expect(result.errorMessage).to.include("Please enter 23 words")
         expect(result.valid).to.be.false
     });
     it('should check the words against the dictionary', function () {
-        const result = seedpicker.validate("mpower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge decembe");
+        const result = logic.validate("mpower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge decembe");
         expect(result.errorMessage).to.include("mpower")
         expect(result.errorMessage).to.include("decembe")
         expect(result.valid).to.be.false
     });
     it('should ignore whitespaces', function () {
-        const result = seedpicker.validate("     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december")
+        const result = logic.validate("     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december")
         expect(result.errorMessage).to.be.empty
         expect(result.valid).to.be.true
     });
