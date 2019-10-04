@@ -2,6 +2,7 @@ const expect = require("chai").expect;
 const assert = require("chai").assert;
 const webdriver = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
+    firefox = require('selenium-webdriver/firefox'),
     By = webdriver.By,
     until = webdriver.until,
     Key = webdriver.Key
@@ -18,13 +19,9 @@ async function enter_valid_phrase_and_hit_enter(driver) {
 }
 
 describe("Selenium tests for the html-page", function () {
-    const opts = new chrome.Options()
-    opts.addArguments('headless')
 
-    const driver = new webdriver.Builder()
-        .setChromeOptions(opts)
-        .forBrowser('chrome')
-        .build();
+    //const driver = chromeDriver();
+    const driver = firefoxDriver()
 
     this.timeout(10000)
 
@@ -58,3 +55,25 @@ describe("Selenium tests for the html-page", function () {
 
     after(async () => driver.quit());
 })
+
+// ######################
+
+function firefoxDriver() {
+    const opts = new firefox.Options()
+    opts.addArguments("-headless");
+    const driver = new webdriver.Builder()
+        .setFirefoxOptions(opts)
+        .forBrowser('firefox')
+        .build()
+    return driver;
+}
+
+function chromeDriver() {
+    const opts = new chrome.Options()
+    opts.addArguments('headless')
+    const driver = new webdriver.Builder()
+        .setChromeOptions(opts)
+        .forBrowser('chrome')
+        .build();
+    return driver
+}
