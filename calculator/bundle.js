@@ -84,10 +84,41 @@ function validationReply(errorMsg, words) {
     }
 }
 
+// Currently not used by domain code, see GH issue #13
+// TODO: Remove once we are sure it won't be used.
+function randomLastWord(suppliedSeedPhrase) {
+    return allLastWords(suppliedSeedPhrase).random()
+}
+
+function firstFoundLastWord(suppliedSeedPhrase) {
+    return allLastWords(suppliedSeedPhrase)[0]
+}
+
+function allLastWords(suppliedSeedPhrase) {
+    return [...Array(2048).keys()]
+        .map(wordOrBlank(suppliedSeedPhrase))
+        .filter(word => word.length > 0)
+}
+
+function wordOrBlank(suppliedSeedPhrase) {
+    return i => {
+        const current = bip39.wordlists.EN[i]
+        const candidate = suppliedSeedPhrase.trim().toLowerCase() + " " + current
+        try {
+            bip39.mnemonicToEntropy(candidate)
+            return current
+        } catch {
+            return ""
+        }
+    };
+}
 
 module.exports = {
     keysFromMnemonic: keysFromMnemonic,
-    validate:validate
+    validate:validate,
+    randomLastWord: randomLastWord,
+    allLastWords: allLastWords,
+    firstFoundLastWord: firstFoundLastWord,
 }
 }).call(this,require("buffer").Buffer)
 },{"./xpubformats.js":2,"bip32":"bip32","bip39":"bip39","bs58check":92,"buffer":"buffer"}],2:[function(require,module,exports){
@@ -52863,7 +52894,7 @@ function submitButtonAction() {
     }
 
     phraseField.text(validation.cleanedUpPhrase)
-    const lastword = firstFoundLastWord(validation.cleanedUpPhrase)
+    const lastword = logic.firstFoundLastWord(validation.cleanedUpPhrase)
     const mnemonic = phraseField.val() + " " + lastword
 
     const pubKeys = logic.keysFromMnemonic(mnemonic, network);
@@ -52899,34 +52930,7 @@ Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))]
 }
 
-// Currently not used by domain code, see GH issue #13
-// TODO: Remove once we are sure it won't be used.
-function randomLastWord(suppliedSeedPhrase) {
-    return allLastWords(suppliedSeedPhrase).random()
-}
 
-function firstFoundLastWord(suppliedSeedPhrase) {
-    return allLastWords(suppliedSeedPhrase)[0]
-}
-
-function allLastWords(suppliedSeedPhrase) {
-    return [...Array(2048).keys()]
-        .map(wordOrBlank(suppliedSeedPhrase))
-        .filter(word => word.length > 0)
-}
-
-function wordOrBlank(suppliedSeedPhrase) {
-    return i => {
-        const current = bip39.wordlists.EN[i]
-        const candidate = suppliedSeedPhrase.trim().toLowerCase() + " " + current
-        try {
-            bip39.mnemonicToEntropy(candidate)
-            return current
-        } catch {
-            return ""
-        }
-    };
-}
 
 function setNetworkFromUrlParams() {
     const vars = {};
@@ -52942,9 +52946,6 @@ function getVersionBytes(prefix) {
 
 module.exports = {
     init: init,
-    randomLastWord: randomLastWord,
-    allLastWords: allLastWords,
-    firstFoundLastWord: firstFoundLastWord,
 }
 
 },{"./logic.js":1,"./xpubformats.js":2,"bip32":"bip32","bip39":"bip39","bs58check":92}]},{},[]);

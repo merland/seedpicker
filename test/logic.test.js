@@ -1,12 +1,11 @@
 const expect = require("chai").expect;
 const assert = require("chai").assert;
-const seedpicker = require("../lib/seedpicker.js")
 const logic = require("../lib/logic.js")
 
 describe("Calculate the 24th word", function () {
     it("should calculate all checksum words", () => {
         const my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
-        const words = seedpicker.allLastWords(my23words);
+        const words = logic.allLastWords(my23words);
         expect(words).to.have.lengthOf(8);
 
         const expectedWords = ["bridge", "danger", "draft", "hamster", "old", "route", "soccer", "wedding"]
@@ -14,7 +13,7 @@ describe("Calculate the 24th word", function () {
     })
     it("should handle mixed casing", () => {
         const my23words = "Empower soul reuNion entire help raiSe truth reflect arguE transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
-        const words = seedpicker.allLastWords(my23words);
+        const words = logic.allLastWords(my23words);
         const expectedWords = ["bridge", "danger", "draft", "hamster", "old", "route", "soccer", "wedding"]
         expect(words).to.have.members(expectedWords);
     })
@@ -22,7 +21,7 @@ describe("Calculate the 24th word", function () {
     //https://github.com/merland/seedpicker/issues/13
     it("should select the first checksum word, alphabetically", () => {
         const my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
-        const lastWord = seedpicker.firstFoundLastWord(my23words);
+        const lastWord = logic.firstFoundLastWord(my23words);
 
         const expectedWords = ["bridge"]
         expect(lastWord).to.be.oneOf(expectedWords);
