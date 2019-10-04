@@ -7,4 +7,5 @@ browserify \
 	-r bitcoinjs-lib:bitcoinjs \
 	-r buffer \
 	-r ./lib/seedpicker.js:seedpicker \
+	-r ./lib/presentation.js:presentation \
 	-o calculator/bundle.js
