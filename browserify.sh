@@ -6,6 +6,6 @@ browserify \
 	-r jquery \
 	-r bitcoinjs-lib:bitcoinjs \
 	-r buffer \
-	-r ./lib/seedpicker.js:seedpicker \
 	-r ./lib/presentation.js:presentation \
+	-r ./lib/logic.js:logic \
 	-o calculator/bundle.js

@@ -1,254 +1,31 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-rendering: optimizeLegibility;
+.tighter_section {
+    padding: 1.5rem 0 0 0;
 }
 
-a:link {
-    color: black;
-}
-
-a:visited {
-    color: black;
-}
-
-a:hover {
-    color: black;
-}
-
-a:active {
-    color: black;
-}
-
-body {
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
-    font-weight: 100;
-    font-size: 12px;
-    line-height: 30px;
-    color: #777;
-    background: #999;
-}
-
-.container {
-    max-width: 1300px;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-}
-
-#main_div {
-    background: #F9F9F9;
-    padding: 25px;
-    margin: 150px 0;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-#page_heading {
-    display: block;
-    font-size: 30px;
-    font-weight: 300;
-    margin-bottom: 10px;
-}
-
-#page_sub_title {
-    font-size: 15px;
-    font-weight: 300;
-}
-
-h4 {
-    margin: 5px 0 15px;
-    display: block;
-    font-size: 13px;
-    font-weight: 400;
-}
-
-input[type="text"],
-button[type="submit"] {
-    font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
-    width: 100%;
-    padding: 10px;
-}
-
-
-input[type="text"] {
-    border: 1px solid #ccc;
-    background: #FFF;
-    margin: 0 0 15px;
-}
-
-input[type="text"]:hover {
-    transition: border-color 0.3s ease-in-out;
-    border: 1px solid #aaa;
-}
-
-input:focus {
-    outline: 0;
-    border: 1px solid #aaa;
-}
-
-button[type="submit"] {
-    border: none;
-    background: #4CAF50;
-    margin: 0 0 5px;
-    cursor: pointer;
-    color: #FFF;
-}
-
-button[type="submit"]:hover {
-    background: #43A047;
-    transition: background-color 0.3s ease-in-out;
-}
-
-button[type="submit"]:active {
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-#results {
-    margin-top: 30px;
-    color: black;
-    font-size: 15px;
-    display: none;
+.tighter_section:last-child {
+    padding: 1.5rem 0;
 }
 
 .resultheading {
-    padding-top: 18px;
-    padding-bottom: 0;
+    margin-top: 1rem;
 }
 
-.resultdata {
-    margin-top: -6px;
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
+.resultheading:first-child {
+    margin-top: 0;
 }
 
-
-#results_table {
-    margin-top: 100px;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: left;
-    font-weight: normal;
+.wrap-long {
+    overflow-wrap: break-word;
 }
 
-#results_table td, #results_table th {
-    border: 1px solid black;
-    padding: 8px;
-}
-
-#results_table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-#advanced {
-    margin-top: 30px;
-    color: black;
-    font-size: 15px;
-    display: none;
-}
-
-#toggle_advanced_btn {
-    cursor: pointer;
-    width: 30%;
-    border: none;
-    background: #4CAF50;
-    color: #FFF;
-    margin: 30px 0 0 0;
-    padding: 7px;
-    font-size: 12px;
-}
-
-.main_warningtext {
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.input_label {
-    color: black;
-}
-
-#networkswitchlink {
-    font-weight: normal;
-}
-
-.input_label_right {
-    color: black;
-    float: right;
-    text-decoration: underline;
+.sample_label {
     cursor: pointer;
 }
 
-.left_float {
-    float: left;
+#extended_pub_result {
+    width: 85%;
+    margin-bottom: 1.5rem;
 }
 
-/*QR Code stuff start*/
-.qrcodebutton {
-    float: right;
-}
-
-.qr_code_btn_text {
-    color: black;
-    background: white;
-    border: 2px solid black;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease-out;
-    margin: 30px 0 0 0;
-    padding: 7px;
-    font-size: 10px;
-}
-
-.qr_overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-}
-
-.popup p {
-    width: 210px;
-    word-wrap: break-word;
-    font-size: 12px;
-    line-height: 14px;
-    padding: 0 0 10px 10px;
-}
-
-.popup {
-    margin: 70px auto;
-    padding: 15px 0 10px 10px;
-    background: #fff;
-    border-radius: 5px;
-    width: 260px;
-    position: relative;
-    /*transition: all 1s ease-in-out;*/
-}
-
-.popup .close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-    cursor: pointer;
-}
-
-.popup .close:hover {
-    color: #06D85F;
-}
-
-.popup .content {
-    max-height: 30%;
-}
-/*QR Code stuff end*/

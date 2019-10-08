@@ -33,7 +33,7 @@ describe("Selenium tests for the html-page", function () {
     it('should display a QR code for the zpub', async () => {
         await enter_valid_phrase_and_hit_enter(driver);
 
-        const zpubDiv = await driver.findElement(By.id('extended_pub'))
+        const zpubDiv = await driver.findElement(By.id('extended_pub_result'))
         await driver.wait(until.elementIsVisible(zpubDiv), 1000);
         const zpub = await zpubDiv.getText();
         expect(zpub).to.not.be.empty
@@ -41,7 +41,7 @@ describe("Selenium tests for the html-page", function () {
         expect(zpub).to.have.lengthOf(111)
 
         // Click qr button and wait for the canvas to be visible
-        await driver.findElement(By.css('#extended_pub_qr_btn .qr_code_btn_text')).click()
+        await driver.findElement(By.id('qr_code_button')).click()
         const qrCanvas = await driver.findElement(By.css('#qr_code > canvas'))
         await driver.wait(until.elementIsVisible(qrCanvas), 1000);
 
