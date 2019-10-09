@@ -1,9 +1,9 @@
-## The Seedpicker guide for creating your own seed phrase
+# The Seedpicker guide for creating your own seed phrase
 
 _This guide aims to educate the reader in a learning-by-doing fashion. However, it does not make any guarantees or 
 promises, and does not take any responsibility for what anyone does with this material._
 
-### What you need
+## What you need
 * A PC or laptop capable of running Ubuntu. Almost any old computer will do. A hard drive is NOT needed.
 * A CD or a USB Stick prepared with Ubuntu Live. CD is recommended (usually easier for newbies, and completely
 read-only). If you haven’t created one of those before, the following tutorial is a good starting point: 
@@ -17,7 +17,7 @@ read-only). If you haven’t created one of those before, the following tutorial
 * A single 6-sided die. 🎲
 * A small bag or box to put the raffle tickets in. An ordinary plastic bag works fine. 
 
-### Part 1: Generation of 23 random words
+## Part 1: Generation of 23 random words
 Human beings are really bad at randomness! When randomness is important, you should never rely on something that comes 
 from a human brain! 
 Modern computers are getting better at creating randomness, but it is still difficult to make computerized randomness 
@@ -39,14 +39,14 @@ Seed Form carefully, and make sure to follow them all.
 When finished, you should have a sheet of paper with 23 secret words, generated with a very high degree of randomness. 
 Randomness that you yourself have witnessed. Don’t ever let anybody see what you have written on your Seed Form!   
 
-### Part 2: Calculating the 24th word
+## Part 2: Calculating the 24th word
 The last word of a 24 word seed is a checksum word, calculated using the other 23 words as input. Unfortunately, we need
 to use a computer for this step. Since we need to enter our super secret 23 words into a computer, it must be a super 
 secure computer! It must be offline and we must make sure all the secret data is completely discarded after shutdown. 
 Follow the steps below to achieve this! 
 
 
-#### 2a: Prepare hardware and software 
+### 2a: Prepare hardware and software 
 * Open up the computer and remove the hard drive. This step is to convince you that nothing will be saved to the hard 
 drive. If you feel certain that this will not happen, you can skip this step.  
 * Remove any removable media from the computer.
@@ -72,7 +72,7 @@ However, we do have to make sure that the secret information will not leak to th
 the same computer._ This is achieved by disabling all communication and by shutting the computer off when we are done. 
 This is covered below.
 
-#### 2b: Disable all communication
+### 2b: Disable all communication
 The secure computer is now fully configured and the next step is to go **completely offline**:  
 
 * Pull any network cable.
@@ -83,7 +83,7 @@ computer!!
 * Make sure nobody else can see your keyboard!
 * Make sure nobody else can see your Seedpicker Seed Form!
 
-#### 2c: Perform the calculation 
+### 2c: Perform the calculation 
 
 Go back to Firefox and the **SeedPicker last word calculator**. Following the instructions on the page, enter your 23 
 words into the field and press the button.
@@ -92,7 +92,7 @@ Use your pen to type the resulting 24th word into the designated cell of the See
 
 **Shut down the computer**. Make sure it is completely turned off.  
 
-#### Summary
+## Summary
 
 You have now generated a valid BIP39 seed phrase and the only existing record of it is the Seed Form. Keep it really 
 secret. You may want to make copies and put in different locations. If you create copies, do it manually. Don't use a 
@@ -103,7 +103,7 @@ This guide does not cover how to store your seed phrase securely, so do your res
 If you intend to use the seed phrase with a hardware wallet, it is recommended to use the *passphrase* feature 
 (sometimes called the 25th word) and keep the two phrases separated.   
 
-### Comments or suggestions?
+## Comments or suggestions?
 Visit *github.com/merland/seedpicker* or send an email to *seedpicker@megabit.se* 
 
 Thanks!
