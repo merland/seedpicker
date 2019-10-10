@@ -1,16 +1,19 @@
 const expect = require("chai").expect;
-const assert = require("chai").assert;
+
 const webdriver = require('selenium-webdriver'),
-    chrome = require('selenium-webdriver/chrome'),
     firefox = require('selenium-webdriver/firefox'),
     By = webdriver.By,
     until = webdriver.until,
     Key = webdriver.Key
 
-async function enter_valid_phrase_and_hit_enter(driver) {
+async function open_the_last_word_page(driver) {
     const workingDir = process.cwd()
     const fileUrl = "file://" + workingDir + "/calculator/last-word.html"
     await driver.get(fileUrl);
+}
+
+async function enter_valid_phrase_and_hit_enter(driver) {
+    await open_the_last_word_page(driver);
     await driver.findElement(By.id('seedphrase_input'))
         .sendKeys('     empower  soul    reunion  entire  help raise      truth reflect    argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december ', Key.RETURN);
     const checksumWordDiv = await driver.findElement(By.id('checksum_word'))
@@ -53,6 +56,42 @@ describe("Selenium tests for the html-page", function () {
         expect(zpub).to.equal(zpub)
     })
 
+    it('should display the advanced section', async () => {
+        // GIVEN I have entered a valid phrase
+        await enter_valid_phrase_and_hit_enter(driver);
+
+        // WHEN the last word calculation is done
+        const zpubDiv = await driver.findElement(By.id('extended_pub_result'))
+        await driver.wait(until.elementIsVisible(zpubDiv), 1000);
+
+        // THEN the advanced button should be visible
+        const advancedButton = await driver.findElement(By.id('toggle_advanced_btn'))
+        let buttonIsDisplayed = await advancedButton.isDisplayed();
+        expect(buttonIsDisplayed).to.be.true
+
+        // AND the text should be "show more..."
+        let buttonText = await advancedButton.getText();
+        expect(buttonText).to.equal("Show more (for advanced users)")
+
+        // AND the advanced section should NOT be visible
+        const advancedDiv = await driver.findElement(By.id('advanced'))
+
+        let advancedIsDisplayed = await advancedDiv.isDisplayed();
+        expect(advancedIsDisplayed).to.be.false
+
+        // AND WHEN we click the advanced button
+        await advancedButton.click()
+
+        // THEN the button text should be "show less"
+        await driver.wait(until.elementIsVisible(advancedDiv), 1000);
+        buttonText = await advancedButton.getText();
+        expect(buttonText).to.equal("Show less")
+
+        // AND the advanced section should be visible
+        advancedIsDisplayed = await advancedDiv.isDisplayed();
+        expect(advancedIsDisplayed).to.be.true
+    })
+
     after(async () => driver.quit());
 })
 
@@ -61,19 +100,8 @@ describe("Selenium tests for the html-page", function () {
 function firefoxDriver() {
     const opts = new firefox.Options()
     opts.addArguments("-headless");
-    const driver = new webdriver.Builder()
+    return new webdriver.Builder()
         .setFirefoxOptions(opts)
         .forBrowser('firefox')
-        .build()
-    return driver;
-}
-
-function chromeDriver() {
-    const opts = new chrome.Options()
-    opts.addArguments('headless')
-    const driver = new webdriver.Builder()
-        .setChromeOptions(opts)
-        .forBrowser('chrome')
         .build();
-    return driver
 }

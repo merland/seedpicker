@@ -52902,7 +52902,7 @@ function submitButtonAction() {
         $("#derivation_path").text(pubKeys.derivationPath)
         $("#results").removeClass('is-hidden');
         $seedButton.removeClass("is-loading")
-    }, 1)
+    }, 50)
 }
 
 function clearResults() {

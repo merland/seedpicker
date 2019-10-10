@@ -13,15 +13,19 @@
     "kjua": "0.6.0"
   },
   "devDependencies": {
-    "mocha": "6.2.0",
     "chai": "4.2.0",
-    "selenium-webdriver": "4.0.0-alpha.5",
     "chromedriver": "77.0.0",
-    "geckodriver": "1.18.0"
+    "geckodriver": "^1.18.0",
+    "mocha": "6.2.0",
+    "cucumber": "6.0.2",
+    "cucumber-pretty": "6.0.0",
+    "nightwatch": "1.2.4",
+    "nightwatch-api": "2.3.0"
   },
   "scripts": {
     "build": "./browserify.sh",
-    "test": "mocha test"
+    "test": "mocha test",
+    "test:cucumber": "cucumber-js --require cucumber.conf.js --require step_definitions --format node_modules/cucumber-pretty"
   },
   "author": "seedpicker@megabit.se",
   "license": "MIT"
