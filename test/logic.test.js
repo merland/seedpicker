@@ -83,5 +83,22 @@ describe("XPUB generation", function () {
 
 })
 
+describe("XPUB conversion", function () {
+    const the_xpub = 'xpub6E55wuumTUzi2NnSL8tkwkjL7wwU7pgW22YFt2YoPY9AYhwjzQMz3Wx5WeReYiPkSwttHVQzLXKgjymgARe7yzpdRgQYFezEqnPSPywibYC'
+    const the_Vpub = 'Vpub5mJeTpJNj5U7kMZac5nVMet8VogqSwP6W59VEW2a1JDp4gtCFVR8tWVjGwTx7LJos8jFf8DzJR166aAK2Fy3Y1a6XU86VEpGC4Y2CjogHVw'
+    const the_Zpub = 'Zpub74dhgUz3Koe39YL3wWvzC1G9BgGdDRM6AXENN5c7XKjLH697G85PNm8HMmJJ6xvVVhCUf2cE94RHdicZu3d6ixJVzpunpt6DGxnbm6xG5Ue'
 
+    it('can convert from xpub to Vpub', () => {
+        assert.strictEqual(logic.convertPubkey(the_xpub, 'Vpub'), the_Vpub)
+    })
+    it('can convert from xpub to Zpub', () => {
+        assert.strictEqual(logic.convertPubkey(the_xpub, 'Zpub'), the_Zpub)
+    })
+    it('can convert from Vpub to Zpub', () => {
+        assert.strictEqual(logic.convertPubkey(the_Vpub, 'Zpub'), the_Zpub)
+    })
+    it('can convert from Zpub to Vpub', () => {
+        assert.strictEqual(logic.convertPubkey(the_Zpub, 'Vpub'), the_Vpub)
+    })
+})
 
