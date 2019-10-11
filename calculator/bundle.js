@@ -4,35 +4,36 @@ require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c=
  */
 const xpubPrefixes = {
     "xpub": {
-        vb: "0488b21e",
+        public: "0488b21e",
+        private: "0488ade4"
     },
     "ypub": {
-        vb: "049d7cb2"
+        public: "049d7cb2"
     },
     "zpub": {
-        vb: "04b24746"
+        public: "04b24746"
     },
     "Ypub": {
-        vb: "0295b43f"
+        public: "0295b43f"
     },
     "Zpub": {
-        vb: "02aa7ed3",
+        public: "02aa7ed3",
         desc: "Extended Public Key in Zpub format, for Electrum's native segwit multisig (p2wsh)"
     },
     "tpub": {
-        vb: "043587cf"
+        public: "043587cf"
     },
     "upub": {
-        vb: "044a5262"
+        public: "044a5262"
     },
     "Upub": {
-        vb: "024289ef"
+        public: "024289ef"
     },
     "vpub": {
-        vb: "045f1cf6"
+        public: "045f1cf6"
     },
     "Vpub": {
-        vb: "02575483",
+        public: "02575483",
         desc: "Extended Public Key in Vpub format (Testnet P2WSH)"
     }
 }
@@ -2334,8 +2335,10 @@ function fromBase58(inString, network) {
     const version = buffer.readUInt32BE(0);
     if (version !== network.bip32.private && version !== network.bip32.public)
         throw new TypeError('Invalid network version');
+
     // 1 byte: depth: 0x00 for master nodes, 0x01 for level-1 descendants, ...
     const depth = buffer[4];
+
     // 4 bytes: the fingerprint of the parent's key (0x00000000 if master key)
     const parentFingerprint = buffer.readUInt32BE(5);
     if (depth === 0) {
@@ -32008,7 +32011,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.5.1",
-      "/Users/jorgen/jobbet/seedpicker"
+      "/Users/me/dev/seedpicker"
     ]
   ],
   "_from": "elliptic@6.5.1",
@@ -32034,7 +32037,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
   "_spec": "6.5.1",
-  "_where": "/Users/jorgen/jobbet/seedpicker",
+  "_where": "/Users/me/dev/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -52674,7 +52677,7 @@ function anyPubFrom(xpub, prefix, network) {
     if (!network) throw new Error("network not set")
     if (network === 'mainnet' && prefix === 'Vpub') return undefined
     if (network === 'testnet' && prefix === 'Zpub') return undefined
-    let versionBytes = Buffer.from(getVersionBytes(prefix).vb, "hex")
+    let versionBytes = Buffer.from(getVersionBytes(prefix).public, "hex")
     let data = b58.decode(xpub.trim());
     data = data.slice(4);
     data = Buffer.concat([versionBytes, data]);
