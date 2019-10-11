@@ -2335,10 +2335,8 @@ function fromBase58(inString, network) {
     const version = buffer.readUInt32BE(0);
     if (version !== network.bip32.private && version !== network.bip32.public)
         throw new TypeError('Invalid network version');
-
     // 1 byte: depth: 0x00 for master nodes, 0x01 for level-1 descendants, ...
     const depth = buffer[4];
-
     // 4 bytes: the fingerprint of the parent's key (0x00000000 if master key)
     const parentFingerprint = buffer.readUInt32BE(5);
     if (depth === 0) {
@@ -32011,7 +32009,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.5.1",
-      "/Users/me/dev/seedpicker"
+      "/Users/jorgen/jobbet/seedpicker"
     ]
   ],
   "_from": "elliptic@6.5.1",
@@ -32037,7 +32035,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
   "_spec": "6.5.1",
-  "_where": "/Users/me/dev/seedpicker",
+  "_where": "/Users/jorgen/jobbet/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
