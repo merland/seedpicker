@@ -2335,8 +2335,10 @@ function fromBase58(inString, network) {
     const version = buffer.readUInt32BE(0);
     if (version !== network.bip32.private && version !== network.bip32.public)
         throw new TypeError('Invalid network version');
+
     // 1 byte: depth: 0x00 for master nodes, 0x01 for level-1 descendants, ...
     const depth = buffer[4];
+
     // 4 bytes: the fingerprint of the parent's key (0x00000000 if master key)
     const parentFingerprint = buffer.readUInt32BE(5);
     if (depth === 0) {
@@ -32009,7 +32011,7 @@ module.exports={
   "_args": [
     [
       "elliptic@6.5.1",
-      "/Users/jorgen/jobbet/seedpicker"
+      "/Users/me/dev/seedpicker"
     ]
   ],
   "_from": "elliptic@6.5.1",
@@ -32035,7 +32037,7 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.1.tgz",
   "_spec": "6.5.1",
-  "_where": "/Users/jorgen/jobbet/seedpicker",
+  "_where": "/Users/me/dev/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -52816,9 +52818,8 @@ function init() {
     $seedphraseInput.focus()
     $seedphraseInput.keypress(enterIsSubmit);
 
-    const $toggleAdvancedBtn = $('#toggle_advanced_btn');
-    $toggleAdvancedBtn.text(showMoreText)
-    $toggleAdvancedBtn.on('click', toggleAdvanced)
+    hideAdvanced()
+    $('#toggle_advanced_btn').on('click', toggleAdvanced)
 
     $('#seed-submit').on('click', submitButtonAction)
     $('#sample_phrase').on('click', generateSample)
@@ -52835,14 +52836,23 @@ const enterIsSubmit = event => {
     }
 };
 
+function showAdvanced() {
+    $("#advanced").removeClass('is-hidden');
+    $('#toggle_advanced_btn').text(showLessText)
+}
+
+function hideAdvanced() {
+    $("#advanced").addClass('is-hidden');
+    $('#toggle_advanced_btn').text(showMoreText)
+}
+
 const toggleAdvanced = () => {
-    const $moreorlessBtn = $('#toggle_advanced_btn');
-    $moreorlessBtn.text($moreorlessBtn.text() === showMoreText ? showLessText : showMoreText)
-    const $advanced = $("#advanced")
-    if ($advanced.hasClass('is-hidden')) {
-        $advanced.removeClass('is-hidden');
+    const $toggleButton = $('#toggle_advanced_btn');
+    $toggleButton.text($toggleButton.text() === showMoreText ? showLessText : showMoreText)
+    if ($("#advanced").hasClass('is-hidden')) {
+        showAdvanced();
     } else {
-        $advanced.addClass('is-hidden');
+        hideAdvanced();
     }
 };
 
@@ -52863,7 +52873,7 @@ function submitButtonAction() {
     const validation = logic.validate(phraseField.val())
     const $seedErrorMsg = $("#seed_error_msg");
     $("#results").addClass('is-hidden');
-    $("#advanced").addClass('is-hidden');
+    hideAdvanced()
     clearResults()
     if (!validation.valid) {
         $seedErrorMsg.text(validation.errorMessage)
