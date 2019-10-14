@@ -52805,9 +52805,19 @@ function init() {
     let actualTitle = title
     if (isTestnet()) {
         actualTitle = title + " - TESTNET"
-        const $hero = $('.hero');
-        $hero.removeClass('is-info');
-        $hero.addClass('is-danger');
+        $('#warning').hide()
+
+        const $info_color = $('.is-info');
+        $info_color.removeClass('is-info');
+        $info_color.addClass('has-background-grey');
+
+        // const $hero = $('.hero');
+        // $hero.removeClass('is-info');
+        // $hero.addClass('has-background-grey');
+        //
+        // const $buttons = $('button');
+        // $buttons.removeClass('is-info')
+        // $buttons.addClass('has-background-grey')
     }
     $('.page_heading').text(actualTitle)
     $('head title').text(actualTitle)
