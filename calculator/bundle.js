@@ -52793,7 +52793,7 @@ const bip39 = require('bip39')
 const xpubformats = require('./xpubformats.js')
 const logic = require('./logic.js')
 
-const title = "SeedPicker: Last Word and XPUB Calculator";
+const title = "SeedPicker: Seed and Key creator for Electrum";
 const showMoreText = "Show more (for advanced users)";
 const showLessText = "Show less";
 
