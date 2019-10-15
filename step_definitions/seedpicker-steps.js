@@ -109,3 +109,6 @@ Then(/^I can see the error message "([^"]*)"$/, async errorMessage => {
         .expect.element("#seed_error_msg").text
         .to.equal(errorMessage);
 });
+When(/^I leave the phrase field empty$/, async () => {
+    await browser.setValue('#seedphrase_input', "")
+});

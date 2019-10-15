@@ -37,6 +37,7 @@ Feature: Seedpicker Calculator
 
   Scenario: Error message for empty phrase
     Given I open the Seedpicker calculator
+    And I leave the phrase field empty
     When I click the Calculate button
     Then I can see the error message "Please enter 23 words. (You entered 0)"
 
