@@ -52721,7 +52721,7 @@ function validate(suppliedSeedPhrase) {
             .map(word => "'" + word + "'")
             .join(", ")
     if (nonDictionaryWords.length > 0) {
-        const msg = "Words not in dictionary: " + nonDictionaryWords
+        const msg = "Words not in the dictionary: " + nonDictionaryWords
         return validationReply(msg)
     }
     return validationReply("", trimmedWords.join(" "))
@@ -52780,6 +52780,7 @@ module.exports = {
     generateSample: generateSample,
     convertPubkey: convertPubkey
 }
+
 }).call(this,require("buffer").Buffer)
 },{"./xpubformats.js":1,"bip32":"bip32","bip39":"bip39","bs58check":91,"buffer":"buffer"}],"presentation":[function(require,module,exports){
 /**
@@ -52810,14 +52811,6 @@ function init() {
         const $info_color = $('.is-info');
         $info_color.removeClass('is-info');
         $info_color.addClass('has-background-grey');
-
-        // const $hero = $('.hero');
-        // $hero.removeClass('is-info');
-        // $hero.addClass('has-background-grey');
-        //
-        // const $buttons = $('button');
-        // $buttons.removeClass('is-info')
-        // $buttons.addClass('has-background-grey')
     }
     $('.page_heading').text(actualTitle)
     $('head title').text(actualTitle)

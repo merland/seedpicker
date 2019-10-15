@@ -24,7 +24,8 @@
   },
   "scripts": {
     "build": "./browserify.sh",
-    "test": "mocha test",
+    "test": "mocha test; cucumber-js --require cucumber.conf.js --require step_definitions --format node_modules/cucumber-pretty",
+    "test:unit": "mocha test",
     "test:cucumber": "cucumber-js --require cucumber.conf.js --require step_definitions --format node_modules/cucumber-pretty"
   },
   "author": "seedpicker@megabit.se",

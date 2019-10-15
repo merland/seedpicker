@@ -10,6 +10,7 @@ Feature: Seedpicker Calculator
     Then I can see the last word
     And the last word should be "bridge"
     And the Extended Public Key should start with "Zpub"
+    And there should not be an error message
 
   Scenario: Display QR-code for valid phrase
     Given I open the Seedpicker calculator
@@ -33,3 +34,16 @@ Feature: Seedpicker Calculator
     Then I should see the Advanced-section
     And the Advanced button has the text "Show less"
     And I should see the xpub key
+
+  Scenario Outline: Error messages
+    Given I open the Seedpicker calculator
+    When I click the Calculate button
+    Then I can see the error message "Please enter 23 words. (You entered 0)"
+    When I enter the words "<phrase>"
+    And I click the Calculate button
+    Then I can see the error message "<error_message>"
+
+    Examples:
+      | phrase   | error_message |
+      | apa bepa | Please enter 23 words. (You entered 2) |
+      | emppower  soul    reunion  entire  help raise truth  reflect    argue transfer chicken narrow oak friend junior figure auto small  push spike    next pledge decemberr | Words not in the dictionary: 'emppower', 'decemberr' |

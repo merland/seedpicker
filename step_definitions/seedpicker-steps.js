@@ -43,6 +43,12 @@ Then(/^the Extended Public Key should start with "([^"]*)"$/, word => {
         .expect.element("#extended_pub_result").text
         .to.startWith(word)
 });
+Then(/^there should not be an error message$/, function () {
+    return browser
+        .waitForElementNotVisible("#seed_error_msg")
+        .expect.element("#seed_error_msg")
+        .to.not.be.visible
+});
 When(/^I click the QR-code button$/, () => {
     return browser
         .waitForElementVisible("#qr_code_button", 1000)
@@ -90,7 +96,17 @@ Then(/^I should see the Advanced-section$/, async () => {
     await browser
         .expect.element("#advanced").to.be.visible
 });
-Then(/^I should see the xpub key$/, () => {
-    return browser
+Then(/^I should see the xpub key$/, async () => {
+    await browser
         .expect.element("#xpub_key").to.be.visible
+});
+
+Then(/^I can see the error message "([^"]*)"$/, async errorMessage => {
+    await browser
+        .expect.element("#seed_error_msg")
+        .to.be.visible
+
+    await browser
+        .expect.element("#seed_error_msg").text
+        .to.equal(errorMessage);
 });
