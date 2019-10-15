@@ -35,10 +35,13 @@ Feature: Seedpicker Calculator
     And the Advanced button has the text "Show less"
     And I should see the xpub key
 
-  Scenario Outline: Error messages
+  Scenario: Error message for empty phrase
     Given I open the Seedpicker calculator
     When I click the Calculate button
     Then I can see the error message "Please enter 23 words. (You entered 0)"
+
+  Scenario Outline: Error messages for non-empty phrases
+    Given I open the Seedpicker calculator
     When I enter the words "<phrase>"
     And I click the Calculate button
     Then I can see the error message "<error_message>"
