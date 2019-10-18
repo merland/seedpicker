@@ -33,4 +33,10 @@ describe("Filter wordlist with some dice", function () {
         expect(rows[2][11]).to.equal("boat")
         expect(rows[3][11]).to.equal("body")
     })
+    it("should get the wordNumbers for two words", () => {
+        const rows = words.wordNumbers([1, 1, 1, 1, 1, 1, 1, 1, 4, 4])
+        expect(rows).to.have.lengthOf(2);
+        expect(rows[0]).to.equal(7)
+        expect(rows[1]).to.equal(8)
+    })
 })

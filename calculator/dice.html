@@ -22,10 +22,10 @@
         </div>
     </div>
 </section>
-<section class="section">
-    <div class="container">
-        <div class="columns">
-            <div class="is-1">
+<section class="tighter_section">
+<!--    <div class="container">-->
+        <div class="columns is-gapless">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 1</label>
                     <div class="control">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 2</label>
                     <div class="control">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 3</label>
                     <div class="control">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 4</label>
                     <div class="control">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 5</label>
                     <div class="control">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 6</label>
                     <div class="control">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 7</label>
                     <div class="control">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 8</label>
                     <div class="control">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 9</label>
                     <div class="control">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 10</label>
                     <div class="control">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            <div class="is-1">
+            <div class="column is-1">
                 <div class="field">
                     <label class="label">Die 11</label>
                     <div class="control">
@@ -113,12 +113,28 @@
                     </div>
                 </div>
             </div>
+            <div class="column is-1">
+                <div class="field">
+                    <label class="label">&nbsp;</label>
+                    <div class="control">
+                        <button id="add_word" class="button is-info">Add word</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--    </div>-->
+</section>
+<section class="tighter_section">
+    <div class="field">
+        <div class="control is-expanded">
+            <div id="phrase" class="input has-background-light"></div>
+            <p id="phrase_error" class="help is-danger"></p>
         </div>
     </div>
 </section>
-<section class="section">
-    <div class="container">
-        <table class="table is-striped is-narrow">
+<section class="tighter_section">
+<!--    <div class="container">-->
+        <table class="table is-striped">
             <thead>
             <tr>
                 <th><abbr title="Dice 1">D1</abbr></th>
@@ -138,7 +154,7 @@
             </thead>
             <tbody id="word_table"></tbody>
         </table>
-    </div>
+<!--    </div>-->
 </section>
 </body>
 </html>

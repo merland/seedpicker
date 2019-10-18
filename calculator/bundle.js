@@ -42047,32 +42047,17 @@ var hexSliceLookupTable = (function () {
 },{"base64-js":3,"buffer":"buffer","ieee754":129}],"dice":[function(require,module,exports){
 const wordlist = require('wordlist')
 
-const dieRoll = (event) => {
-    // const dieNo = $(this).attr("id").substring(1);
-    // for (let i = 1; i < dieNo; i++) {
-    //     const dieN = $(`#d${i}`).text();
-    //     if(dieN === "") {
-    //         // errorText
-    //         // return
-    //     }
-    // }
-
-    // const values = $(":text").map(() => this.value).get()
-
-    const values = []
-    for (let i = 0; i < 11; i++) {
-        values.push($(":text")[i].value)
-    }
-    console.log(values)
-    updateTable(values)
+function init() {
+    createTable();
+    $(":text").keyup(dieRoll)
+    clearInputs();
 }
 
-function updateTable(dice) {
-    const biff = wordlist.filter(dice);
+function createTable() {
     const rows =
-        biff
+        wordlist.filter([])
             .map(word => {
-                let row = "        <tr>\n"
+                let row = `         <tr id="word${word[12]}">\n`
                 for (let i = 0; i < 13; i++) {
                     row += `             <td>${word[i]}</td>\n`
                 }
@@ -42084,9 +42069,76 @@ function updateTable(dice) {
     $wordTable.append(rows)
 }
 
-function init() {
-    updateTable([]);
-    $("input[type=text]").keyup(dieRoll)
+const addWordToPhrase = function() {
+    const noOfFilteredWords = $("#word_table > tr:visible").length
+    if(noOfFilteredWords > 1) {
+        return;
+    }
+    const word = $("#word_table > tr:visible > td:nth-of-type(12)").text()
+    const $phrase = $("#phrase");
+    const phrase = $phrase.text();
+    if(phrase.includes(word)) {
+        $("#phrase_error").text(`Phrase already contains: '${word}'.`)
+        return;
+    }
+    $phrase.text(phrase + " " + word)
+    clearInputs()
+};
+
+function clearInputs() {
+    const $inputs = $(":text")
+    $inputs.val("")
+    $inputs.prop('disabled', true)
+    const $d1 = $("#d1");
+    $d1.prop('disabled', false)
+    $d1.focus()
+    $("#add_word").prop('disabled', true)
+    $("#add_word").off("click", addWordToPhrase)
+}
+
+const dieRoll = function() {
+    const $input = $(this);
+    const value = $input.val();
+    $input.addClass('is-danger')
+    if(typeof value === "undefined" || value.length === 0) {
+        return;
+    }
+    const intValue = parseInt(value)
+    if(isNaN(intValue)) {
+        return;
+    }
+    if(intValue < 1 || intValue > 6) {
+        return;
+    }
+    $input.removeClass('is-danger')
+
+    setTimeout(filterWords, 50);
+
+    const nextId = parseInt($input.attr("id").substring(1)) + 1;
+    if (nextId === 12) {
+        const $addWord = $("#add_word");
+        $addWord.prop('disabled', false)
+        $addWord.focus()
+        $addWord.on("click", addWordToPhrase)
+    } else {
+        const $nextInput = $(`#d${nextId}`);
+        $nextInput.prop('disabled', false)
+        $nextInput.focus()
+    }
+    $("#phrase_error").text("")
+}
+
+const filterWords = function() {
+    const values = $(":text").map(function () {
+        return this.value
+    }).get()
+    updateTable(values)
+}
+
+function updateTable(dice) {
+    $("#word_table > tr").hide()
+    wordlist.wordNumbers(dice)
+        .forEach(wordNo => $(`#word${wordNo}`).show())
 }
 
 module.exports = {
@@ -55097,14 +55149,15 @@ const wordlist = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, "zoo", 2048],
 ]
 
+function zeroOrOne(dice) {
+    return dice.slice(0, 11)
+        .map(die => parseInt(die))
+        .filter(die => !isNaN(die))
+        .map(die => die <= 3 ? 0 : 1);
+}
+
 function filter(dice) {
-    let finalDice = dice.slice(0, 11)
-    const oneToTreeIsZeroFourToSixIsOne =
-        finalDice
-            .map(die => parseInt(die))
-            .filter(die => !isNaN(die))
-            .map(die => die <= 3 ? 0 : 1)
-    return listWords(oneToTreeIsZeroFourToSixIsOne, 0, wordlist)
+    return listWords(zeroOrOne(dice), 0, wordlist)
 }
 
 function listWords(remainingDice, currentDie, reply) {
@@ -55116,8 +55169,12 @@ function listWords(remainingDice, currentDie, reply) {
     return listWords(remainingDice, currentDie + 1, remainingRows)
 }
 
+const wordNumbers = (dice) =>
+    filter(dice).flatMap(row => row[12])
+
 module.exports = {
     filter: filter,
+    wordNumbers: wordNumbers,
 }
 
 },{}]},{},[]);

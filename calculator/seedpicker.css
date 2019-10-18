@@ -1,11 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 
 .tighter_section {
-    padding: 1.5rem 0 0 0;
+    padding: 1.5rem 1.5rem 0;
 }
 
 .tighter_section:last-child {
-    padding: 1.5rem 0;
+    padding: 1.5rem 1.5rem 0;
 }
 
 .resultheading {
