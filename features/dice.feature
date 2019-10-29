@@ -5,8 +5,8 @@ Feature: Dice word randomizer
 
   Scenario: Loading the page
     Given I open the Dice randomizer
-    Then all input fields but the first is disabled
-    And the Add Word button is disabled
+    Then the input field number 2 and onward is disabled
+    And the Add Word button should be disabled
     And the helper text should be "0 words of 23. 23 to go."
     And the error text should be blank
 
@@ -14,7 +14,9 @@ Feature: Dice word randomizer
     Given I open the Dice randomizer
     When I enter 1 in dice number 1
 #    Then the focus should shift to dice number 2
+    Then the input field number 3 and onward is disabled
     And the word list should contain 1024 words
+    And the Add Word button should be disabled
 
   Scenario: Reduce the words in the word list with four dice
     Given I open the Dice randomizer
@@ -23,6 +25,7 @@ Feature: Dice word randomizer
     And I enter 3 in dice number 3
     When I enter 2 in dice number 4
 #    Then the focus should shift to dice number 5
+    Then the input field number 6 and onward is disabled
     And the word list should contain 128 words
 
   Scenario: Add a word to the phrase
@@ -39,13 +42,8 @@ Feature: Dice word randomizer
     And I enter 3 in dice number 10
     When I enter 3 in dice number 11
     Then the word list should contain 1 word
+    And the Add Word button should be enabled
     When I click the Add Word button
     Then the word in the word list should be "scale"
     And the last word of the phrase should be "scale"
     And the last word of the phrase should be the one word in the word list
-
-#  Scenario: Add 23 words to the phrase
-#    Given I open the Dice randomizer
-#    When I randomly select 23 words
-#    Then the input fields should be disabled
-#    And the Add Word button should be disabled

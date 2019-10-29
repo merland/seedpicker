@@ -42051,9 +42051,10 @@ const init = function () {
     createTable([]);
     $('input[type="number"]').keyup(dieRoll)
     clearInputs();
+    enableFieldOne();
 }
 
-const createTable = function(dieValues) {
+const createTable = function (dieValues) {
     const rows =
         wordlist.filter(dieValues)
             .map(word => {
@@ -42069,6 +42070,10 @@ const createTable = function(dieValues) {
     $wordTable.append(rows)
 }
 
+function enableCopyPhrase() {
+
+}
+
 const addWordToPhrase = function () {
     const noOfFilteredWords = $("#word_table > tr").length
     if (noOfFilteredWords > 1) {
@@ -42078,14 +42083,22 @@ const addWordToPhrase = function () {
     const $phrase = $("#phrase");
     const phrase = $phrase.text();
     let separator = phrase === "" ? "" : " ";
-    $phrase.text(phrase + separator + word)
+    const updatedPhrase = phrase + separator + word;
+    $phrase.text(updatedPhrase)
     updateHelperText($phrase.text())
-    clearInputs()
+    if (updatedPhrase.split(" ").length === 23) {
+        console.log("We're done!");
+        clearInputs()
+        enableCopyPhrase()
+    } else {
+        clearInputs()
+        enableFieldOne()
+    }
 };
 
-const updateHelperText = function(currentPhrase) {
+const updateHelperText = function (currentPhrase) {
     const words = noOfWordsRandomized(currentPhrase);
-    const msg = `${words} word${words > 1 ? "s" : ""} of 23. ${23-words} more to go.`
+    const msg = `${words} word${words > 1 ? "s" : ""} of 23. ${23 - words} more to go.`
     $("#phrase_helper").text(msg)
 }
 
@@ -42097,12 +42110,15 @@ const clearInputs = function () {
     const $inputs = $('input[type="number"]')
     $inputs.val("")
     $inputs.prop('disabled', true)
-    const $d1 = $("#d1");
-    $d1.prop('disabled', false)
-    $d1.focus()
     const $addWord = $("#add_word");
     $addWord.prop('disabled', true)
     $addWord.off("click", addWordToPhrase)
+}
+
+const enableFieldOne = function () {
+    const $d1 = $("#d1");
+    $d1.prop('disabled', false)
+    $d1.focus()
 }
 
 const isValid = function (dieRollInput) {
@@ -52927,6 +52943,7 @@ let network = MAINNET;
 
 function init() {
     setNetworkFromUrlParams()
+    ga()
     let actualTitle = title
     if (isTestnet()) {
         actualTitle = title + " - TESTNET"
@@ -53051,6 +53068,7 @@ function clearResults() {
     $("#result12").text("")
     $("#derivation_path").text("")
 }
+
 function generateSample() {
     const samplePhrase = [...Array(23).keys()]
         .map(() => bip39.wordlists.EN.random())
@@ -53114,6 +53132,17 @@ function setNetworkFromUrlParams() {
 
 function getVersionBytes(prefix) {
     return xpubformats.xpubPrefixes[prefix];
+}
+
+function ga() {
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-115028432-1');
 }
 
 module.exports = {

@@ -57,21 +57,18 @@ Then(/^the last word of the phrase should be the one word in the word list$/, as
     expect(word).to.not.equal("undefined")
     expect(word).to.equal(lastWord)
 });
-Then(/^all input fields but the first is disabled$/, async function () {
-    await browser
-        .expect.element("#d1")
-        .to.not.have.attribute('disabled');
-
-    for (let i = 2; i <= 11; i++) {
+Then(/^the input field number (\d+) and onward is disabled$/, async function (firstDisabled) {
+    for (let dieNo = 1; dieNo < firstDisabled; dieNo++) {
         await browser
-            .expect.element("#d" + i)
+            .expect.element("#d" + dieNo)
+            .to.not.have.attribute('disabled');
+    }
+    for (let dieNo = firstDisabled; dieNo <= 11; dieNo++) {
+        await browser
+            .expect.element("#d" + dieNo)
             .to.have.attribute('disabled');
     }
-});
-Then(/^the Add Word button is disabled$/, async function () {
-    await browser
-        .expect.element("#add_word")
-        .to.have.attribute('disabled');
+
 });
 Then(/^the helper text should be "([^"]*?)"$/, async function (expected) {
     await browser
@@ -83,8 +80,39 @@ Then(/^the error text should be blank$/, async function () {
         .expect.elements("#phrase_error").text
         .to.equal("")
 });
-When(/^I randomly select (\d+) words$/, async function () {
-    for (let i = 1; i <= 11; i++) {
+When(/^I randomly enter (\d+) words$/, async function (noOfWords) {
+    for (let i = 1; i <= noOfWords; i++) {
+        for (let dieNo = 1; dieNo <= 11; dieNo++) {
+            await browser.setValue(`#d${dieNo}`, step_helpers.randomDiceTrow())
+        }
 
+        // let wordRow = "";
+        // await browser.getText("#word_table > tr", function (result) {
+        //     wordRow = result.value
+        // })
+        // let columns = wordRow.trim().split(" ")
+        // let word = columns[11]
+        // console.log(`adding word no: ${i} wich was: ${word}`);
+        await step_helpers.sleep_for_debug(50)
+        await browser.click('#add_word')
     }
+    console.log('');
+});
+Then(/^the Add Word button should be disabled$/, async function () {
+    await browser
+        .expect.element("#add_word")
+        .to.have.attribute('disabled');
+});
+Then(/^the Add Word button should be enabled$/, async function () {
+    await browser
+        .expect.element("#add_word")
+        .to.not.have.attribute('disabled');
+});
+Then(/^the phrase should have (\d+) words$/, async function (expectedLength) {
+    await browser.getText("#phrase", function (result) {
+        const phrase = result.value
+        let words = phrase.trim().split(" ")
+        expect(words).to.have.lengthOf(expectedLength)
+    })
+
 });
