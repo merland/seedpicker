@@ -3,6 +3,11 @@ const {Given, When, Then} = require('cucumber')
 const expect = require("chai").expect
 const step_helpers = require('./step_helpers')
 
+const buttons = {
+    "Add Word": "#add_word",
+    "Copy Phrase": "#copy_phrase",
+}
+
 Given(/^I open the Dice randomizer$/, async () => {
     const workingDir = process.cwd()
     const fileUrl = "file://" + workingDir + "/calculator/dice.html"
@@ -13,19 +18,13 @@ Given(/^I open the Dice randomizer$/, async () => {
 Given(/^I enter (\d+) in dice number (\d+)$/, async (dieValue, diceNo) => {
     await browser.setValue(`#d${diceNo}`, dieValue)
 });
-Then(/^the focus should shift to dice number (\d+)$/, async diceNo => {
-    await browser
-        .element("#d" + diceNo)
-        .elementActive(function (result) {
-        });
-});
 Then(/^the word list should contain (\d+) (?:word|words)$/, async noOfWords => {
     await browser
         .expect.elements("#word_table > tr")
         .count.to.equal(noOfWords);
 });
-When(/^I click the Add Word button$/, async function () {
-    await browser.click('#add_word')
+When(/^I click the "([^"]*)" button$/, async function (button) {
+    await browser.click(buttons[button])
 });
 Then(/^the word in the word list should be "([^"]*)"$/, async function (word) {
     const tableRow =
@@ -57,7 +56,7 @@ Then(/^the last word of the phrase should be the one word in the word list$/, as
     expect(word).to.not.equal("undefined")
     expect(word).to.equal(lastWord)
 });
-Then(/^the input field number (\d+) and onward is disabled$/, async function (firstDisabled) {
+Then(/^the input field number (\d+) and onward should be disabled$/, async function (firstDisabled) {
     for (let dieNo = 1; dieNo < firstDisabled; dieNo++) {
         await browser
             .expect.element("#d" + dieNo)
@@ -68,7 +67,6 @@ Then(/^the input field number (\d+) and onward is disabled$/, async function (fi
             .expect.element("#d" + dieNo)
             .to.have.attribute('disabled');
     }
-
 });
 Then(/^the helper text should be "([^"]*?)"$/, async function (expected) {
     await browser
@@ -86,27 +84,10 @@ When(/^I randomly enter (\d+) words$/, async function (noOfWords) {
             await browser.setValue(`#d${dieNo}`, step_helpers.randomDiceTrow())
         }
 
-        // let wordRow = "";
-        // await browser.getText("#word_table > tr", function (result) {
-        //     wordRow = result.value
-        // })
-        // let columns = wordRow.trim().split(" ")
-        // let word = columns[11]
-        // console.log(`adding word no: ${i} wich was: ${word}`);
         await step_helpers.sleep_for_debug(50)
         await browser.click('#add_word')
     }
     console.log('');
-});
-Then(/^the Add Word button should be disabled$/, async function () {
-    await browser
-        .expect.element("#add_word")
-        .to.have.attribute('disabled');
-});
-Then(/^the Add Word button should be enabled$/, async function () {
-    await browser
-        .expect.element("#add_word")
-        .to.not.have.attribute('disabled');
 });
 Then(/^the phrase should have (\d+) words$/, async function (expectedLength) {
     await browser.getText("#phrase", function (result) {
@@ -114,5 +95,17 @@ Then(/^the phrase should have (\d+) words$/, async function (expectedLength) {
         let words = phrase.trim().split(" ")
         expect(words).to.have.lengthOf(expectedLength)
     })
+
+});
+Then(/^the "([^"]*)" button should be "([^"]*)"$/, async function (button, state) {
+    if (state === 'enabled') {
+        await browser
+            .expect.element(buttons[button])
+            .to.not.have.attribute('disabled');
+    } else {
+        await browser
+            .expect.element(buttons[button])
+            .to.have.attribute('disabled');
+    }
 
 });

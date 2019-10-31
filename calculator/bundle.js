@@ -42052,6 +42052,7 @@ const init = function () {
     $('input[type="number"]').keyup(dieRoll)
     clearInputs();
     enableFieldOne();
+    $("#copy_phrase").prop('disabled', true)
 }
 
 const createTable = function (dieValues) {
@@ -42071,7 +42072,8 @@ const createTable = function (dieValues) {
 }
 
 function enableCopyPhrase() {
-
+    console.log('enabling copy button');
+    $("#copy_phrase").prop('disabled', false)
 }
 
 const addWordToPhrase = function () {
@@ -42086,6 +42088,7 @@ const addWordToPhrase = function () {
     const updatedPhrase = phrase + separator + word;
     $phrase.text(updatedPhrase)
     updateHelperText($phrase.text())
+    updateHrefWithPhrase(updatedPhrase)
     if (updatedPhrase.split(" ").length === 23) {
         console.log("We're done!");
         clearInputs()
@@ -42178,6 +42181,11 @@ const filterWords = function () {
             })
             .get()
     createTable(values)
+}
+
+const updateHrefWithPhrase = function (phrase) {
+    console.log('updating phrase in url');
+    $("#copy_phrase_link").attr('href', 'last-word.html?phrase=' + phrase)
 }
 
 module.exports = {
@@ -52938,6 +52946,7 @@ const showLessText = "Show less";
 
 const MAINNET = "mainnet"
 const TESTNET = "testnet"
+const PHRASE = "phrase"
 
 let network = MAINNET;
 
@@ -53124,10 +53133,17 @@ Array.prototype.random = function () {
 
 function setNetworkFromUrlParams() {
     const vars = {};
-    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
         vars[key] = value;
     });
-    if (vars.network && vars.network.toLowerCase() === TESTNET) network = TESTNET
+    if (vars.network && vars.network.toLowerCase() === TESTNET) {
+        network = TESTNET
+    }
+    if (vars.phrase && vars.phrase.toLowerCase()) {
+        console.log("sätter phrase vars.phrase = '" + vars.phrase + "'");
+        $("#seedphrase_input").val(decodeURI(vars.phrase))
+    }
+
 }
 
 function getVersionBytes(prefix) {

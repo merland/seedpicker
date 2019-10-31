@@ -1,6 +1,8 @@
 const {client: browser} = require('nightwatch-api');
 const {Given, When, Then} = require('cucumber');
 const expect = require("chai").expect;
+const chai = require("chai");
+chai.use(require('chai-string'));
 const step_helpers = require('./step_helpers');
 
 const validWords =
@@ -15,6 +17,13 @@ Given(/^I open the Seedpicker calculator$/, async () => {
     await browser
         .url(fileUrl)
         .waitForElementVisible('body', 1000)
+});
+Then(/^I see the Seedpicker page$/, async function () {
+    await browser
+        .waitForElementVisible('body', 1000)
+        .getTitle(function (phrase) {
+            expect(phrase).to.startWith("SeedPicker:")
+        })
 });
 Given(/^I enter the words "([^"]*)"$/, async words => {
     await browser.setValue('#seedphrase_input', words)
@@ -111,4 +120,10 @@ Then(/^I can see the error message "([^"]*)"$/, async errorMessage => {
 });
 When(/^I leave the phrase field empty$/, async () => {
     await browser.setValue('#seedphrase_input', "")
+});
+Then(/^the phrase input should contain (\d+) words$/, async function (noOfWords) {
+    await browser.getValue("#seedphrase_input", function (phrase) {
+        const words = phrase.value.trim().split(" ")
+        expect(words).to.have.lengthOf(noOfWords)
+    })
 });
