@@ -6,9 +6,10 @@ SeedPicker wants to help you create good and safe private keys for your crypto w
 * _Nobody has had a chance to take part of my private key._ 
 * _Nobody has had a chance to influence how my private key was created._  
 
-SeedPicker consist of the following two parts: 
+SeedPicker consist of the following three parts: 
 * The step-by-step [guide](guide/GUIDE.md) (Includes a few pdf documents that must be printed on paper)    
 * The [last word calculator](calculator/last-word.html). 
+* The [dice rolling seed generator](calculator/dice.html) (optional)
 
 Please also read through this intro and the [FAQ](FAQ.md).
 

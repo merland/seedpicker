@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Dice rolling</title>
+    <title>BIP39 Dice Roller</title>
     <script src="bundle.js"></script>
     <script>
         const $ = require('jquery')
@@ -18,12 +18,40 @@
 <section class="hero is-info">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title page_heading">The fine heading</h1>
+            <h1 class="title">BIP39 Dice Roller</h1>
+            <h2 class="subtitle">Roll a die and create a 23 word phrase</h2>
         </div>
     </div>
 </section>
 <section class="tighter_section">
-    <!--    <div class="container">-->
+    <div>
+        This tool is an alternate way of creating a 23 word BIP39
+        <a href="https://en.bitcoin.it/wiki/Seed_phrase"> seed phrase</a> from the
+        one that is described in <a href="http://seedpicker.net">the guide</a>.
+
+        After you have generated 23 words you can click the "Copy Phrase" button
+        to copy the phrase over to the <a href="last-word.html">checksum
+        calculator page</a>.
+    </div>
+</section>
+<div id="warning" class="tighter_section has-text-weight-bold">
+    <div class="columns">
+        <div class="column is-7">
+            <article class="message is-danger is-small">
+                <div class="message-header">
+                    <p>Warning</p>
+                </div>
+                <div class="message-body">
+                    This page is designed to be used on an offline and fully secure computer.<br/>
+                    You can try it out in online mode, but before using it for amounts you are not ready
+                    to lose, please read and follow all the instructions
+                    <a href="http://seedpicker.net">here</a>.
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+<section class="tighter_section">
     <div class="columns is-gapless">
         <div class="column is-1">
             <div class="field">
