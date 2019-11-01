@@ -20,7 +20,7 @@ point: **bit.ly/2QD8mjC**
   printout is recommended)
 * A single 6-sided die. 🎲
 
-There are two ways of generating the 23 words. One that uses a a lookup
+There are two ways of generating the seed phrase. One that uses a a lookup
 table and one that uses a webpage.  If you opt for the Lookup
 Table-version you'll also need: 
 
