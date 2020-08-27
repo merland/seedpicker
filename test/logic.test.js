@@ -106,3 +106,12 @@ describe("XPUB conversion", function () {
     })
 })
 
+describe("root fingerprint", function() {
+  it("can calculate the root fingerprint given a valid 24 word mnemonic", () => {
+    const mnemonic =
+        "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon " +
+        "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon " +
+        "abandon abandon abandon art";
+    assert.strictEqual(logic.rootFingerPrintFromMnemonic(mnemonic), "5436d724");
+  });
+});

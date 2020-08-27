@@ -4,12 +4,13 @@
   "description": "Contains a GUIDE and a CALCULATOR to help you safely create a private key.",
   "main": "index.js",
   "dependencies": {
-    "jquery": "3.4.1",
-    "bip39": "^3.0.2",
     "bip32": "2.0.4",
+    "bip39": "^3.0.2",
     "bitcoinjs-lib": "^5.1.6",
     "browserify": "^16.5.0",
     "bs58check": "2.1.2",
+    "crypto-hashing": "^1.0.0",
+    "jquery": "3.4.1",
     "kjua": "0.6.0"
   },
   "devDependencies": {
