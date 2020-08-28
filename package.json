@@ -27,7 +27,7 @@
     "build": "./browserify.sh",
     "test:unit": "mocha test",
     "test:cucumber": "cucumber-js --require cucumber.conf.js --require step_definitions --format node_modules/cucumber-pretty",
-    "test": "npm run test:unit; npm run test:cucumber"
+    "test": "npm run test:unit"
   },
   "author": "seedpicker@megabit.se",
   "license": "MIT"
