@@ -1,142 +1,219 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Dice rolling</title>
     <script src="bundle.js"></script>
     <script>
-        const $ = require('jquery')
-        $(document).ready(() => {
-            require('dice').init()
-        })
+      const $ = require("jquery");
+      $(document).ready(() => {
+        require("dice").init();
+      });
     </script>
-    <link href="fontawesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="bulma.min.css">
-    <link rel="stylesheet" href="seedpicker.css">
-</head>
-<body>
-<section class="hero is-info">
-    <div class="hero-body">
+    <link href="fontawesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="bulma.min.css" />
+    <link rel="stylesheet" href="seedpicker.css" />
+  </head>
+  <body>
+    <section class="hero is-info">
+      <div class="hero-body">
         <div class="container">
-            <h1 class="title page_heading">The fine heading</h1>
+          <h1 class="title page_heading">The fine heading</h1>
         </div>
-    </div>
-</section>
-<section class="tighter_section">
-    <!--    <div class="container">-->
-    <div class="columns is-gapless">
+      </div>
+    </section>
+    <section class="tighter_section">
+      <!--    <div class="container">-->
+      <div class="columns is-gapless">
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 1</label>
-                <div class="control">
-                    <input id="d1" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 1</label>
+            <div class="control">
+              <input
+                id="d1"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
-        </div>
-        <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 2</label>
-                <div class="control">
-                    <input id="d2" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
-            </div>
-        </div>
-        <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 3</label>
-                <div class="control">
-                    <input id="d3" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
-            </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 4</label>
-                <div class="control">
-                    <input id="d4" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 2</label>
+            <div class="control">
+              <input
+                id="d2"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 5</label>
-                <div class="control">
-                    <input id="d5" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 3</label>
+            <div class="control">
+              <input
+                id="d3"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 6</label>
-                <div class="control">
-                    <input id="d6" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 4</label>
+            <div class="control">
+              <input
+                id="d4"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 7</label>
-                <div class="control">
-                    <input id="d7" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 5</label>
+            <div class="control">
+              <input
+                id="d5"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 8</label>
-                <div class="control">
-                    <input id="d8" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 6</label>
+            <div class="control">
+              <input
+                id="d6"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 9</label>
-                <div class="control">
-                    <input id="d9" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 7</label>
+            <div class="control">
+              <input
+                id="d7"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 10</label>
-                <div class="control">
-                    <input id="d10" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 8</label>
+            <div class="control">
+              <input
+                id="d8"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">Die 11</label>
-                <div class="control">
-                    <input id="d11" class="input" type="number" min="1" max="6" placeholder="1-6">
-                </div>
+          <div class="field">
+            <label class="label">Die 9</label>
+            <div class="control">
+              <input
+                id="d9"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
         <div class="column is-1">
-            <div class="field">
-                <label class="label">&nbsp;</label>
-                <div class="control">
-                    <button id="add_word" class="button is-info">Add word</button>
-                </div>
+          <div class="field">
+            <label class="label">Die 10</label>
+            <div class="control">
+              <input
+                id="d10"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
             </div>
+          </div>
         </div>
-    </div>
-    <!--    </div>-->
-</section>
-<section class="tighter_section">
-    <div class="field">
+        <div class="column is-1">
+          <div class="field">
+            <label class="label">Die 11</label>
+            <div class="control">
+              <input
+                id="d11"
+                class="input"
+                type="number"
+                min="1"
+                max="6"
+                placeholder="1-6"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="column is-1">
+          <div class="field">
+            <label class="label">&nbsp;</label>
+            <div class="control">
+              <button id="add_word" class="button is-info">Add word</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--    </div>-->
+    </section>
+    <section class="tighter_section">
+      <div class="field">
         <div class="control is-expanded">
-            <p id="phrase_helper" class="help">0 words of 23. 23 to go.</p>
-            <div id="phrase" class="input has-background-light"></div>
-            <p id="phrase_error" class="help is-danger"></p>
+          <p id="phrase_helper" class="help">0 words of 23. 23 to go.</p>
+          <div id="phrase" class="input has-background-light"></div>
+          <p id="phrase_error" class="help is-danger"></p>
         </div>
-    </div>
-</section>
-<section class="tighter_section">
-    <table class="table is-striped">
+      </div>
+    </section>
+    <section class="tighter_section">
+      <table class="table is-striped">
         <thead>
-        <tr>
+          <tr>
             <th><abbr title="Dice 1">D1</abbr></th>
             <th><abbr title="Dice 2">D2</abbr></th>
             <th><abbr title="Dice 3">D3</abbr></th>
@@ -150,10 +227,10 @@
             <th><abbr title="Dice 11">D11</abbr></th>
             <th>Word</th>
             <th><abbr title="Number in wordlist">Word No.</abbr></th>
-        </tr>
+          </tr>
         </thead>
         <tbody id="word_table"></tbody>
-    </table>
-</section>
-</body>
+      </table>
+    </section>
+  </body>
 </html>

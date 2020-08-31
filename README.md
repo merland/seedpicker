@@ -1,14 +1,15 @@
 # SeedPicker [![Build Status](https://travis-ci.com/merland/seedpicker.svg?branch=master)](https://travis-ci.com/merland/seedpicker)
 
-SeedPicker wants to help you create good and safe private keys for your crypto wallets. The method has been designed to be easy to perform and understand for anyone. An even more important goal has been transparency; After having used SeedPicker you should be able to say the following with confidence: 
+SeedPicker wants to help you create good and safe private keys for your crypto wallets. The method has been designed to be easy to perform and understand for anyone. An even more important goal has been transparency; After having used SeedPicker you should be able to say the following with confidence:
 
-* _I have understood every step of the process._
-* _Nobody has had a chance to take part of my private key._ 
-* _Nobody has had a chance to influence how my private key was created._  
+- _I have understood every step of the process._
+- _Nobody has had a chance to take part of my private key._
+- _Nobody has had a chance to influence how my private key was created._
 
-SeedPicker consist of the following two parts: 
-* The step-by-step [guide](guide/GUIDE.md) (Includes a few pdf documents that must be printed on paper)    
-* The [last word calculator](calculator/last-word.html). 
+SeedPicker consist of the following two parts:
+
+- The step-by-step [guide](guide/GUIDE.md) (Includes a few pdf documents that must be printed on paper)
+- The [last word calculator](calculator/last-word.html).
 
 Please also read through this intro and the [FAQ](FAQ.md).
 
@@ -29,11 +30,11 @@ The **SeedPicker last word calculator** does this for you. It is a javascript po
 
 _This guide aims to educate the reader in a learning-by-doing fashion. However, it does not make any guarantees or promises, and does not take any responsibility for what anyone does with this material._
 
-_It is possible to use this guide to pick a seed phrase that may be "clever" or easy to remember in some way. NEVER DO THIS! If you do, there is a high risk that you lose your coins or your sensitive information. Private keys must be generated with a very high degree of randomness in order to be safe._  
-
+_It is possible to use this guide to pick a seed phrase that may be "clever" or easy to remember in some way. NEVER DO THIS! If you do, there is a high risk that you lose your coins or your sensitive information. Private keys must be generated with a very high degree of randomness in order to be safe._
 
 ## References
-* [This Reddit thread](https://www.reddit.com/r/crypto/comments/684zvj/need_help_generating_lastword_checksum_for_bip39/), which was the starting point for the idea to create this project.
-* [The official BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) The standard for wallet phrases.
-* [dice2mnemonic](https://github.com/mohrt/dice2mnemonic) a Python program that converts dice rolls to a seed phrase. 
-* https://iancoleman.io/bip39/ An excellent mnemonic code converter, only it doesn't calculate the 24th word. 
+
+- [This Reddit thread](https://www.reddit.com/r/crypto/comments/684zvj/need_help_generating_lastword_checksum_for_bip39/), which was the starting point for the idea to create this project.
+- [The official BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) The standard for wallet phrases.
+- [dice2mnemonic](https://github.com/mohrt/dice2mnemonic) a Python program that converts dice rolls to a seed phrase.
+- https://iancoleman.io/bip39/ An excellent mnemonic code converter, only it doesn't calculate the 24th word.
