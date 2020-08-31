@@ -36899,6 +36899,12 @@ utils.intFromLE = intFromLE;
 
 },{"bn.js":100,"minimalistic-assert":193,"minimalistic-crypto-utils":194}],168:[function(require,module,exports){
 module.exports={
+  "_args": [
+    [
+      "elliptic@6.5.3",
+      "/Users/me/dev/seedpicker"
+    ]
+  ],
   "_from": "elliptic@6.5.3",
   "_id": "elliptic@6.5.3",
   "_inBundle": false,
@@ -36921,9 +36927,8 @@ module.exports={
     "/tiny-secp256k1"
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.3.tgz",
-  "_shasum": "cb59eb2efdaf73a0bd78ccd7015a62ad6e0f93d6",
-  "_spec": "elliptic@6.5.3",
-  "_where": "/Users/me/dev/seedpicker/node_modules/browserify-sign",
+  "_spec": "6.5.3",
+  "_where": "/Users/me/dev/seedpicker",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"
@@ -36931,7 +36936,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -36941,7 +36945,6 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
