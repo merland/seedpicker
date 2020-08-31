@@ -1,122 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
     <script src="bundle.js"></script>
-    <script src="https://www.googletagmanager.com/gtag/js?id=UA-115028432-1" async></script>
+    <script
+      src="https://www.googletagmanager.com/gtag/js?id=UA-115028432-1"
+      async
+    ></script>
     <script>
-        const $ = require('jquery')
-        $(document).ready(() => {
-            require('presentation').init()
-        })
+      const $ = require("jquery");
+      $(document).ready(() => {
+        require("presentation").init();
+      });
     </script>
-    <link href="seedpicker.css" rel="stylesheet" type="text/css">
-    <link href="fontawesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="bulma.min.css">
-</head>
-<body>
-<section class="hero is-info">
-    <div class="hero-body">
+    <link href="seedpicker.css" rel="stylesheet" type="text/css" />
+    <link href="fontawesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="bulma.min.css" />
+  </head>
+  <body>
+    <section class="hero is-info">
+      <div class="hero-body">
         <div class="container">
-            <h1 class="title page_heading"></h1>
+          <h1 class="title page_heading"></h1>
         </div>
-    </div>
-</section>
-<div class="container is-fluid">
-    <div id="main_div">
+      </div>
+    </section>
+    <div class="container is-fluid">
+      <div id="main_div">
         <div class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                <div class="box">
-                    <div id="qr_code" class="content "></div>
-                    <div>
-                        <p id="qr_text" class="wrap-long"></p>
-                    </div>
-                </div>
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <div id="qr_code" class="content "></div>
+              <div>
+                <p id="qr_text" class="wrap-long"></p>
+              </div>
             </div>
-            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
         </div>
         <div class="tighter_section">
-            This tool enables you to create the Extended Public Keys (in <i>Zpub</i> or <i>Vpub</i> format) needed to
-            create Electrum multisig wallets, without needing a hardware wallet.
-            You can bring your own 23 random words, but make sure they are generated in a random and secure
-            fashion! Read <a href="http://seedpicker.net">the guide</a> for how to accomplish this.<br/>
-            Key formats and derivation paths have been selected in order to work well together with Electrum, but may
-            also work with other wallets.
+          This tool enables you to create the Extended Public Keys (in
+          <i>Zpub</i> or <i>Vpub</i> format) needed to create Electrum multisig
+          wallets, without needing a hardware wallet. You can bring your own 23
+          random words, but make sure they are generated in a random and secure
+          fashion! Read <a href="http://seedpicker.net">the guide</a> for how to
+          accomplish this.<br />
+          Key formats and derivation paths have been selected in order to work
+          well together with Electrum, but may also work with other wallets.
         </div>
         <div id="warning" class="tighter_section has-text-weight-bold">
-            <div class="columns">
-                <div class="column is-7">
-                    <article class="message is-danger is-small">
-                        <div class="message-header">
-                            <p>Warning</p>
-                        </div>
-                        <div class="message-body">
-                            This page is designed to be used on an offline and fully secure computer.<br/>
-                            You can try it out in online mode, but before using it for amounts you are not ready
-                            to lose, please read and follow all the instructions
-                            <a href="http://seedpicker.net">here</a>.
-                        </div>
-                    </article>
+          <div class="columns">
+            <div class="column is-7">
+              <article class="message is-danger is-small">
+                <div class="message-header">
+                  <p>Warning</p>
                 </div>
+                <div class="message-body">
+                  This page is designed to be used on an offline and fully
+                  secure computer.<br />
+                  You can try it out in online mode, but before using it for
+                  amounts you are not ready to lose, please read and follow all
+                  the instructions
+                  <a href="http://seedpicker.net">here</a>.
+                </div>
+              </article>
             </div>
+          </div>
         </div>
         <div class="tighter_section">
-            <div class="field">
-                <div class="is-pulled-right sample_label">
-                    <div id="sample_phrase" class="column"><p class="is-size-7 is-pulled-right">Generate sample (only
-                        for testing!)</p></div>
-                </div>
-                <label class="label input_label">Fill in your first 23 words (space separated)</label>
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <input id="seedphrase_input" class="input has-background-light" type="text" required/>
-                        <p id="seed_error_msg" class="help is-danger"></p>
-                    </div>
-                    <div class="control">
-                        <button id="seed-submit" class="button is-info" name="submit">Calculate!</button>
-                    </div>
-                </div>
+          <div class="field">
+            <div class="is-pulled-right sample_label">
+              <div id="sample_phrase" class="column">
+                <p class="is-size-7 is-pulled-right">
+                  Generate sample (only for testing!)
+                </p>
+              </div>
             </div>
+            <label class="label input_label"
+              >Fill in your first 23 words (space separated)</label
+            >
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <input
+                  id="seedphrase_input"
+                  class="input has-background-light"
+                  type="text"
+                  required
+                />
+                <p id="seed_error_msg" class="help is-danger"></p>
+              </div>
+              <div class="control">
+                <button id="seed-submit" class="button is-info" name="submit">
+                  Calculate!
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <div id="results" class="tighter_section is-hidden">
-            <div class="resultheading">Last word (There are several valid words but this tool always selects the first
-                one, alphabetically)
+          <div class="resultheading">
+            Last word (There are several valid words but this tool always
+            selects the first one, alphabetically)
+          </div>
+          <div id="checksum_word" class="has-text-weight-bold"></div>
+          <div class="resultheading">Complete seed phrase</div>
+          <div id="complete_phrase" class="has-text-weight-bold"></div>
+          <div id="extended_pub_heading" class="resultheading"></div>
+          <div class="extended_pub">
+            <div id="qr_code_button" class="qrcodebutton is-pulled-right">
+              <button class="button is-info">
+                <span class="icon is-small">
+                  <i class="fas fa-qrcode"></i>
+                </span>
+                <span>QR code</span>
+              </button>
             </div>
-            <div id="checksum_word" class="has-text-weight-bold"></div>
-            <div class="resultheading">Complete seed phrase</div>
-            <div id="complete_phrase" class="has-text-weight-bold"></div>
-            <div id="extended_pub_heading" class="resultheading"></div>
-            <div class="extended_pub">
-                <div id="qr_code_button" class="qrcodebutton is-pulled-right">
-                    <button class="button is-info">
-                         <span class="icon is-small">
-                             <i class="fas fa-qrcode"></i>
-                         </span>
-                        <span>QR code</span>
-                    </button>
-                </div>
-                <div id="extended_pub_result" class="has-text-weight-bold wrap-long"></div>
-            </div>
-            <button id="toggle_advanced_btn" class="button is-info"></button>
+            <div
+              id="extended_pub_result"
+              class="has-text-weight-bold wrap-long"
+            ></div>
+          </div>
+          <button id="toggle_advanced_btn" class="button is-info"></button>
         </div>
         <div id="advanced" class="tighter_section is-hidden">
-            <div class="resultheading">Network</div>
-            <div>
-                <div id="network" class="is-pulled-left has-text-weight-bold"></div>
-                <div id="networkswitchlink" class="is-pulled-left"></div>
-                <div class="is-clearfix"></div>
-            </div>
-            <div class="resultheading">Derivation Path used (Selected to match the default value used by Electrum in
-                multisig schemes)
-            </div>
-            <div id="derivation_path" class="has-text-weight-bold"></div>
-            <div class="resultheading">Extended Public Key in xpub format</div>
-            <div id="xpub_key" class="has-text-weight-bold"></div>
+          <div class="resultheading">Network</div>
+          <div>
+            <div id="network" class="is-pulled-left has-text-weight-bold"></div>
+            <div id="networkswitchlink" class="is-pulled-left"></div>
+            <div class="is-clearfix"></div>
+          </div>
+          <div class="resultheading">
+            Derivation Path used (Selected to match the default value used by
+            Electrum in multisig schemes)
+          </div>
+          <div id="derivation_path" class="has-text-weight-bold"></div>
+          <div class="resultheading">Extended Public Key in xpub format</div>
+          <div id="xpub_key" class="has-text-weight-bold"></div>
+          <div class="resultheading">
+            Root Key Fingerprint - An 8-character fingerprint of the root xpub
+            (before any derivation). Used by ColdCard and Spectre.
+          </div>
+          <div id="root_fingerprint" class="has-text-weight-bold"></div>
         </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

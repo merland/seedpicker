@@ -1,31 +1,35 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+@import url(
+  https://fonts.googleapis.com/css?family=Roboto:400,
+  300,
+  600,
+  400italic
+);
 
 .tighter_section {
-    padding: 1.5rem 1.5rem 0;
+  padding: 1.5rem 1.5rem 0;
 }
 
 .tighter_section:last-child {
-    padding: 1.5rem 1.5rem 0;
+  padding: 1.5rem 1.5rem 3rem;
 }
 
 .resultheading {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .resultheading:first-child {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .wrap-long {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .sample_label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #extended_pub_result {
-    width: 85%;
-    margin-bottom: 1.5rem;
+  width: 85%;
+  margin-bottom: 1.5rem;
 }
-
