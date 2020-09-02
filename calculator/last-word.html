@@ -24,6 +24,7 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title page_heading"></h1>
+          <h2 class="subtitle page_subtitle"></h2>
         </div>
       </div>
     </section>
@@ -42,14 +43,31 @@
           <button class="modal-close is-large" aria-label="close"></button>
         </div>
         <div class="tighter_section">
-          This tool enables you to create the Extended Public Keys (in
-          <i>Zpub</i> or <i>Vpub</i> format) needed to create Electrum multisig
-          wallets, without needing a hardware wallet. You can bring your own 23
-          random words, but make sure they are generated in a random and secure
-          fashion! Read <a href="http://seedpicker.net">the guide</a> for how to
-          accomplish this.<br />
-          Key formats and derivation paths have been selected in order to work
-          well together with Electrum, but may also work with other wallets.
+          Want to create your own 24 word Seed Phrase for your Bitcoin wallet?
+          You can select the first 23 from
+          <a
+            href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt"
+            >the official list of 2048 words</a
+          >, but the 24th word must be calculated. This is what SeedPicker can
+          help you with.
+        </div>
+        <div class="tighter_section">
+          You also get the corresponding Extended Public Key, in
+          <i>Zpub</i> (mainnet) or <i>Vpub</i> (testnet) format. This will
+          enable you to create multisig wallets without needing a hardware
+          wallet.
+        </div>
+        <div class="tighter_section">
+          <div class="is-italic">
+            Make sure your 23 words are generated in a random and secure
+            fashion! Read <a href="http://seedpicker.net">the guide</a> for how
+            to accomplish this.<br />
+          </div>
+        </div>
+        <div class="tighter_section">
+          Key formats and derivation paths have been selected to work well with
+          <a href="https://electrum.org/">Electrum</a>, but may also work with
+          other wallets.
         </div>
         <div id="warning" class="tighter_section has-text-weight-bold">
           <div class="columns">
@@ -102,8 +120,8 @@
         </div>
         <div id="results" class="tighter_section is-hidden">
           <div class="resultheading">
-            Last word (There are several valid words but this tool always
-            selects the first one, alphabetically)
+            The Last word. There are several valid words, but for consistency
+            this tool always selects the first one (alphabetically).
           </div>
           <div id="checksum_word" class="has-text-weight-bold"></div>
           <div class="resultheading">Complete seed phrase</div>
