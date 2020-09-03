@@ -59175,7 +59175,7 @@ const xpubformats = require('./xpubformats.js')
 const logic = require('./logic.js')
 
 const title = "SeedPicker";
-const subtitle = "Construct your own Seed Phrase and calculate its XPUBs";
+const subtitle = "Construct your own Seed Phrase and calculate the Extended Public Key";
 const showMoreText = "Show more (for advanced users)";
 const showLessText = "Show less";
 
@@ -59225,6 +59225,11 @@ const enterIsSubmit = event => {
 function showAdvanced() {
     $("#advanced").removeClass('is-hidden');
     $('#toggle_advanced_btn').text(showLessText)
+
+    var offset = $("#advanced").offset();
+    $('html, body').animate({
+        scrollTop: offset.top,
+    }, 500);
 }
 
 function hideAdvanced() {
