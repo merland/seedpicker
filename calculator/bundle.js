@@ -59013,7 +59013,7 @@ const crypto = require('crypto')
 const cryptoHash = require('crypto-hashing')
 
 function keysFromMnemonic(mnemonic, network) {
-    const derivationPath = derivationPathFromNetwork(network)
+    const derivationPath = derivationPathFromNetwork(network);
     return {
         xpub: xpubFromMnemonic(mnemonic, derivationPath),
         Zpub: anyPubFrom(xpubFromMnemonic(mnemonic, derivationPath), 'Zpub', network),
@@ -59025,7 +59025,7 @@ function keysFromMnemonic(mnemonic, network) {
 function xpubFromMnemonic(mnemonic, derivationPath) {
     const seed = bip39.mnemonicToSeedSync(mnemonic)
     const node = bip32.fromSeed(seed)
-    const child = node.derivePath(derivationPath)
+    const child = node.derivePath(derivationPath.full)
     return child.neutered().toBase58()
 }
 
@@ -59053,8 +59053,14 @@ function anyPubFrom(source, targetPrefix, network) {
 // These paths are selected from the defaults
 // that Electrum uses for Segwit Multisig (P2WSH)
 function derivationPathFromNetwork(network) {
-    if (network == 'mainnet') return "m/48'/0'/0'/2'"
-    if (network == 'testnet') return "m/48'/1'/0'/2'"
+    if (network == 'mainnet') return {
+        full:"m/48'/0'/0'/2'",
+        short:"/48'/0'/0'/2'",
+    }
+    if (network == 'testnet') return {
+        full:"m/48'/1'/0'/2'",
+        short:"/48'/1'/0'/2'"
+    }
     throw new Error("Wrong network " + network)
 }
 
@@ -59152,15 +59158,28 @@ function generateSample() {
     $("#seedphrase_input").val(samplePhrase)
 }
 
+function assembleExportFileData(rootFingerPrint, pubKeys) {
+    return {
+        //What is going into the actual export file
+        exportData: {
+            "xfp": rootFingerPrint,
+            "p2wsh": pubKeys.Zpub,
+            "p2wsh_deriv": pubKeys.derivationPath.full,
+        },
+        filename:`seedpickerxp-${rootFingerPrint}.json`,
+    }
+}
+
 module.exports = {
-  keysFromMnemonic: keysFromMnemonic,
-  validate: validate,
-  randomLastWord: randomLastWord,
-  allLastWords: allLastWords,
-  firstFoundLastWord: firstFoundLastWord,
-  generateSample: generateSample,
-  convertPubkey: convertPubkey,
-  rootFingerPrintFromMnemonic: rootFingerPrintFromMnemonic
+    keysFromMnemonic: keysFromMnemonic,
+    validate: validate,
+    randomLastWord: randomLastWord,
+    allLastWords: allLastWords,
+    firstFoundLastWord: firstFoundLastWord,
+    generateSample: generateSample,
+    convertPubkey: convertPubkey,
+    rootFingerPrintFromMnemonic: rootFingerPrintFromMnemonic,
+    assembleExportFileData: assembleExportFileData,
 };
 
 }).call(this,require("buffer").Buffer)
@@ -59212,6 +59231,7 @@ function init() {
     $('#qr_code_button').on('click', showQR)
     $('.modal-close').on('click', hideQR)
     $('.modal-background').on('click', hideQR)
+    $('#export_file_button').on('click', exportFileButtonAction)
 }
 
 
@@ -59282,7 +59302,10 @@ function submitButtonAction() {
         const mnemonic = phraseField.val() + " " + lastword
         const pubKeys = logic.keysFromMnemonic(mnemonic, network);
         const rootFingerprint = logic.rootFingerPrintFromMnemonic(mnemonic)
+        const fileExportData = logic.assembleExportFileData(rootFingerprint, pubKeys)
 
+        $('#export_file_button').text(fileExportData.filename);
+        $('#export_file_button').data("fileExportData", fileExportData)
         $("#checksum_word").text(lastword)
         $("#complete_phrase").text(mnemonic.toLowerCase())
         $("#network").text(network)
@@ -59393,6 +59416,24 @@ function ga() {
 
     gtag('js', new Date());
     gtag('config', 'UA-115028432-1');
+}
+
+function exportFileButtonAction() {
+    let data = $('#export_file_button').data("fileExportData");
+    return new Promise(() => {
+        const url = window.URL.createObjectURL(new Blob([JSON.stringify(data.exportData)], {
+            type: 'application/octet-stream'
+        }));
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = data.filename;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }).catch((err) => {
+        throw new Error(err)
+    });
+
 }
 
 module.exports = {
