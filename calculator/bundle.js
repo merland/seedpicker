@@ -59013,7 +59013,7 @@ const crypto = require('crypto')
 const cryptoHash = require('crypto-hashing')
 
 function keysFromMnemonic(mnemonic, network) {
-    const derivationPath = derivationPathFromNetwork(network);
+    const derivationPath = derivationPathFromNetwork(network)
     return {
         xpub: xpubFromMnemonic(mnemonic, derivationPath),
         Zpub: anyPubFrom(xpubFromMnemonic(mnemonic, derivationPath), 'Zpub', network),
@@ -59054,12 +59054,12 @@ function anyPubFrom(source, targetPrefix, network) {
 // that Electrum uses for Segwit Multisig (P2WSH)
 function derivationPathFromNetwork(network) {
     if (network == 'mainnet') return {
-        full:"m/48'/0'/0'/2'",
-        short:"/48'/0'/0'/2'",
+        full: "m/48'/0'/0'/2'",
+        short: "/48'/0'/0'/2'",
     }
     if (network == 'testnet') return {
-        full:"m/48'/1'/0'/2'",
-        short:"/48'/1'/0'/2'"
+        full: "m/48'/1'/0'/2'",
+        short: "/48'/1'/0'/2'"
     }
     throw new Error("Wrong network " + network)
 }
@@ -59166,7 +59166,7 @@ function assembleExportFileData(rootFingerPrint, pubKeys) {
             "p2wsh": pubKeys.Zpub,
             "p2wsh_deriv": pubKeys.derivationPath.full,
         },
-        filename:`seedpickerxp-${rootFingerPrint}.json`,
+        filename: `seedpickerxp-${rootFingerPrint}.json`,
     }
 }
 
@@ -59322,7 +59322,7 @@ function submitButtonAction() {
             $("#extended_pub_result").text(pubKeys.Zpub)
         }
         $("#result12").text(pubKeys.Vpub)
-        $("#derivation_path").text(pubKeys.derivationPath)
+        $("#derivation_path").text(pubKeys.derivationPath.full)
         $("#results").removeClass('is-hidden');
         $seedButton.removeClass("is-loading")
     }, 50)
