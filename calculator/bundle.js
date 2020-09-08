@@ -59122,17 +59122,11 @@ function validationReply(errorMsg, words) {
     }
 }
 
-// Currently not used by domain code, see GH issue #13
-// TODO: Remove once we are sure it won't be used.
-function randomLastWord(suppliedSeedPhrase) {
-    return allLastWords(suppliedSeedPhrase).random()
+function firstChecksumWordAlphabetically(suppliedSeedPhrase) {
+    return allChecksumWords(suppliedSeedPhrase)[0]
 }
 
-function firstFoundLastWord(suppliedSeedPhrase) {
-    return allLastWords(suppliedSeedPhrase)[0]
-}
-
-function allLastWords(suppliedSeedPhrase) {
+function allChecksumWords(suppliedSeedPhrase) {
     return [...Array(2048).keys()]
         .map(wordOrBlank(suppliedSeedPhrase))
         .filter(word => word.length > 0)
@@ -59173,9 +59167,8 @@ function assembleExportFileData(rootFingerPrint, pubKeys) {
 module.exports = {
     keysFromMnemonic: keysFromMnemonic,
     validate: validate,
-    randomLastWord: randomLastWord,
-    allLastWords: allLastWords,
-    firstFoundLastWord: firstFoundLastWord,
+    allLastWords: allChecksumWords,
+    firstChecksumWordAlphabetically: firstChecksumWordAlphabetically,
     generateSample: generateSample,
     convertPubkey: convertPubkey,
     rootFingerPrintFromMnemonic: rootFingerPrintFromMnemonic,
@@ -59185,10 +59178,9 @@ module.exports = {
 }).call(this,require("buffer").Buffer)
 },{"./xpubformats.js":1,"bip32":"bip32","bip39":"bip39","bs58check":132,"buffer":"buffer","crypto":141,"crypto-hashing":142}],"presentation":[function(require,module,exports){
 /**
- * Presentation logic that does not need unit testing
+ * Presentation related code that does not need unit testing
  */
 const kjua = require('kjua');
-
 const bip39 = require('bip39')
 const xpubformats = require('./xpubformats.js')
 const logic = require('./logic.js')
@@ -59210,7 +59202,6 @@ function init() {
     if (isTestnet()) {
         actualTitle = title + " - TESTNET"
         $('#warning').hide()
-
         const $info_color = $('.is-info');
         $info_color.removeClass('is-info');
         $info_color.addClass('has-background-grey');
@@ -59224,18 +59215,15 @@ function init() {
     $seedphraseInput.keypress(enterIsSubmit);
 
     hideAdvanced()
-    $('#toggle_advanced_btn').on('click', toggleAdvanced)
 
-    $('#seed-submit').on('click', function () {
-        submitButtonAction()
-    })
+    $('#toggle_advanced_btn').on('click', toggleAdvanced)
+    $('#seed-submit').on('click', submitButtonAction)
     $('#sample_phrase').on('click', generateSample)
     $('#qr_code_button').on('click', showQR)
     $('.modal-close').on('click', hideQR)
     $('.modal-background').on('click', hideQR)
     $('#export_file_button').on('click', exportFileButtonAction)
 }
-
 
 const enterIsSubmit = event => {
     if (event.which === 13) {
@@ -59247,11 +59235,7 @@ const enterIsSubmit = event => {
 function showAdvanced() {
     $("#advanced").removeClass('is-hidden');
     $('#toggle_advanced_btn').text(showLessText)
-
-    var offset = $("#advanced").offset();
-    $('html, body').animate({
-        scrollTop: offset.top,
-    }, 500);
+    scrollTo($("#advanced"));
 }
 
 function hideAdvanced() {
@@ -59273,18 +59257,14 @@ const isTestnet = () => network === TESTNET;
 const isMainnet = () => network === MAINNET;
 
 function otherNetwork() {
-    if (isMainnet()) {
-        return TESTNET;
-    } else if (isTestnet()) {
-        return MAINNET;
-    }
+    if (isMainnet()) return TESTNET;
+    if (isTestnet()) return MAINNET;
     throw new Error(`Wrong network: [${network}]`)
 }
 
-function scrollToResults() {
-    let offset = $("#results").offset();
+function scrollTo(selector) {
     $('html, body').animate({
-        scrollTop: offset.top,
+        scrollTop: selector.offset().top,
     }, 50);
 }
 
@@ -59307,15 +59287,15 @@ function submitButtonAction(callback) {
     $seedButton.addClass("is-loading")
 
     setTimeout(() => {
-        const lastword = logic.firstFoundLastWord(validation.cleanedUpPhrase)
-        const mnemonic = phraseField.val() + " " + lastword
+        const checksumWord = logic.firstChecksumWordAlphabetically(validation.cleanedUpPhrase)
+        const mnemonic = phraseField.val() + " " + checksumWord
         const pubKeys = logic.keysFromMnemonic(mnemonic, network);
         const rootFingerprint = logic.rootFingerPrintFromMnemonic(mnemonic)
         const fileExportData = logic.assembleExportFileData(rootFingerprint, pubKeys)
 
         $('#export_file_button').text(fileExportData.filename);
         $('#export_file_button').data("fileExportData", fileExportData)
-        $("#checksum_word").text(lastword)
+        $("#checksum_word").text(checksumWord)
         $("#complete_phrase").text(mnemonic.toLowerCase())
         $("#network").text(network)
 
@@ -59330,26 +59310,22 @@ function submitButtonAction(callback) {
             $("#extended_pub_heading").text(getVersionBytes("Zpub").desc)
             $("#extended_pub_result").text(pubKeys.Zpub)
         }
-        $("#result12").text(pubKeys.Vpub)
         $("#derivation_path").text(pubKeys.derivationPath.full)
         $("#results").removeClass('is-hidden');
         $seedButton.removeClass("is-loading")
-        scrollToResults();
+        scrollTo($("#results"));
     }, 50)
 }
 
 function clearResults() {
     $("#checksum_word").text("")
     $("#complete_phrase").text("")
-    $("#network").text("")
-
-    $("#networkswitchlink").html(`&nbsp;<a href="?network=${otherNetwork()}">(switch to ${otherNetwork()})</a>`);
-    $("#xpub_key").text("")
-
     $("#extended_pub_heading").text("")
     $("#extended_pub_result").text("")
-    $("#result12").text("")
+    $("#network").text("")
+    $("#networkswitchlink").html(`&nbsp;<a href="?network=${otherNetwork()}">(switch to ${otherNetwork()})</a>`);
     $("#derivation_path").text("")
+    $("#xpub_key").text("")
 }
 
 function generateSample() {
@@ -59360,38 +59336,20 @@ function generateSample() {
 }
 
 function showQR() {
-    const zpub = $("#extended_pub_result").text();
-    const qrOptions = {
-        // render method: 'canvas' or 'image'
+    const theKey = $("#extended_pub_result").text();
+    const qr_canvas = kjua({
         render: 'canvas',
-
-        // render pixel-perfect lines
         crisp: true,
-
-        // error correction level: 'L', 'M', 'Q' or 'H'
         ecLevel: 'H',
-
-        // size in pixel
         size: 200,
-
-        // code color
         fill: '#333',
-
-        // background color
         back: '#fff',
-
-        // content
-        text: zpub,
-
-        // roundend corners in pc: 0..100
+        text: theKey,
         rounded: 100,
-
-        // quiet zone in modules
         quiet: 2,
-    }
-    const qr_canvas = kjua(qrOptions);
+    });
     $("#qr_code").append(qr_canvas)
-    $("#qr_text").text(zpub)
+    $("#qr_text").text(theKey)
     $('.modal').addClass('is-active')
 }
 
@@ -59407,7 +59365,7 @@ Array.prototype.random = function () {
 
 function setNetworkFromUrlParams() {
     const vars = {};
-    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
         vars[key] = value;
     });
     if (vars.network && vars.network.toLowerCase() === TESTNET) network = TESTNET
@@ -59431,7 +59389,8 @@ function ga() {
 function exportFileButtonAction() {
     let data = $('#export_file_button').data("fileExportData");
     return new Promise(() => {
-        const url = window.URL.createObjectURL(new Blob([JSON.stringify(data.exportData)], {
+        let content = JSON.stringify(data.exportData);
+        const url = window.URL.createObjectURL(new Blob([content], {
             type: 'application/octet-stream'
         }));
         const a = document.createElement('a');
@@ -59443,13 +59402,11 @@ function exportFileButtonAction() {
     }).catch((err) => {
         throw new Error(err)
     });
-
 }
 
 module.exports = {
     init: init
 }
-
 },{"./logic.js":"logic","./xpubformats.js":1,"bip39":"bip39","kjua":189}],"wordlist":[function(require,module,exports){
 const wordlist = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "abandon", 1],

@@ -49,13 +49,9 @@
             href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt"
             >the official list of 2048 words</a
           >, but the 24th word must be calculated. This is what SeedPicker can
-          help you with.
-        </div>
-        <div class="tighter_section">
-          You also get the corresponding Extended Public Key, in
-          <i>Zpub</i> (mainnet) or <i>Vpub</i> (testnet) format. This will
-          enable you to create multisig wallets without needing a hardware
-          wallet.
+          help you with. You will also get the corresponding Extended Public
+          Key, which will enable you to create multisig wallets without needing
+          a hardware wallet (or together with hardware wallets)
         </div>
         <div class="tighter_section">
           <div class="is-italic">
@@ -81,8 +77,8 @@
                   secure computer.<br />
                   You can try it out in online mode, but before using it for
                   amounts you are not ready to lose, please read and follow all
-                  the instructions
-                  <a href="http://seedpicker.net">here</a>.
+                  the instructions in
+                  <a href="http://seedpicker.net">the guide</a>.
                 </div>
               </article>
             </div>
@@ -120,8 +116,8 @@
         </div>
         <div id="results" class="tighter_section is-hidden">
           <div class="resultheading">
-            The Last word. There are several valid words, but for consistency
-            this tool always selects the first one (alphabetically).
+            Your last word. There are other valid words, but this tool always
+            selects the first one (alphabetically).
           </div>
           <div id="checksum_word" class="has-text-weight-bold"></div>
           <div class="resultheading">Complete seed phrase</div>
@@ -152,7 +148,7 @@
           </div>
           <div class="resultheading">
             Derivation Path used (Selected to match the default value used by
-            Electrum in multisig schemes)
+            Electrum and Specter in multisig schemes)
           </div>
           <div id="derivation_path" class="has-text-weight-bold"></div>
           <div class="resultheading">Extended Public Key in xpub format</div>

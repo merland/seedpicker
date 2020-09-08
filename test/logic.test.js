@@ -21,7 +21,7 @@ describe("Calculate the 24th word", function () {
     //https://github.com/merland/seedpicker/issues/13
     it("should select the first checksum word, alphabetically", () => {
         const my23words = "empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december"
-        const lastWord = logic.firstFoundLastWord(my23words);
+        const lastWord = logic.firstChecksumWordAlphabetically(my23words);
 
         const expectedWords = ["bridge"]
         expect(lastWord).to.be.oneOf(expectedWords);
