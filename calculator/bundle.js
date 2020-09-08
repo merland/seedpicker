@@ -59226,7 +59226,9 @@ function init() {
     hideAdvanced()
     $('#toggle_advanced_btn').on('click', toggleAdvanced)
 
-    $('#seed-submit').on('click', submitButtonAction)
+    $('#seed-submit').on('click', function () {
+        submitButtonAction()
+    })
     $('#sample_phrase').on('click', generateSample)
     $('#qr_code_button').on('click', showQR)
     $('.modal-close').on('click', hideQR)
@@ -59279,7 +59281,14 @@ function otherNetwork() {
     throw new Error(`Wrong network: [${network}]`)
 }
 
-function submitButtonAction() {
+function scrollToResults() {
+    let offset = $("#results").offset();
+    $('html, body').animate({
+        scrollTop: offset.top,
+    }, 50);
+}
+
+function submitButtonAction(callback) {
     const phraseField = $("#seedphrase_input");
     const validation = logic.validate(phraseField.val())
     const $seedErrorMsg = $("#seed_error_msg");
@@ -59325,6 +59334,7 @@ function submitButtonAction() {
         $("#derivation_path").text(pubKeys.derivationPath.full)
         $("#results").removeClass('is-hidden');
         $seedButton.removeClass("is-loading")
+        scrollToResults();
     }, 50)
 }
 
