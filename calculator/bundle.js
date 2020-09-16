@@ -59288,7 +59288,7 @@ function submitButtonAction(callback) {
 
     setTimeout(() => {
         const checksumWord = logic.firstChecksumWordAlphabetically(validation.cleanedUpPhrase)
-        const mnemonic = phraseField.val() + " " + checksumWord
+        const mnemonic = validation.cleanedUpPhrase + " " + checksumWord
         const pubKeys = logic.keysFromMnemonic(mnemonic, network);
         const rootFingerprint = logic.rootFingerPrintFromMnemonic(mnemonic)
         const fileExportData = logic.assembleExportFileData(rootFingerprint, pubKeys)
