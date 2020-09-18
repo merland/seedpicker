@@ -12,16 +12,17 @@ Feature: Seedpicker Calculator
     And the Extended Public Key should start with "Zpub"
     And there should not be an error message
 
-  Scenario: Display QR-code for valid phrase
-    Given I open the Seedpicker calculator
-    And I enter 23 valid words
-    When I click the Calculate button
-    Then I can see the last word
-    When I click the QR-code button
-    Then I should see the QR-code
-    And I should see the Extended Public Key in the same dialog
-    When I click the close-x on the QR-code dialog
-    Then the QR-code dialog should go away
+    # Disabled temporarily - the qr code will probably be reinstated soon
+#  Scenario: Display QR-code for valid phrase
+#    Given I open the Seedpicker calculator
+#    And I enter 23 valid words
+#    When I click the Calculate button
+#    Then I can see the last word
+#    When I click the QR-code button
+#    Then I should see the QR-code
+#    And I should see the Extended Public Key in the same dialog
+#    When I click the close-x on the QR-code dialog
+#    Then the QR-code dialog should go away
 
   Scenario: Display adanced section
     Given I open the Seedpicker calculator
