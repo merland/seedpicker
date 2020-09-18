@@ -1,172 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title></title>
     <script src="bundle.js"></script>
     <script
-      src="https://www.googletagmanager.com/gtag/js?id=UA-115028432-1"
-      async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-115028432-1"
+            async
     ></script>
     <script>
-      const $ = require("jquery");
-      $(document).ready(() => {
-        require("presentation").init();
-      });
+        const $ = require("jquery");
+        $(document).ready(() => {
+            require("presentation").init();
+        });
     </script>
-    <link href="seedpicker.css" rel="stylesheet" type="text/css" />
-    <link href="fontawesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="bulma.min.css" />
-  </head>
-  <body>
-    <section class="hero is-info">
-      <div class="hero-body">
+    <link href="seedpicker.css" rel="stylesheet" type="text/css"/>
+    <link href="fontawesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="bulma.min.css"/>
+</head>
+<body>
+<section class="hero is-info">
+    <div class="hero-body">
         <div class="container">
-          <h1 class="title page_heading"></h1>
-          <h2 class="subtitle page_subtitle"></h2>
+            <h1 class="title page_heading"></h1>
+            <h2 class="subtitle page_subtitle"></h2>
         </div>
-      </div>
-    </section>
-    <div class="container is-fluid">
-      <div id="main_div">
+    </div>
+</section>
+<div class="container is-fluid">
+    <div id="main_div">
         <div class="modal">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            <div class="box">
-              <div id="qr_code" class="content "></div>
-              <div>
-                <p id="qr_text" class="wrap-long"></p>
-              </div>
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <div id="qr_code" class="content "></div>
+                    <div>
+                        <p id="qr_text" class="wrap-long"></p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <button class="modal-close is-large" aria-label="close"></button>
+            <button class="modal-close is-large" aria-label="close"></button>
         </div>
         <div class="tighter_section">
-          Want to create your own 24 word Seed Phrase for your Bitcoin wallet?
-          You can select the first 23 from
-          <a
-            href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt"
+            Want to create your own 24 word Seed Phrase for your Bitcoin wallet?
+            You can select the first 23 from
+            <a
+                    href="https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt"
             >the official list of 2048 words</a
-          >, but the 24th word must be calculated. This is what SeedPicker can
-          help you with. You will also get the corresponding Extended Public
-          Key, which will enable you to create multisig wallets without needing
-          a hardware wallet (or together with hardware wallets)
+            >, but the 24th word must be calculated. This is what SeedPicker can
+            help you with. You will also get the corresponding Extended Public
+            Key, which will enable you to create multisig wallets without needing
+            a hardware wallet (or together with hardware wallets)
         </div>
         <div class="tighter_section">
-          <div class="is-italic">
-            Make sure your 23 words are generated in a random and secure
-            fashion! Read <a href="http://seedpicker.net">the guide</a> for how
-            to accomplish this.<br />
-          </div>
+            <div class="is-italic">
+                Make sure your 23 words are generated in a random and secure
+                fashion! Read <a href="http://seedpicker.net">the guide</a> for how
+                to accomplish this.<br/>
+            </div>
         </div>
         <div class="tighter_section">
-          Key formats and derivation paths have been selected to work well with
-          <a href="https://electrum.org/">Electrum</a> and
-          <a href="https://github.com/cryptoadvance/specter-desktop">Specter</a
-          >, but may also work with other wallets.
+            SeedPicker has been developed and tested to work well with
+            <a href="https://github.com/cryptoadvance/specter-desktop"
+            >Specter Desktop</a
+            >.
         </div>
         <div id="warning" class="tighter_section has-text-weight-bold">
-          <div class="columns">
-            <div class="column is-7">
-              <article class="message is-danger is-small">
-                <div class="message-header">
-                  <p>Warning</p>
+            <div class="columns is-multiline">
+                <div class="column is-7">
+                    <article class="message is-danger is-small">
+                        <div class="message-header">
+                            <p>Warning</p>
+                        </div>
+                        <div class="message-body">
+                            This page is designed to be used on an offline and fully
+                            secure computer.<br/>
+                            You can try it out in online mode, but before using it for
+                            amounts you are not ready to lose, please read and follow all
+                            the instructions in
+                            <a href="http://seedpicker.net">the guide</a>.
+                        </div>
+                    </article>
                 </div>
-                <div class="message-body">
-                  This page is designed to be used on an offline and fully
-                  secure computer.<br />
-                  You can try it out in online mode, but before using it for
-                  amounts you are not ready to lose, please read and follow all
-                  the instructions in
-                  <a href="http://seedpicker.net">the guide</a>.
-                </div>
-              </article>
             </div>
-          </div>
         </div>
         <div class="tighter_section">
-          <div class="field">
-            <div class="is-pulled-right sample_label">
-              <div id="sample_phrase" class="column">
-                <p class="is-size-7 is-pulled-right">
-                  Generate sample (only for testing!)
-                </p>
-              </div>
+            <div class="field">
+                <div class="is-pulled-right sample_label">
+                    <div id="sample_phrase" class="column">
+                        <p class="is-size-7 is-pulled-right">
+                            Generate sample (only for testing!)
+                        </p>
+                    </div>
+                </div>
+                <label class="label input_label"
+                >Fill in your first 23 words (space separated)</label
+                >
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input
+                                id="seedphrase_input"
+                                class="input has-background-light"
+                                type="text"
+                                required
+                        />
+                        <p id="seed_error_msg" class="help is-danger"></p>
+                    </div>
+                    <div class="control">
+                        <button id="seed-submit" class="button is-info" name="submit">
+                            Calculate!
+                        </button>
+                    </div>
+                </div>
             </div>
-            <label class="label input_label"
-              >Fill in your first 23 words (space separated)</label
-            >
-            <div class="field has-addons">
-              <div class="control is-expanded">
-                <input
-                  id="seedphrase_input"
-                  class="input has-background-light"
-                  type="text"
-                  required
-                />
-                <p id="seed_error_msg" class="help is-danger"></p>
-              </div>
-              <div class="control">
-                <button id="seed-submit" class="button is-info" name="submit">
-                  Calculate!
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
         <div id="results" class="tighter_section is-hidden">
-          <div class="resultheading">
-            Your last word. There are other valid words, but this tool always
-            selects the first one (alphabetically).
-          </div>
-          <div id="checksum_word" class="has-text-weight-bold"></div>
-          <div class="resultheading">Complete seed phrase</div>
-          <div id="complete_phrase" class="has-text-weight-bold"></div>
-          <div id="extended_pub_heading" class="resultheading"></div>
-          <div class="extended_pub">
-            <div id="qr_code_button" class="qrcodebutton is-pulled-right">
-              <button class="button is-info">
-                <span class="icon is-small">
-                  <i class="fas fa-qrcode"></i>
-                </span>
-                <span>QR code</span>
-              </button>
+            <span class="resultheading">
+              Your last word is
+              <span id="checksum_word" class="has-text-weight-bold is-size-5"></span>.
+              (There are other valid words, but this tool always selects the
+              first one, alphabetically.)
+            </span>
+            <div class="resultheading">Complete seed phrase</div>
+            <div id="complete_phrase" class="has-text-weight-bold"></div>
+            <div class="tighter_section"></div>
+            <div class="tighter_section"></div>
+            <div id="specter_export_components" class="container is-fluid">
+                <div class="notification is-info-light">
+                    <div class="columns is-grouped-multiline">
+                        <div class="column">
+                            <div class="is-bold is-size-4">Export To Specter Desktop</div>
+                            <div class="is-italic">This box contains everything you need to export your extended</div>
+                            <div class="is-italic">public key to Specter Desktop. Click the button to save as file.
+                            </div>
+                            <div class="tighter_section"></div>
+                            <div class="columns is-centered is-grouped-multiline">
+                                <div class="column is-three-fifths">
+                                    <div id="extended_pub_heading" class="resultheading"></div>
+                                    <div class="extended_pub">
+                                        <!-- temporarily disabled
+                                                                <div id="qr_code_button" class="qrcodebutton is-pulled-right">
+                                                                  <button class="button is-info">
+                                                                    <span class="icon is-small">
+                                                                      <i class="fas fa-qrcode"></i>
+                                                                    </span>
+                                                                    <span>QR code</span>
+                                                                  </button>
+                                                                </div>
+                                                                -->
+
+                                        <div
+                                                id="extended_pub_result"
+                                                class="has-text-weight-bold wrap-long"
+                                        ></div>
+                                        <div class="resultheading">
+                                            Root Key Fingerprint - An 8-character fingerprint of the
+                                            root XPUB (before any derivation).
+                                        </div>
+                                        <div
+                                                id="root_fingerprint"
+                                                class="has-text-weight-bold"
+                                        ></div>
+                                    </div>
+                                    <div class="resultheading">
+                                        Derivation Path (Selected to match the default value
+                                        used by Specter Desktop in multisig schemes)
+                                    </div>
+                                    <div id="derivation_path" class="has-text-weight-bold"></div>
+                                </div>
+
+                                <div class="column is-two-fifths">
+                                    <div class="section">
+                                        <button id="export_file_button" class="button is-black is-fullwidth">
+                                                <span class="icon is-small">
+                                                  <i class="fas fa-file-download"></i><div>&nbsp;&nbsp</div><div
+                                                        id="export_file_button_text"></div>
+                                                </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tighter_section"></div>
             </div>
-            <div
-              id="extended_pub_result"
-              class="has-text-weight-bold wrap-long"
-            ></div>
-          </div>
-          <button id="toggle_advanced_btn" class="button is-info"></button>
+            <button id="toggle_advanced_btn" class="button is-info"></button>
+            <div id="advanced" class="tighter_section is-hidden">
+                <div class="resultheading">Network</div>
+                <div>
+                    <div id="network" class="is-pulled-left has-text-weight-bold"></div>
+                    <div id="networkswitchlink" class="is-pulled-left"></div>
+                    <div class="is-clearfix"></div>
+                </div>
+
+                <div class="resultheading">Extended Public Key in xpub format</div>
+                <div id="xpub_key" class="has-text-weight-bold"></div>
+            </div>
+            <div class="tighter_section"></div>
         </div>
-        <div id="advanced" class="tighter_section is-hidden">
-          <div class="resultheading">Network</div>
-          <div>
-            <div id="network" class="is-pulled-left has-text-weight-bold"></div>
-            <div id="networkswitchlink" class="is-pulled-left"></div>
-            <div class="is-clearfix"></div>
-          </div>
-          <div class="resultheading">
-            Derivation Path used (Selected to match the default value used by
-            Electrum and Specter in multisig schemes)
-          </div>
-          <div id="derivation_path" class="has-text-weight-bold"></div>
-          <div class="resultheading">Extended Public Key in xpub format</div>
-          <div id="xpub_key" class="has-text-weight-bold"></div>
-          <div class="resultheading">
-            Root Key Fingerprint - An 8-character fingerprint of the root XPUB
-            (before any derivation). Used by ColdCard and Specter.
-          </div>
-          <div id="root_fingerprint" class="has-text-weight-bold"></div>
-          <div class="resultheading">
-            Export results to Specter (Click to download file)
-          </div>
-          <button id="export_file_button" class="button is-text" name="submit">
-            <div id="export_file_name"></div>
-          </button>
-        </div>
-      </div>
     </div>
-  </body>
+</body>
 </html>

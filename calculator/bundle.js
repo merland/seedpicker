@@ -18,7 +18,7 @@ const xpubPrefixes = {
     },
     "Zpub": {
         public: "02aa7ed3",
-        desc: "Extended Public Key in Zpub format, for Electrum's native segwit multisig (p2wsh)"
+        desc: "Extended Public Key in Zpub format"
     },
     "tpub": {
         public: "043587cf"
@@ -59051,7 +59051,7 @@ function anyPubFrom(source, targetPrefix, network) {
 }
 
 // These paths are selected from the defaults
-// that Electrum uses for Segwit Multisig (P2WSH)
+// that Electrum and Specter (and Coldcard?) use for Segwit Multisig (P2WSH)
 function derivationPathFromNetwork(network) {
     if (network == 'mainnet') return {
         full: "m/48'/0'/0'/2'",
@@ -59186,7 +59186,7 @@ const xpubformats = require('./xpubformats.js')
 const logic = require('./logic.js')
 
 const title = "SeedPicker";
-const subtitle = "Construct your own Seed Phrase and calculate the Extended Public Key";
+const subtitle = "Construct your own Seed Phrase and calculate the corresponding Extended Public Key";
 const showMoreText = "Show more (for advanced users)";
 const showLessText = "Show less";
 
@@ -59293,7 +59293,7 @@ function submitButtonAction(callback) {
         const rootFingerprint = logic.rootFingerPrintFromMnemonic(mnemonic)
         const fileExportData = logic.assembleExportFileData(rootFingerprint, pubKeys)
 
-        $('#export_file_button').text(fileExportData.filename);
+        $('#export_file_button_text').text(`Download ${fileExportData.filename}`);
         $('#export_file_button').data("fileExportData", fileExportData)
         $("#checksum_word").text(checksumWord)
         $("#complete_phrase").text(mnemonic.toLowerCase())
