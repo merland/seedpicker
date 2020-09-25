@@ -4,6 +4,7 @@
   "description": "Contains a GUIDE and a CALCULATOR to help you safely create a private key.",
   "main": "index.js",
   "dependencies": {
+    "@creativebulma/bulma-tooltip": "^1.2.0",
     "bip32": "2.0.4",
     "bip39": "^3.0.2",
     "bitcoinjs-lib": "^5.1.6",
