@@ -18,6 +18,7 @@
     <link href="seedpicker.css" rel="stylesheet" type="text/css"/>
     <link href="fontawesome.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="bulma.min.css"/>
+    <link rel="stylesheet" href="bulma-tooltip.min.css"/>
 </head>
 <body>
 <section class="hero is-info">
@@ -119,7 +120,12 @@
             <span class="resultheading">
               Your 24th word is
               <span id="checksum_word" class="has-text-weight-bold is-size-5"></span>.
-              (There are other valid words, but this tool always selects the first one)
+                <span class="icon is-small has-tooltip-multiline has-tooltip-arrow" data-tooltip="There are other valid words, but for consistency SeedPicker always uses the same word for any given 23 words.">
+                    <i class="fas fa-question-circle" ></i><div></div>
+                </span>
+
+
+
             </span>
             <div class="resultheading">Complete seed phrase</div>
             <div id="complete_phrase" class="has-text-weight-bold"></div>
