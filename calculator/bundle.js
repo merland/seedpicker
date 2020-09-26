@@ -18,7 +18,7 @@ const xpubPrefixes = {
     },
     "Zpub": {
         public: "02aa7ed3",
-        desc: "Extended Public Key in Zpub format"
+        desc: "Extended Public Key"  //This text is visible in the GUI // TODO: move to presentation logic
     },
     "tpub": {
         public: "043587cf"
@@ -34,7 +34,7 @@ const xpubPrefixes = {
     },
     "Vpub": {
         public: "02575483",
-        desc: "Extended Public Key in Vpub format (Testnet P2WSH)"
+        desc: "Extended Public Key" //This text is visible in the GUI // TODO: move to presentation logic
     }
 }
 
