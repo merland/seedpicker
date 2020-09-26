@@ -30,3 +30,9 @@
   width: 85%;
   margin-bottom: 1.5rem;
 }
+
+#abc2{
+  font-size: 50%;
+  vertical-align: super;
+  content: "+";
+}

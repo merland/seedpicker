@@ -117,92 +117,108 @@
             </div>
         </div>
         <div id="results" class="tighter_section is-hidden">
-            <span class="resultheading">
-              Your 24th word is
-              <span id="checksum_word" class="has-text-weight-bold is-size-5"></span>.
-                <span class="icon is-small has-tooltip-multiline has-tooltip-arrow" data-tooltip="There are other valid words, but for consistency SeedPicker always uses the same word for any given 23 words.">
-                    <i class="fas fa-question-circle" ></i><div></div>
-                </span>
-
-
-
+            <div>
+                <span class="resultheading">
+                        Your 24th word is <span id="checksum_word" class="has-text-weight-bold is-size-5"></span>
+                    <sup>
+                        <span class="icon is-small has-tooltip-multiline has-tooltip-arrow"
+                              data-tooltip="Use this word as the 24th word of your seed phrase. More than one word may
+                              be valid, but for consistency SeedPicker always generates the same 24th word.">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                    </sup>
+            </div>
             </span>
             <div class="resultheading">Complete seed phrase</div>
             <div id="complete_phrase" class="has-text-weight-bold"></div>
             <div class="tighter_section"></div>
             <div class="tighter_section"></div>
-            <div id="specter_export_components" class="container is-fluid">
+            <div id="specter_export_components" class="container">
                 <div class="notification is-info-light">
-                    <div class="columns is-grouped-multiline">
-                        <div class="column">
-                            <div class="is-bold is-size-4">Export Public Key Info To Specter Desktop</div>
-                            <div class="is-italic">This box contains everything you need to export your extended</div>
-                            <div class="is-italic">public key to Specter Desktop.</div>
-                            <div class="tighter_section"></div>
-                            <div class="columns is-centered is-grouped-multiline">
-                                <div class="column is-three-fifths">
-                                    <div id="extended_pub_heading" class="resultheading"></div>
-                                    <div class="extended_pub">
-                                        <!-- temporarily disabled
-                                                                <div id="qr_code_button" class="qrcodebutton is-pulled-right">
-                                                                  <button class="button is-info">
-                                                                    <span class="icon is-small">
-                                                                      <i class="fas fa-qrcode"></i>
-                                                                    </span>
-                                                                    <span>QR code</span>
-                                                                  </button>
-                                                                </div>
-                                                                -->
+                    <div class="is-bold is-size-4">Export Public Key Info To Specter Desktop</div>
+                    <div class="is-italic">
+                        This box contains everything you need to export your extended public key
+                        to Specter Desktop.
+                    </div>
+                    <div class="is-italic"></div>
+                    <div>&nbsp;</div>
 
-                                        <div
-                                                id="extended_pub_result"
-                                                class="has-text-weight-bold wrap-long"
-                                        ></div>
-                                        <div class="resultheading">
-                                            Root Key Fingerprint - An 8-character fingerprint of the
-                                            root XPUB (before any derivation).
-                                        </div>
-                                        <div
-                                                id="root_fingerprint"
-                                                class="has-text-weight-bold"
-                                        ></div>
-                                    </div>
-                                    <div class="resultheading">
-                                        Derivation Path (Selected to match the default value
-                                        used by Specter Desktop in multisig schemes)
-                                    </div>
-                                    <div id="derivation_path" class="has-text-weight-bold"></div>
-                                </div>
 
-                                <div class="column is-two-fifths">
-                                    <div class="section">
-                                        <button id="export_file_button" class="button is-black is-fullwidth">
+
+
+                    <span id="extended_pub_heading" class="resultheading"></span>
+                    <!--<sup><span class="icon is-small has-tooltip-multiline has-tooltip-arrow"
+                               data-tooltip="Calculated using the root xpub and the derivation path below">
+                            <i class="fas fa-question-circle"></i>
+                        </span></sup>-->
+                    <div class="extended_pub">
+                        <!-- QR temporarily disabled
+                         <div id="qr_code_button" class="qrcodebutton is-pulled-right">
+                           <button class="button is-info">
+                             <span class="icon is-small">
+                               <i class="fas fa-qrcode"></i>
+                             </span>
+                             <span>QR code</span>
+                           </button>
+                         </div>
+                         -->
+                        <div><span
+                                id="extended_pub_result"
+                                class="has-text-weight-bold wrap-long"
+                        ></span>
+                        </div>
+                        <div>&nbsp;</div>
+                        <span class="resultheading">Root Key Fingerprint</span>
+                        <sup><span class="icon is-small has-tooltip-multiline has-tooltip-arrow"
+                              data-tooltip="An 8-character fingerprint of the root XPUB (before any derivation path was applied)">
+                            <i class="fas fa-question-circle"></i>
+                        </span></sup>
+                        <div
+                                id="root_fingerprint"
+                                class="has-text-weight-bold"
+                        ></div>
+                    </div>
+
+                    <div>&nbsp;</div>
+                    <span class="resultheading">
+                        Derivation Path
+                    </span>
+                        <sup>
+                            <span class="icon is-small has-tooltip-multiline has-tooltip-arrow"
+                                      data-tooltip="Selected to match the default value used by Specter Desktop
+                                      in multisig schemes">
+                            <i class="fas fa-question-circle"></i>
+                            </span>
+                        </sup>
+                    <div id="derivation_path" class="has-text-weight-bold"></div>
+
+                    <div class="section">
+                        <button id="export_file_button" class="button is-black is-fullwidth">
                                                 <span class="icon is-small">
-                                                  <i class="fas fa-file-download"></i><div>&nbsp;&nbsp</div><div
+                                                  <i class="fas fa-file-download "></i><div>&nbsp;&nbsp</div><div
                                                         id="export_file_button_text"></div>
                                                 </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <div class="tighter_section"></div>
             </div>
             <button id="toggle_advanced_btn" class="button is-info"></button>
-            <div id="advanced" class="tighter_section is-hidden">
-                <div class="resultheading">Network</div>
-                <div>
-                    <div id="network" class="is-pulled-left has-text-weight-bold"></div>
-                    <div id="networkswitchlink" class="is-pulled-left"></div>
-                    <div class="is-clearfix"></div>
-                </div>
 
-                <div class="resultheading">Extended Public Key in xpub format</div>
-                <div id="xpub_key" class="has-text-weight-bold"></div>
+            <div id="container">
+                <div id="advanced" class="tighter_section is-hidden">
+                    <div class="resultheading">Network</div>
+                    <div>
+                        <div id="network" class="is-pulled-left has-text-weight-bold"></div>
+                        <div id="networkswitchlink" class="is-pulled-left"></div>
+                        <div class="is-clearfix"></div>
+                    </div>
+
+                    <div class="resultheading">Extended Public Key in xpub format</div>
+                    <div id="xpub_key" class="has-text-weight-bold wrap-long"></div>
+                </div>
+                <div class="tighter_section"></div>
             </div>
-            <div class="tighter_section"></div>
         </div>
     </div>
 </body>
