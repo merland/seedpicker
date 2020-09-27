@@ -2,6 +2,8 @@
 
 # [Looking for the SeedPicker Last Word calculator? Click here!](https://seedpicker.net/calculator/last-word.html)
 
+### Introduction 
+
 SeedPicker wants to help you create good and safe private keys for your crypto wallets. The method has been designed to be easy to perform and understand for anyone. An even more important goal has been transparency; After having used SeedPicker you should be able to say the following with confidence:
 
 - _I have understood every step of the process._
@@ -40,3 +42,8 @@ _It is possible to use this guide to pick a seed phrase that may be "clever" or 
 - [The official BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) The standard for wallet phrases.
 - [dice2mnemonic](https://github.com/mohrt/dice2mnemonic) a Python program that converts dice rolls to a seed phrase.
 - https://iancoleman.io/bip39/ An excellent mnemonic code converter, only it doesn't calculate the 24th word.
+
+## Feedback
+
+Any kind of feedback is greatly appreciated!  
+Visit github.com/merland/seedpicker or send an email to seedpicker@megabit.se
