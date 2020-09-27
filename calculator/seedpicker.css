@@ -31,8 +31,6 @@
   margin-bottom: 1.5rem;
 }
 
-#abc2{
-  font-size: 50%;
-  vertical-align: super;
-  content: "+";
+#export_file_button {
+  max-width: 600px;
 }
