@@ -2,7 +2,7 @@
 
 # [Looking for the SeedPicker Last Word calculator? Click here!](https://seedpicker.net/calculator/last-word.html)
 
-### Introduction 
+### Introduction
 
 SeedPicker wants to help you create good and safe private keys for your crypto wallets. The method has been designed to be easy to perform and understand for anyone. An even more important goal has been transparency; After having used SeedPicker you should be able to say the following with confidence:
 
