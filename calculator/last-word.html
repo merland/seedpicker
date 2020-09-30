@@ -31,7 +31,7 @@
     </section>
     <div class="container is-fluid">
       <div id="main_div">
-        <div class="modal">
+        <div class="modal" id="modal01">
           <div class="modal-background"></div>
           <div class="modal-content">
             <div class="box">
@@ -168,21 +168,8 @@
               <div>&nbsp;</div>
 
               <span id="extended_pub_heading" class="resultheading"></span>
-              <!--<sup><span class="icon is-small has-tooltip-multiline has-tooltip-arrow"
-                               data-tooltip="Calculated using the root xpub and the derivation path below">
-                            <i class="fas fa-question-circle"></i>
-                        </span></sup>-->
+
               <div class="extended_pub">
-                <!-- QR temporarily disabled
-                         <div id="qr_code_button" class="qrcodebutton is-pulled-right">
-                           <button class="button is-info">
-                             <span class="icon is-small">
-                               <i class="fas fa-qrcode"></i>
-                             </span>
-                             <span>QR code</span>
-                           </button>
-                         </div>
-                         -->
                 <div>
                   <span
                     id="extended_pub_result"
@@ -221,15 +208,22 @@
                 <div class="container">
                   <div class="columns is-centered">
                     <div class="column is-half">
-                      <button
-                        id="export_file_button"
-                        class="button is-black is-fullwidth"
-                      >
-                        <span class="icon is-small">
-                          <i class="fas fa-file-download "></i>
-                          <div>&nbsp;&nbspDownload</div>
-                        </span>
-                      </button>
+                      <div id="export_file_button">
+                        <button class="button is-black is-fullwidth my-3">
+                          <span class="icon is-small">
+                            <i class="fas fa-file-download "></i>
+                            <div>&nbsp;&nbspDownload</div>
+                          </span>
+                        </button>
+                      </div>
+                      <div id="qr_code_button" class="qrcodebutton">
+                        <button class="button is-black is-fullwidth my-3">
+                          <span class="icon is-small">
+                            <i class="fas fa-qrcode"></i>
+                          </span>
+                          <span>Show QR</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

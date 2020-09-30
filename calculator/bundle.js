@@ -59018,7 +59018,8 @@ function keysFromMnemonic(mnemonic, network) {
         xpub: xpubFromMnemonic(mnemonic, derivationPath),
         Zpub: anyPubFrom(xpubFromMnemonic(mnemonic, derivationPath), 'Zpub', network),
         Vpub: anyPubFrom(xpubFromMnemonic(mnemonic, derivationPath), 'Vpub', network),
-        derivationPath: derivationPath
+        derivationPath: derivationPath,
+        network
     }
 }
 
@@ -59153,16 +59154,33 @@ function generateSample() {
 }
 
 function assembleExportFileData(rootFingerPrint, pubKeys) {
+    let thePubKey = pubKeys.Zpub;
+
+    //FIXME encapsulate .network
+    let isTestnet = pubKeys.network === 'testnet';
+    if (isTestnet) thePubKey = pubKeys.Vpub;
+
     return {
         //What is going into the actual export file
         exportData: {
             "xfp": rootFingerPrint,
-            "p2wsh": pubKeys.Zpub,
+            "p2wsh": thePubKey,
             "p2wsh_deriv": pubKeys.derivationPath.full,
         },
         filename: `seedpickerxp-${rootFingerPrint}.json`,
     }
 }
+
+function assembleQRCodeData(rootFingerPrint, pubKeys) {
+    let thePubKey = pubKeys.Zpub;
+
+    //FIXME encapsulate .network
+    let isTestnet = pubKeys.network === 'testnet';
+    if (isTestnet) thePubKey = pubKeys.Vpub;
+
+    return "[" + rootFingerPrint + pubKeys.derivationPath.short + "]" + thePubKey
+}
+
 
 module.exports = {
     keysFromMnemonic: keysFromMnemonic,
@@ -59173,6 +59191,7 @@ module.exports = {
     convertPubkey: convertPubkey,
     rootFingerPrintFromMnemonic: rootFingerPrintFromMnemonic,
     assembleExportFileData: assembleExportFileData,
+    assembleQRCodeData: assembleQRCodeData,
 };
 
 }).call(this,require("buffer").Buffer)
@@ -59231,6 +59250,13 @@ const enterIsSubmit = event => {
         return false;
     }
 };
+
+$(document).keydown(function(event) {
+    if (event.keyCode == 27) {
+        //$('#modal01').hide();
+        hideQR();
+    }
+});
 
 function showAdvanced() {
     $("#advanced").removeClass('is-hidden');
@@ -59292,9 +59318,13 @@ function submitButtonAction(callback) {
         const pubKeys = logic.keysFromMnemonic(mnemonic, network);
         const rootFingerprint = logic.rootFingerPrintFromMnemonic(mnemonic)
         const fileExportData = logic.assembleExportFileData(rootFingerprint, pubKeys)
+        const qrData = logic.assembleQRCodeData(rootFingerprint, pubKeys)
 
         $('#export_file_button_text').text(`Download ${fileExportData.filename}`);
+
         $('#export_file_button').data("fileExportData", fileExportData)
+        $('#qr_code_button').data("qrData", qrData)
+
         $("#checksum_word").text(checksumWord)
         $("#complete_phrase").text(mnemonic.toLowerCase())
         $("#network").text(network)
@@ -59336,7 +59366,7 @@ function generateSample() {
 }
 
 function showQR() {
-    const theKey = $("#extended_pub_result").text();
+    const qrData = $('#qr_code_button').data("qrData");
     const qr_canvas = kjua({
         render: 'canvas',
         crisp: true,
@@ -59344,12 +59374,12 @@ function showQR() {
         size: 200,
         fill: '#333',
         back: '#fff',
-        text: theKey,
+        text: qrData,
         rounded: 100,
         quiet: 2,
     });
     $("#qr_code").append(qr_canvas)
-    $("#qr_text").text(theKey)
+    $("#qr_text").text(qrData)
     $('.modal').addClass('is-active')
 }
 
