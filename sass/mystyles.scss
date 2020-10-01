@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+@import '../node_modules/bulma/sass/utilities/initial-variables.sass';
+@import "../node_modules/bulma/sass/utilities/functions";
+@import "../scss/fontawesome.scss";
+@import "../scss/solid.scss";
+
+//set variables here
+
+// This line should be last
+@import "../node_modules/bulma/bulma.sass";
