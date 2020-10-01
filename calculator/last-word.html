@@ -35,9 +35,26 @@
           <div class="modal-background"></div>
           <div class="modal-content">
             <div class="box">
-              <div id="qr_code" class="content "></div>
-              <div>
-                <p id="qr_text" class="wrap-long"></p>
+              <div class="box">
+                <div class="columns">
+                  <div div class="column is-three-fifths">
+                    <div id="qr_code" class="content"></div>
+                  </div>
+                  <div div class="column is-two-fifths">
+                    <div class="section is-small mx-3">
+                      <p class="is-bold is-size-5">
+                        QR code for exporting public key info to Specter
+                      </p>
+                      <p class="is-bold is-size-7">
+                        After scanning, verify that the key info in Specter is
+                        the same as in SeedPicker!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box">
+                <p id="qr_text" class="is-size-7 wrap-long"></p>
               </div>
             </div>
           </div>

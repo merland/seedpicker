@@ -66405,7 +66405,7 @@ function showQR() {
         render: 'canvas',
         crisp: true,
         ecLevel: 'H',
-        size: 200,
+        size: 450,
         fill: '#333',
         back: '#fff',
         text: qrData,
