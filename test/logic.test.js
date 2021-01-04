@@ -31,6 +31,18 @@ describe("Calculate the 24th word", function () {
         const expectedWords = ["bridge"]
         expect(lastWord).to.be.oneOf(expectedWords);
     })
+    it("should correct the checksum word", () => {
+        const my24words = [
+          "empower", "soul", "reunion", "entire", "help", "raise", "truth",
+          "reflect", "argue", "transfer", "chicken", "narrow", "oak", "friend",
+          "junior", "figure", "auto", "small", "push", "spike", "next",
+          "pledge", "december", "zoo"
+        ]
+        const lastWord = logic.firstChecksumWordAlphabetically(my24words);
+
+        const expectedWords = ["wedding"]
+        expect(lastWord).to.be.oneOf(expectedWords);
+    })
     it('should have an empty error message if supplied words are valid', function () {
         const result = logic.validate("empower soul reunion entire help raise truth reflect argue transfer chicken narrow oak friend junior figure auto small push spike next pledge december");
         expect(result.errorMessage).to.be.empty
