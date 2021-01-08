@@ -8,7 +8,7 @@ Commit that file manually and Github pages will take care of the deployment.
 ##### TODO
 
 Would be nice to not having to commit the bundle.js but it's OK for now.
-(There is Travis job, but it only handles build and test, not yet deployment.)
+(There is a Travis job, but it only handles build and test, not yet deployment.)
 
 ## Markdown to Pdf generation
 
@@ -24,3 +24,13 @@ Check that it looks ok and commit the pdf.
 
 - Use [this Google Doc](https://docs.google.com/document/d/1jBkh3xVeG-o8J4etIf9kU8fSiq_tRBXPfKqZkEzb_cQ). (make a copy if you don't have edit right)
 - Downlad as pdf
+
+## Environment
+
+Tested and built on:
+
+```
+> npm -v; node -v
+7.0.8
+v15.1.0
+```
