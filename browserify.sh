@@ -5,7 +5,7 @@ echo "--- Bundling dependencies with browserify,"
 echo "--- Bundle location: [${OUT}]"
 echo "--- Currently, the bundle file must be committed and pushed every time it's changed! (See README_dev.md)"
 
-browserify \
+npx browserify \
 	-r bip32 \
 	-r bip39 \
 	-r jquery \
