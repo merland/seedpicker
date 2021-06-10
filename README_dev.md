@@ -8,6 +8,10 @@
 
 `rm -rf node_modules package-lock.json; ./build.sh`
 
+#### Unit Testing
+
+`npm test`
+
 #### Deployment
 
 The build results in a bundle.js in `/calculator`.
