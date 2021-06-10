@@ -1,6 +1,14 @@
 ## Building
 
+#### Normal build
+
 `./build.sh`
+
+#### Clean build
+
+`rm -rf node_modules package-lock.json; ./build.sh`
+
+#### Deployment
 
 The build results in a bundle.js in `/calculator`.
 Commit that file manually and Github pages will take care of the deployment.
@@ -31,6 +39,6 @@ Tested and built on:
 
 ```
 > npm -v; node -v
-7.0.8
-v15.1.0
+7.13.0
+v16.2.0
 ```
