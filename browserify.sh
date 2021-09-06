@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 OUT=calculator/bundle.js
 
-echo "--- Bundling dependencies with browserify,"
-echo "--- Bundle location: [${OUT}]"
-echo "--- Currently, the bundle file must be committed and pushed every time it's changed! (See README_dev.md)"
+echo "--- Bundling code and dependencies with browserify. Bundle location: [${OUT}]"
+echo "--- NOTE: The bundle file must be committed and pushed every time it is changed! (See README_dev.md)"
 
 npx browserify \
 	-r bip32 \
