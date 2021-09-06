@@ -81,6 +81,13 @@ describe("XPUB generation", function () {
         assert.isUndefined(result.Zpub)
     });
 
+    // https://github.com/merland/seedpicker/issues/44
+    it('can generate Testnet tpub', () => {
+        const mnemonic = 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art'
+        const result = logic.keysFromMnemonic(mnemonic, "testnet");
+        assert.strictEqual(result.tpub, 'tpubDFkN51vYF36W4Yfn3wGv5fpmRo3ok7vZZjc1gmRJjumq33L776e6GkP4HGdCVjDqYiBahXCrXQKja8aUZ2xovQNS8WkF46MdY7TLHJLYD7H');
+    });
+
 })
 
 describe("XPUB conversion", function () {

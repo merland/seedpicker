@@ -67594,6 +67594,7 @@ function keysFromMnemonic(mnemonic, network) {
         xpub: xpubFromMnemonic(mnemonic, derivationPath),
         Zpub: anyPubFrom(xpubFromMnemonic(mnemonic, derivationPath), 'Zpub', network),
         Vpub: anyPubFrom(xpubFromMnemonic(mnemonic, derivationPath), 'Vpub', network),
+        tpub: anyPubFrom(xpubFromMnemonic(mnemonic, derivationPath), 'tpub', network),
         derivationPath: derivationPath,
         network
     }
@@ -67906,13 +67907,15 @@ function submitButtonAction(callback) {
         $("#network").text(network)
 
         $("#networkswitchlink").html(`&nbsp;<a href="?network=${otherNetwork()}">(switch to ${otherNetwork()})</a>`);
-        $("#xpub_key").text(pubKeys.xpub)
+
         $("#root_fingerprint").text(rootFingerprint)
 
         if (isTestnet()) {
+            $("#xpub_key").text(pubKeys.tpub)
             $("#extended_pub_heading").text(getVersionBytes("Vpub").desc)
             $("#extended_pub_result").text(pubKeys.Vpub)
         } else {
+            $("#xpub_key").text(pubKeys.xpub)
             $("#extended_pub_heading").text(getVersionBytes("Zpub").desc)
             $("#extended_pub_result").text(pubKeys.Zpub)
         }
