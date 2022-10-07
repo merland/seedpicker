@@ -12,6 +12,10 @@
 
 `npm test`
 
+#### Run locally
+
+Run ´./build.sh´ then open ´calculator/last-word.html´ in a browser.
+
 #### Deployment
 
 The build results in a bundle.js in `/calculator`.
@@ -21,6 +25,24 @@ Commit that file manually and Github pages will take care of the deployment.
 
 Would be nice to not having to commit the bundle.js but it's OK for now.
 (There is a Travis job, but it only handles build and test, not yet deployment.)
+
+---
+
+Oct 22: Wanted to update bip32 to latest (3.1.0) but there is a problem that will have to wait for now:
+
+bundle.js:61757 Uncaught TypeError: (0 , fs_1.readFileSync) is not a function
+at require.292../rand.cjs (bundle.js:54791:38)
+at o (bundle.js:1:273)
+at bundle.js:1:324
+at require.tiny-secp256k1../validate.cjs (bundle.js:69054:26)
+at o (bundle.js:1:273)
+at bundle.js:1:324
+at Object.<anonymous> (bundle.js:68611:13)
+at Object.<anonymous> (bundle.js:68803:4)
+at require.logic../xpubformats.js (bundle.js:68803:17)
+at o (bundle.js:1:273)
+
+It seems like one of the bip32 deps - secp256k1 - breaks when packaged by Browserify
 
 ## Markdown to Pdf generation
 
@@ -43,6 +65,6 @@ Tested and built on:
 
 ```
 > npm -v; node -v
-7.13.0
-v16.2.0
+8.18.0
+v16.17.0
 ```
