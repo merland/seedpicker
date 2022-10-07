@@ -30,6 +30,7 @@ Would be nice to not having to commit the bundle.js but it's OK for now.
 
 Oct 22: Wanted to update bip32 to latest (3.1.0) but there is a problem that will have to wait for now:
 
+```
 bundle.js:61757 Uncaught TypeError: (0 , fs_1.readFileSync) is not a function
 at require.292../rand.cjs (bundle.js:54791:38)
 at o (bundle.js:1:273)
@@ -41,6 +42,7 @@ at Object.<anonymous> (bundle.js:68611:13)
 at Object.<anonymous> (bundle.js:68803:4)
 at require.logic../xpubformats.js (bundle.js:68803:17)
 at o (bundle.js:1:273)
+```
 
 It seems like one of the bip32 deps - secp256k1 - breaks when packaged by Browserify
 
@@ -56,8 +58,9 @@ Check that it looks ok and commit the pdf.
 
 ## Updating raffle ticket cutouts
 
-- Use [this Google Doc](https://docs.google.com/document/d/1jBkh3xVeG-o8J4etIf9kU8fSiq_tRBXPfKqZkEzb_cQ). (make a copy if you don't have edit right)
-- Downlad as pdf
+- Use [this Google Doc](https://docs.google.com/document/d/1jBkh3xVeG-o8J4etIf9kU8fSiq_tRBXPfKqZkEzb_cQ).
+  (make a copy if you don't have edit rights)
+- Download as pdf
 
 ## Environment
 
